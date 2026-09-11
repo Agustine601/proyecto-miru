@@ -1,0 +1,240 @@
+/* =========================================
+   🌱 MIRU - GESTIÓN AGRÍCOLA Y QUÍMICA
+   Estilo general
+   ========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f4f8f2 0%,
+      #edf4eb 50%,
+      #f8faf7 100%
+    );
+
+  color: #26352a;
+}
+
+/* =========================================
+   APP
+   ========================================= */
+
+.App {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e8eee6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6f8f72;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f6846;
+}
+
+/* =========================================
+   TEXTOS
+   ========================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #23452b;
+}
+
+p {
+  color: #3f4d42;
+}
+
+/* =========================================
+   LINKS
+   ========================================= */
+
+a {
+  color: #397348;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #245630;
+}
+
+/* =========================================
+   BOTONES ANT DESIGN
+   ========================================= */
+
+.ant-btn {
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.ant-btn-primary {
+  background: #397348;
+  border-color: #397348;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background: #2d6039;
+  border-color: #2d6039;
+}
+
+/* =========================================
+   INPUTS
+   ========================================= */
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select-selector,
+.ant-picker {
+  border-radius: 8px !important;
+  border-color: #c8d5c8 !important;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper-focused,
+.ant-select-focused .ant-select-selector {
+  border-color: #5d8b62 !important;
+  box-shadow: 0 0 0 2px rgba(75, 120, 82, 0.12) !important;
+}
+
+/* =========================================
+   MODALES
+   ========================================= */
+
+.ant-modal-content {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.ant-modal-header {
+  border-bottom: 1px solid #e1e9df;
+}
+
+.ant-modal-title {
+  color: #285832;
+  font-weight: 700;
+}
+
+/* =========================================
+   TAGS
+   ========================================= */
+
+.ant-tag {
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* =========================================
+   CARDS
+   ========================================= */
+
+.ant-card {
+  border-radius: 14px;
+  border: 1px solid #dce7da;
+}
+
+/* =========================================
+   TABLAS
+   ========================================= */
+
+.ant-table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ant-table-thead > tr > th {
+  background: #e8f0e5 !important;
+  color: #285832 !important;
+  font-weight: 700;
+}
+
+/* =========================================
+   ALERTAS
+   ========================================= */
+
+.ant-alert {
+  border-radius: 10px;
+}
+
+/* =========================================
+   SELECCIONES
+   ========================================= */
+
+::selection {
+  background: #8aae8c;
+  color: white;
+}
+
+/* =========================================
+   ANIMACIÓN SUAVE
+   ========================================= */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.App {
+  animation: aparecer 0.35s ease;
+}
+
+
+/* =========================================
+   CATÁLOGO BAYER
+   ========================================= */
+
+@media (max-width: 900px) {
+  .App {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .ant-modal {
+    max-width: calc(100vw - 24px);
+  }
+}

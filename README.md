@@ -1,0 +1,49 @@
+<img width="423" alt="Storeroom Logo" src="https://user-images.githubusercontent.com/24427237/164546119-7505e5cf-44ff-48c1-8874-9f44474f9798.png">
+
+## The problem
+
+Research labs contain hundreds, if not thousands, of supplies and equipment. There are many instances where researchers are working on an important experiment only to realize they’ve run out of a crucial reagent. This happens often because it is difficult to keep track of all of the supplies and reagents within a lab.
+
+## The solution
+
+Storeroom is a lab supply management application that makes it easier to track and manage everything within a lab. This way, scientists can focus more on the science, and less on the logistics.
+
+## Current features
+- Secure sign-in with Google
+- Uploading, updating and deleting items
+- Search-filtering your items
+- Alerts for low item quantity
+- Clean and intuitive UI
+
+## Demo
+![create](https://user-images.githubusercontent.com/24427237/164559465-320d893b-d645-43c0-a2a1-602cc74685c1.gif)
+
+![filtering](https://user-images.githubusercontent.com/24427237/164559770-54decaec-996c-4dca-b41e-f8ca25ccaec7.gif)
+
+
+## Key technologies used
+
+- <a href="https://reactjs.org/docs/getting-started.html">React</a>
+- <a href="https://redux-toolkit.js.org/">Redux Toolkit</a> and <a href="https://redux-toolkit.js.org/rtk-query/overview">RTK Query</a>
+- <a href="https://expressjs.com/">NodeJS/Express</a>
+- <a href="https://www.mongodb.com/">MongoDB</a>
+- <a href="https://developers.google.com/identity/protocols/oauth2">OAuth 2.0</a>
+- <a href="https://ant.design/docs/react/introduce">Ant Design - UI component library</a>
+
+## Catálogo Bayer Agro
+
+Se incorporó una sección **Catálogo Bayer** dentro del menú lateral. Permite consultar productos de protección de cultivos y cargarlos directamente al inventario como productos químicos.
+
+Productos de referencia incluidos:
+- Roundup TOP — Herbicida
+- Adengo — Herbicida
+- Laudis — Herbicida
+- Cripton — Fungicida
+- Cripton Xpro — Fungicida
+- Decis Forte 10 EC — Insecticida
+
+La información es de referencia y debe contrastarse con el marbete/ficha vigente antes de utilizar un producto. El catálogo enlaza a las fuentes de Bayer cuando corresponde.
+
+### Variables de entorno
+
+Por seguridad, el archivo `.env` real no se incluye en la distribución. Copiá `.env.example` como `.env` y colocá tu `MONGO_URI`.
