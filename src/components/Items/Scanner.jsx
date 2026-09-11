@@ -388,108 +388,127 @@ const Scanner = ({ visible, onCancel, onFound }) => {
   };
 
   return (
-    <Modal
-      title="📷 Escanear producto"
-      open={visible}
-      onCancel={onCancel}
-      footer={null}
-      centered
-      width={600}
-      destroyOnClose
-    >
-      <div style={{ textAlign: 'center' }}>
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          webkit-playsinline="true"
-          style={{
-            width: '100%',
-            maxHeight: 360,
-            objectFit: 'cover',
-            borderRadius: 12,
-            background: '#111',
-            minHeight: 180,
-          }}
-        />
-
-        <div style={{ marginTop: 12 }}>
-          {status.includes('Cámara activa') ? (
-            <Tag color="green">
-              📷 {status}
-            </Tag>
-          ) : (
-            <Tag>{status}</Tag>
-          )}
-        </div>
-
-        {error && (
-          <Alert
-            style={{
-              marginTop: 12,
-              textAlign: 'left',
-            }}
-            type="warning"
-            showIcon
-            message="No se pudo iniciar el escáner"
-            description={error}
-          />
-        )}
-
+  <>
+    {visible && (
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 99999,
+          background: '#fff',
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
         <div
           style={{
-            marginTop: 20,
-            textAlign: 'left',
+            maxWidth: 600,
+            margin: '0 auto',
+            padding: 20,
           }}
         >
-          <Input.Search
-            value={manualCode}
-            onChange={(e) =>
-              setManualCode(e.target.value)
-            }
-            onSearch={buscarManual}
-            enterButton={<SearchOutlined />}
-            placeholder="También podés escribir el código manualmente"
-          />
-        </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: 16,
+            }}
+          >
+            <h2 style={{ margin: 0 }}>📷 Escanear producto</h2>
 
-        <button
-          type="button"
-          disabled={starting}
-          onTouchStart={handleCameraTouch}
-          onClick={handleCameraClick}
-          style={{
-            marginTop: 16,
-            minHeight: 52,
-            minWidth: 220,
-            padding: '0 22px',
-            borderRadius: 8,
-            border: '1px solid #1677ff',
-            background: starting
-              ? '#8bbcff'
-              : '#1677ff',
-            color: '#fff',
-            fontSize: 17,
-            fontWeight: 600,
-            cursor: starting
-              ? 'default'
-              : 'pointer',
-            WebkitAppearance: 'none',
-            WebkitTapHighlightColor:
-              'transparent',
-            touchAction: 'manipulation',
-            userSelect: 'none',
-            WebkitUserSelect: 'none',
-          }}
-        >
-          {starting
-            ? 'Abriendo cámara…'
-            : '📷 Abrir cámara'}
-        </button>
+            <button
+              type="button"
+              onClick={onCancel}
+              style={{
+                minWidth: 48,
+                minHeight: 48,
+                border: 'none',
+                background: '#eee',
+                borderRadius: 8,
+                fontSize: 22,
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+              }}
+            >
+              ✕
+            </button>
+          </div>
+
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            webkit-playsinline="true"
+            style={{
+              width: '100%',
+              height: 360,
+              maxHeight: '55vh',
+              objectFit: 'cover',
+              borderRadius: 12,
+              background: '#111',
+              display: 'block',
+            }}
+          />
+
+          <div style={{ marginTop: 12, textAlign: 'center' }}>
+            {status.includes('activa') ? (
+              <Tag color="green">📷 {status}</Tag>
+            ) : (
+              <Tag>{status}</Tag>
+            )}
+          </div>
+
+          {error && (
+            <Alert
+              style={{ marginTop: 12, textAlign: 'left' }}
+              type="warning"
+              showIcon
+              message="No se pudo iniciar el escáner"
+              description={error}
+            />
+          )}
+
+          <button
+            type="button"
+            disabled={starting}
+            onTouchStart={handleCameraTouch}
+            onClick={handleCameraClick}
+            style={{
+              width: '100%',
+              minHeight: 56,
+              marginTop: 20,
+              padding: '0 22px',
+              borderRadius: 10,
+              border: 'none',
+              background: '#1677ff',
+              color: '#fff',
+              fontSize: 18,
+              fontWeight: 600,
+              cursor: starting ? 'default' : 'pointer',
+              WebkitAppearance: 'none',
+              WebkitTapHighlightColor: 'transparent',
+              touchAction: 'manipulation',
+            }}
+          >
+            {starting ? '⏳ Abriendo cámara…' : '📷 Abrir cámara'}
+          </button>
+
+          <div style={{ marginTop: 20 }}>
+            <Input.Search
+              value={manualCode}
+              onChange={(e) => setManualCode(e.target.value)}
+              onSearch={buscarManual}
+              enterButton={<SearchOutlined />}
+              placeholder="También podés escribir el código manualmente"
+            />
+          </div>
+        </div>
       </div>
-    </Modal>
-  );
+    )}
+  </>
+);
 };
 
 export default Scanner;
