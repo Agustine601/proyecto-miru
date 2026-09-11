@@ -1,4 +1,4 @@
-<img width="423" alt="Storeroom Logo" src="https://user-images.githubusercontent.com/24427237/164546119-7505e5cf-44ff-48c1-8874-9f44474f9798.png">
+
 
 ## The problem
 
@@ -16,9 +16,7 @@ Storeroom is a lab supply management application that makes it easier to track a
 - Clean and intuitive UI
 
 ## Demo
-![create](https://user-images.githubusercontent.com/24427237/164559465-320d893b-d645-43c0-a2a1-602cc74685c1.gif)
 
-![filtering](https://user-images.githubusercontent.com/24427237/164559770-54decaec-996c-4dca-b41e-f8ca25ccaec7.gif)
 
 
 ## Key technologies used
