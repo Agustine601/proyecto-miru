@@ -3,12 +3,12 @@ import { Card } from 'antd';
 import styled from 'styled-components';
 
 const StyledCard = styled(Card)`
-  width: 70vw;
-  max-width: 1100px;
-  min-width: 320px;
-  height: auto;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  height: 100%;
 
-  margin: 12px 0;
+  margin: 0;
 
   border: 1px solid #d7e4d5;
   border-left: 5px solid #397348;
@@ -28,7 +28,7 @@ const StyledCard = styled(Card)`
   overflow: hidden;
 
   .ant-card-body {
-    padding: 22px 26px;
+    padding: 16px 18px;
   }
 
   &:hover {
@@ -45,18 +45,18 @@ const StyledCard = styled(Card)`
      ===================================== */
 
   h2 {
-    margin: 0 0 18px 0;
+    margin: 0 0 12px 0;
 
     color: #23452b;
 
-    font-size: 23px;
+    font-size: 19px;
     font-weight: 700;
 
     letter-spacing: 0.2px;
 
     border-bottom: 1px solid #e4ece2;
 
-    padding-bottom: 12px;
+    padding-bottom: 8px;
   }
 
   /* =====================================
@@ -64,11 +64,11 @@ const StyledCard = styled(Card)`
      ===================================== */
 
   p {
-    margin: 9px 0;
+    margin: 6px 0;
 
     color: #4a574c;
 
-    font-size: 15px;
+    font-size: 13px;
 
     line-height: 1.5;
   }

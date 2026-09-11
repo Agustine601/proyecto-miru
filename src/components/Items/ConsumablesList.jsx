@@ -15,15 +15,20 @@ import { useGetConsumablesQuery } from '../../services/items';
 
 const ListWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Actions = styled.div`
   display: flex;
-  gap: 8px;
-  margin-top: 15px;
+  gap: 6px;
+  margin-top: 12px;
   flex-wrap: wrap;
   justify-content: flex-end;
 `;

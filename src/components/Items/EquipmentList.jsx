@@ -12,6 +12,18 @@ const StyledSpin = styled(Spin)`
   margin: 2rem;
 `;
 
+const EquipmentGrid = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 const EquipmentList = () => {
   const {
     data,
@@ -48,14 +60,7 @@ const EquipmentList = () => {
   }, [searchInput, data]);
 
   return (
-    <div
-      className="site-card-border-less-wrapper"
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-      }}
-    >
+    <EquipmentGrid className="site-card-border-less-wrapper">
       {isLoading && <StyledSpin />}
 
       {isError && (
@@ -112,7 +117,7 @@ const EquipmentList = () => {
       {isSuccess && foundItems.length === 0 && (
         <SearchInvalid />
       )}
-    </div>
+    </EquipmentGrid>
   );
 };
 
