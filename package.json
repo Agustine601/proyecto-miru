@@ -13,15 +13,16 @@
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@react-oauth/google": "^0.13.5",
     "@reduxjs/toolkit": "^1.8.1",
     "antd": "^4.19.5",
     "bcryptjs": "^2.4.3",
     "dotenv": "^17.4.2",
     "express": "^4.17.3",
+    "jwt-decode": "^4.0.0",
     "mongoose": "^6.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-google-login": "^5.2.2",
     "react-redux": "^8.0.0",
     "styled-components": "^5.3.5"
   },

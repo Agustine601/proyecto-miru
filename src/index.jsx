@@ -1,28 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
+import { store } from './app/store';
 import App from './App.jsx';
 import './index.css';
-// import 'antd/dist/antd.css';
 
-// ReactDOM.render(
-//   // <React.StrictMode>
-//   <Provider store={store}>
-//     <App />
-//   </Provider>,
-//   // </React.StrictMode>,
-//   document.getElementById('root')
-// );
+const clientId =
+  '870413778352-3vtpln31uiods5s2v0epiioj72i624k8.apps.googleusercontent.com';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-  </Provider>
-  // </React.StrictMode>
-);
 
+root.render(
+  <GoogleOAuthProvider clientId={clientId}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </GoogleOAuthProvider>
+);

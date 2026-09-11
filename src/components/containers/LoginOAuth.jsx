@@ -1,85 +1,66 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 
 import { setLogin } from '../../loginSlice';
 import { setUser, clearUser } from './userSlice';
 
-const clientId =
-  '870413778352-3vtpln31uiods5s2v0epiioj72i624k8.apps.googleusercontent.com';
-
 function LoginOAuth() {
-  const [showLoginButton, setShowLoginButton] = useState(true);
-  const [showLogoutButton, setShowLogoutButton] = useState(false);
-
   const dispatch = useDispatch();
 
-  const onLoginSuccess = (res) => {
-    const profile = res.profileObj;
+  const onLoginSuccess = (credentialResponse) => {
+    try {
+      const profile = jwtDecode(credentialResponse.credential);
 
-    console.log('Login exitoso:', profile.name);
-    console.log('Email:', profile.email);
+      console.log('Login exitoso:', profile.name);
+      console.log('Email:', profile.email);
 
-    /*
-      Por ahora todo usuario que entra con Google
-      comienza como "user".
+      dispatch(
+        setUser({
+          name: profile.name,
+          email: profile.email,
+          role: 'user',
+          isOwner: false,
+        })
+      );
 
-      Más adelante el backend decidirá si es:
-      - owner
-      - admin
-      - user
-    */
-
-    dispatch(
-      setUser({
-        name: profile.name,
-        email: profile.email,
-        role: 'user',
-        isOwner: false,
-      })
-    );
-
-    dispatch(setLogin(true));
-
-    setShowLoginButton(false);
-    setShowLogoutButton(true);
+      dispatch(setLogin(true));
+    } catch (error) {
+      console.error('Error procesando el login de Google:', error);
+    }
   };
 
-  const onLoginFailure = (res) => {
-    console.log('Login fallido:', res);
+  const onLoginFailure = () => {
+    console.log('Login de Google fallido');
   };
 
-  const onSignoutSuccess = () => {
-    console.log('Usuario cerró sesión');
+  const onLogout = () => {
+    googleLogout();
 
     dispatch(clearUser());
     dispatch(setLogin(false));
-
-    setShowLoginButton(true);
-    setShowLogoutButton(false);
   };
 
   return (
     <div>
-      {showLoginButton && (
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="Iniciar sesión con Google"
-          onSuccess={onLoginSuccess}
-          onFailure={onLoginFailure}
-          cookiePolicy="single_host_origin"
-          isSignedIn={true}
-        />
-      )}
+      <GoogleLogin
+        onSuccess={onLoginSuccess}
+        onError={onLoginFailure}
+        useOneTap
+      />
 
-      {showLogoutButton && (
-        <GoogleLogout
-          clientId={clientId}
-          buttonText="Cerrar sesión"
-          onLogoutSuccess={onSignoutSuccess}
-        />
-      )}
+      <button
+        type="button"
+        onClick={onLogout}
+        style={{
+          marginTop: '10px',
+          padding: '8px 16px',
+          cursor: 'pointer',
+        }}
+      >
+        Cerrar sesión
+      </button>
     </div>
   );
 }
