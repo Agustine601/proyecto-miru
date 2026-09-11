@@ -19,3 +19,15 @@ root.render(
     </Provider>
   </GoogleOAuthProvider>
 );
+// Limpieza de versiones antiguas del Service Worker para evitar que Safari/iPhone
+// siga sirviendo un bundle viejo de MIRÚ.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => registration.unregister());
+    }).catch(() => {});
+    if (window.caches) {
+      window.caches.keys().then((keys) => keys.forEach((key) => window.caches.delete(key))).catch(() => {});
+    }
+  });
+}
