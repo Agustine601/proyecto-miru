@@ -67,22 +67,31 @@ const Scanner = ({ visible, onCancel, onFound }) => {
   };
 
   const startCamera = async () => {
-    stopCamera();
-    foundRef.current = false;
+    if (starting) return;
+
+    // En iPhone/Safari la llamada a getUserMedia debe ocurrir lo más directamente
+    // posible desde el gesto del usuario. Evitamos cualquier operación async antes.
+    if (!window.isSecureContext && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      setCameraError('La cámara requiere HTTPS. Abrí MIRÚ desde https://proyecto-miru.onrender.com');
+      return;
+    }
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setCameraError('Safari no habilitó la cámara en esta página. Abrí MIRÚ directamente en Safari (no desde WhatsApp/Instagram) y verificá Configuración → Safari → Cámara → Permitir.');
+      return;
+    }
+    if (window.navigator.standalone) {
+      setCameraError('MIRÚ está abierto como app instalada. Para usar la cámara en iPhone, abrí MIRÚ directamente en Safari.');
+      return;
+    }
+
     setCameraError('');
     setStarting(true);
+    foundRef.current = false;
 
+    let stream = null;
     try {
-      if (!window.isSecureContext && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-        throw new Error('La cámara requiere HTTPS. Abrí MIRÚ desde https://proyecto-miru.onrender.com');
-      }
-      if (!navigator.mediaDevices?.getUserMedia) {
-        throw new Error('Safari no permite acceder a la cámara desde este contexto. Abrí MIRÚ directamente en Safari.');
-      }
-
-      // Primero pedimos explícitamente la cámara. Esto es especialmente importante
-      // en Safari/iPhone: la llamada se hace desde el botón "Abrir cámara".
-      const stream = await navigator.mediaDevices.getUserMedia({
+      // IMPORTANTE: esta es la primera operación que puede pedir permiso.
+      stream = await navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: { ideal: 'environment' },
           width: { ideal: 1280 },
@@ -91,8 +100,11 @@ const Scanner = ({ visible, onCancel, onFound }) => {
         audio: false,
       });
 
+      // Ahora sí limpiamos una sesión anterior y conectamos el stream nuevo.
+      stopCamera();
       streamRef.current = stream;
-      if (!videoRef.current) throw new Error('No se encontró el visor de cámara.');
+
+      if (!videoRef.current) throw new Error('No se encontró el visor de cámara. Cerrá y volvé a abrir el escáner.');
       videoRef.current.setAttribute('playsinline', 'true');
       videoRef.current.setAttribute('webkit-playsinline', 'true');
       videoRef.current.muted = true;
@@ -100,8 +112,6 @@ const Scanner = ({ visible, onCancel, onFound }) => {
       await videoRef.current.play();
       setScanning(true);
 
-      // BarcodeDetector no está disponible de forma consistente en Safari/iOS.
-      // Si existe, lo usamos; si no, ZXing analiza el video ya abierto.
       if ('BarcodeDetector' in window) {
         try {
           const supported = await BarcodeDetector.getSupportedFormats?.();
@@ -128,10 +138,8 @@ const Scanner = ({ visible, onCancel, onFound }) => {
         }
       }
 
-      // Safari/iPhone: ZXing recibe el elemento de video que ya tiene el stream.
-      // No volvemos a pedir permisos ni enumeramos cámaras.
       if (!window.ZXingBrowser?.BrowserMultiFormatReader) {
-        throw new Error('No se cargó ZXing. Verificá Internet y recargá MIRÚ.');
+        throw new Error('La cámara se abrió, pero no se cargó el lector QR. Recargá MIRÚ con Safari y probá de nuevo.');
       }
       const reader = new window.ZXingBrowser.BrowserMultiFormatReader();
       readerRef.current = reader;
@@ -139,24 +147,28 @@ const Scanner = ({ visible, onCancel, onFound }) => {
         await reader.decodeFromVideoElement(videoRef.current, (result) => {
           if (result) finish(result.getText());
         });
-      } else {
-        // Compatibilidad con versiones de ZXing que no exponen decodeFromVideoElement.
+      } else if (typeof reader.decodeFromStream === 'function') {
         reader.decodeFromStream(stream, videoRef.current, (result) => {
           if (result) finish(result.getText());
         });
+      } else {
+        throw new Error('El lector QR no es compatible con este navegador.');
       }
     } catch (error) {
       console.error('Error de cámara/lector:', error);
+      if (stream) stream.getTracks().forEach((track) => track.stop());
       stopCamera();
       const name = error?.name;
       if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
-        setCameraError('Safari bloqueó la cámara. En el iPhone: Configuración → Safari → Cámara → Permitir. Luego cerrá Safari completamente, abrilo de nuevo y probá otra vez.');
+        setCameraError('Safari rechazó o bloqueó la cámara. Verificá Configuración → Apps → Safari → Cámara → Permitir y volvé a intentar.');
       } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
         setCameraError('No se encontró una cámara disponible en el iPhone.');
       } else if (name === 'NotReadableError' || name === 'TrackStartError') {
         setCameraError('La cámara está siendo usada por otra aplicación. Cerrá otras apps que usen la cámara y volvé a intentar.');
+      } else if (name === 'SecurityError') {
+        setCameraError('Safari bloqueó el acceso por seguridad. Abrí MIRÚ directamente en Safari usando HTTPS.');
       } else {
-        setCameraError(error?.message || 'No se pudo abrir la cámara. Permití el acceso a la cámara.');
+        setCameraError(error?.message || 'No se pudo abrir la cámara.');
       }
     } finally {
       setStarting(false);
@@ -191,7 +203,32 @@ const Scanner = ({ visible, onCancel, onFound }) => {
         <div style={{ marginTop: 20, textAlign: 'left' }}>
           <Input.Search value={manualCode} onChange={(e) => setManualCode(e.target.value)} onSearch={buscarManual} enterButton={<SearchOutlined />} placeholder="También podés escribir el código manualmente" />
         </div>
-        <Button type="primary" style={{ marginTop: 16 }} icon={<CameraOutlined />} loading={starting} onClick={startCamera}>Abrir cámara</Button>
+        <button
+          type="button"
+          onClick={startCamera}
+          onTouchEnd={(event) => {
+            event.preventDefault();
+            startCamera();
+          }}
+          disabled={starting}
+          style={{
+            marginTop: 16,
+            minHeight: 44,
+            padding: '10px 20px',
+            border: 0,
+            borderRadius: 6,
+            background: starting ? '#91caff' : '#1677ff',
+            color: '#fff',
+            fontSize: 16,
+            fontWeight: 500,
+            cursor: starting ? 'default' : 'pointer',
+            WebkitTapHighlightColor: 'transparent',
+            touchAction: 'manipulation',
+          }}
+        >
+          <CameraOutlined style={{ marginRight: 8 }} />
+          {starting ? 'Abriendo cámara...' : 'Abrir cámara'}
+        </button>
       </div>
     </Modal>
   );
