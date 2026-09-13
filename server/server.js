@@ -123,20 +123,29 @@ app.use(({ code, error }, req, res, next) => {
 // SERVIDOR
 // ========================================
 
-const httpsOptions = {
-  key: fs.readFileSync(
-    path.join(__dirname, '../192.168.1.52+2-key.pem')
-  ),
-  cert: fs.readFileSync(
-    path.join(__dirname, '../192.168.1.52+2.pem')
-  ),
-};
+if (process.env.RENDER) {
+  // Render proporciona HTTPS externamente.
+  // No necesitamos certificados .pem.
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`MIRÚ funcionando en el puerto ${port}`);
+  });
+} else {
+  // Desarrollo local: HTTPS con certificados locales.
+  const httpsOptions = {
+    key: fs.readFileSync(
+      path.join(__dirname, '../192.168.1.52+2-key.pem')
+    ),
+    cert: fs.readFileSync(
+      path.join(__dirname, '../192.168.1.52+2.pem')
+    ),
+  };
 
-https.createServer(httpsOptions, app).listen(
-  port,
-  '0.0.0.0',
-  () => {
-    console.log(`MIRÚ HTTPS funcionando en https://localhost:${port}`);
-    console.log(`MIRÚ HTTPS en red: https://192.168.1.52:${port}`);
-  }
-);
+  https.createServer(httpsOptions, app).listen(
+    port,
+    '0.0.0.0',
+    () => {
+      console.log(`MIRÚ HTTPS funcionando en https://localhost:${port}`);
+      console.log(`MIRÚ HTTPS en red: https://192.168.1.52:${port}`);
+    }
+  );
+}
