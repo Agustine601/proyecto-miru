@@ -58,6 +58,8 @@ const loteSchema = new Schema(
 );
 const consumableSchema = new Schema({
   nombre: String,
+  solicitante: { type: String, default: '', trim: true },
+  destino: { type: String, default: '', trim: true },
   codigoBarras: { type: String, default: '', trim: true, index: true },
   codigoQR: { type: String, default: '', trim: true, index: true },
   lotes: {

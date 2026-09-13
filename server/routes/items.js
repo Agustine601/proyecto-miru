@@ -47,29 +47,11 @@ router.get(
 // POST - AGREGAR PRODUCTOS
 // ========================================
 
-router.post(
-  '/consumables',
-  itemsController.addConsumable,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.post('/consumables', itemsController.addConsumable);
 
-router.post(
-  '/reagents',
-  itemsController.addReagent,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.post('/reagents', itemsController.addReagent);
 
-router.post(
-  '/equipment',
-  itemsController.addEquipment,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.post('/equipment', itemsController.addEquipment);
 
 // ========================================
 // DELETE - ELIMINAR PRODUCTOS

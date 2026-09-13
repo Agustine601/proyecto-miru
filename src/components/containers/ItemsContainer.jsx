@@ -21,6 +21,7 @@ import TechnicalChallenges from '../Items/TechnicalChallenges.jsx';
 import ScannerPage from '../Items/ScannerPage.jsx';
 import WorkSheet from '../Items/WorkSheet.jsx';
 import BayerCatalog from '../Items/BayerCatalog.jsx';
+import WarehouseMap from '../Warehouse/WarehouseMap.jsx';
 
 const Wrapper = styled.div`
   width: 80vw;
@@ -75,6 +76,8 @@ const ItemsContainer = () => {
       {display === 'bayer-catalog' && (
         <BayerCatalog />
       )}
+
+      {display === 'warehouse-map' && <WarehouseMap />}
 
       {display === 'movements' && (
         <MovementsHistory />

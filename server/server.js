@@ -1,5 +1,6 @@
-require('dotenv').config();
 const path = require('path');
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
 
 const app = express();
@@ -8,6 +9,7 @@ const port = process.env.PORT || 3000;
 const itemsRouter = require('./routes/items');
 const movementsRouter = require('./routes/movements');
 const workOrdersRouter = require('./routes/workOrders');
+const warehouseMapRouter = require('./routes/warehouseMap');
 
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
@@ -54,6 +56,9 @@ app.use('/movements', movementsRouter);
 
 // Hojas de trabajo / pedidos
 app.use('/work-orders', workOrdersRouter);
+
+// Mapa de ubicaciones del galpón
+app.use('/warehouse-map', warehouseMapRouter);
 
 app.post(
   '/signup',
@@ -118,6 +123,20 @@ app.use(({ code, error }, req, res, next) => {
 // SERVIDOR
 // ========================================
 
-app.listen(port, () =>
-  console.log(`Listening on port ${port}`)
+const httpsOptions = {
+  key: fs.readFileSync(
+    path.join(__dirname, '../192.168.1.52+2-key.pem')
+  ),
+  cert: fs.readFileSync(
+    path.join(__dirname, '../192.168.1.52+2.pem')
+  ),
+};
+
+https.createServer(httpsOptions, app).listen(
+  port,
+  '0.0.0.0',
+  () => {
+    console.log(`MIRÚ HTTPS funcionando en https://localhost:${port}`);
+    console.log(`MIRÚ HTTPS en red: https://192.168.1.52:${port}`);
+  }
 );

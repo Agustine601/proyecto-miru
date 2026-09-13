@@ -20,6 +20,8 @@ import {
 
 import { useAddItemMutation } from '../../services/items.js';
 import { useRegistrarMovimientoMutation } from '../../services/movements.js';
+import Scanner from '../Items/Scanner.jsx';
+import { extraerCodigoQR, extraerGS1 } from '../../qr-utils.js';
 
 const StyledButton = styled(Button)`
   margin-top: 1rem;
@@ -117,7 +119,10 @@ const AddItem = () => {
   const [categoria, setCategoria] = useState('');
   const [apodo, setApodo] = useState('');
   const [solicitante, setSolicitante] = useState('');
+  const [destino, setDestino] = useState('');
   const [codigoBarras, setCodigoBarras] = useState('');
+  const [scannerVisible, setScannerVisible] = useState(false);
+  const [scanning, setScanning] = useState(false);
   const [codigoQR, setCodigoQR] = useState('');
 
   const generarCodigoQR = () => {
@@ -178,11 +183,105 @@ const AddItem = () => {
     );
   };
 
+  const aplicarLoteEscaneado = (datos) => {
+    setLotes((actuales) => {
+      const base = actuales[0] || { ...loteInicial };
+      return [{
+        ...base,
+        numero: datos.lote || base.numero || '',
+        cantidad: Number(datos.cantidad ?? base.cantidad ?? 0),
+        vencimiento: datos.vencimiento || base.vencimiento || '',
+        proveedor: datos.proveedor || base.proveedor || '',
+      }, ...actuales.slice(1)];
+    });
+  };
+
+  const procesarCodigoEscaneado = async (codigo) => {
+    const raw = String(codigo || '').trim();
+    if (!raw) return;
+
+    setScannerVisible(false);
+    setScanning(true);
+
+    try {
+      const gs1 = extraerGS1(raw);
+      const esUrl = /^https?:\/\//i.test(raw);
+      const codigoExtraido = extraerCodigoQR(raw);
+
+      // Código de barras GS1: completa automáticamente GTIN, lote y vencimiento
+      // cuando esos datos vienen codificados en la etiqueta.
+      if (gs1.gtin) {
+        setCodigoBarras(raw);
+      } else {
+        setCodigoBarras(raw);
+      }
+
+      if (esUrl) {
+        setCodigoQR(codigoExtraido || raw);
+      } else {
+        // Un código de barras no reemplaza el QR propio de MIRÚ.
+        // Guardamos el código leído y dejamos el QR MIRÚ generado aparte.
+        setCodigoBarras(raw);
+      }
+
+      let datos = {
+        lote: gs1.lote || '',
+        cantidad: gs1.cantidad || 0,
+        vencimiento: gs1.vencimiento || '',
+        proveedor: '',
+      };
+
+      // QR de Logística Rojas: si el QR contiene una URL pública,
+      // intentamos recuperar producto, lote y cantidad automáticamente.
+      if (esUrl && codigoExtraido) {
+        try {
+          const url = `https://logistica-rojas.com.ar/services/api/work-order/dispatch/public/composition/${encodeURIComponent(codigoExtraido)}`;
+          const response = await fetch(url);
+          if (response.ok) {
+            const data = await response.json();
+            const detalle = data?.requesterDetails?.[0];
+            if (detalle) {
+              setNombre((detalle.product || '').trim());
+              setCodigoBarras((detalle.code || raw).trim());
+              setCodigoQR(codigoExtraido);
+              setProveedor(detalle.provider || 'Logística Rojas');
+              setUnidad(detalle.measureType || 'unidades');
+              if (detalle.requesterName) setSolicitante(detalle.requesterName);
+              if (detalle.requesterPlace) setDestino(detalle.requesterPlace);
+              datos = {
+                lote: detalle.lot || '',
+                cantidad: Number(detalle.quantity) || 0,
+                vencimiento: detalle.expirationDate || '',
+                proveedor: detalle.provider || 'Logística Rojas',
+              };
+              message.success('QR leído: datos de la orden cargados automáticamente.');
+            }
+          }
+        } catch (error) {
+          console.warn('No se pudo consultar el QR externo; se conserva el código leído.', error);
+        }
+      }
+
+      if (datos.lote || datos.cantidad || datos.vencimiento) {
+        aplicarLoteEscaneado(datos);
+      }
+
+      if (!esUrl) {
+        message.success(gs1.lote || gs1.gtin
+          ? 'Código de barras leído. Lote/vencimiento cargados si estaban codificados.'
+          : 'Código de barras leído. Completá los datos que no estén codificados.');
+      }
+    } finally {
+      setScanning(false);
+    }
+  };
+
   const limpiarFormulario = () => {
     setNombre('');
     setCategoria('');
     setApodo('');
     setSolicitante('');
+    setDestino('');
     setCodigoBarras('');
     setCodigoQR('');
     setProveedor('');
@@ -254,6 +353,11 @@ const AddItem = () => {
       solicitante:
         categoria === 'consumables'
           ? solicitante.trim()
+          : '',
+
+      destino:
+        categoria === 'consumables'
+          ? destino.trim()
           : '',
 
       codigoBarras: codigoBarras.trim(),
@@ -474,6 +578,30 @@ const AddItem = () => {
               />
             </Form.Item>
           )}
+
+          {categoria === 'consumables' && (
+            <Form.Item label="Destino">
+              <Input
+                placeholder="Ej: Campo / localidad / destino"
+                value={destino}
+                onChange={(e) => setDestino(e.target.value)}
+              />
+            </Form.Item>
+          )}
+
+          <Form.Item label="Escaneo rápido">
+            <Button
+              type="primary"
+              icon={<span role="img" aria-label="cámara">📷</span>}
+              onClick={() => setScannerVisible(true)}
+              loading={scanning}
+            >
+              Escanear QR / código de barras
+            </Button>
+            <div style={{ marginTop: 6, color: '#66736a', fontSize: 12 }}>
+              Leé la etiqueta del pallet. MIRÚ usa los datos que estén codificados y te deja completar lo que falte.
+            </div>
+          </Form.Item>
 
           <Form.Item label="Código de barras">
             <Input
@@ -776,6 +904,12 @@ const AddItem = () => {
 
         </Form>
       </Modal>
+
+      <Scanner
+        visible={scannerVisible}
+        onCancel={() => setScannerVisible(false)}
+        onFound={procesarCodigoEscaneado}
+      />
     </div>
   );
 };

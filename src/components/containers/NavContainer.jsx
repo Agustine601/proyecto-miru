@@ -19,6 +19,7 @@ import {
   AppstoreOutlined,
   ScanOutlined,
   FileTextOutlined,
+  ApartmentOutlined,
 } from '@ant-design/icons';
 
 import styled from 'styled-components';
@@ -286,6 +287,13 @@ const NavContainer = () => {
         icon={<FileTextOutlined />}
       >
         Hojas de trabajo
+      </Menu.Item>
+
+      <Menu.Item
+        key="warehouse-map"
+        icon={<ApartmentOutlined />}
+      >
+        Mapa del galpón
       </Menu.Item>
 
       <Menu.Item
