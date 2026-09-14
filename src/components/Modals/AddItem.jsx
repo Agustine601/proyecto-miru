@@ -122,6 +122,7 @@ const AddItem = () => {
   const [destino, setDestino] = useState('');
   const [codigoBarras, setCodigoBarras] = useState('');
   const [scannerVisible, setScannerVisible] = useState(false);
+  const [scannerKey, setScannerKey] = useState(0);
   const [scanning, setScanning] = useState(false);
   const [codigoQR, setCodigoQR] = useState('');
 
@@ -196,11 +197,28 @@ const AddItem = () => {
     });
   };
 
+  const abrirScanner = () => {
+    if (scanning) return;
+
+    // Cada apertura usa una instancia nueva del lector.
+    setScannerKey((key) => key + 1);
+    setScannerVisible(true);
+  };
+
+  const cerrarScanner = () => {
+    setScannerVisible(false);
+    setScanning(false);
+    setScannerKey((key) => key + 1);
+  };
+
   const procesarCodigoEscaneado = async (codigo) => {
     const raw = String(codigo || '').trim();
     if (!raw) return;
 
+    // El código ya fue consumido: cerramos y destruimos la instancia
+    // actual del escáner antes de procesar los datos.
     setScannerVisible(false);
+    setScannerKey((key) => key + 1);
     setScanning(true);
 
     try {
@@ -593,7 +611,7 @@ const AddItem = () => {
             <Button
               type="primary"
               icon={<span role="img" aria-label="cámara">📷</span>}
-              onClick={() => setScannerVisible(true)}
+              onClick={abrirScanner}
               loading={scanning}
             >
               Escanear QR / código de barras
@@ -906,8 +924,9 @@ const AddItem = () => {
       </Modal>
 
       <Scanner
+        key={scannerKey}
         visible={scannerVisible}
-        onCancel={() => setScannerVisible(false)}
+        onCancel={cerrarScanner}
         onFound={procesarCodigoEscaneado}
       />
     </div>

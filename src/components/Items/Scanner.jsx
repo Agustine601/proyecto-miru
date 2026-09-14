@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Alert, Input, Modal, Tag, message } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
@@ -9,6 +8,7 @@ const Scanner = ({ visible, onCancel, onFound }) => {
   const readerRef = useRef(null);
   const timerRef = useRef(null);
   const foundRef = useRef(false);
+  const scanSessionRef = useRef(0);
   const touchHandledRef = useRef(false);
 
   const [manualCode, setManualCode] = useState('');
@@ -49,9 +49,15 @@ const Scanner = ({ visible, onCancel, onFound }) => {
   const finish = (value) => {
     const code = String(value || '').trim();
 
+    // Un escaneo = un solo código. Aunque la cámara lo vea
+    // muchas veces seguidas, solamente procesamos la primera lectura.
     if (!code || foundRef.current) return;
 
     foundRef.current = true;
+
+    // Invalidamos inmediatamente la sesión actual para que ninguna
+    // detección que haya quedado pendiente pueda volver a procesarse.
+    scanSessionRef.current += 1;
 
     stopCamera();
 
@@ -67,6 +73,9 @@ const Scanner = ({ visible, onCancel, onFound }) => {
     setStatus('Toque recibido — solicitando cámara…');
     setError('');
     setStarting(true);
+
+    // Cada vez que se abre la cámara empieza una sesión completamente nueva.
+    scanSessionRef.current += 1;
     foundRef.current = false;
 
     stopCamera();
@@ -188,8 +197,11 @@ const Scanner = ({ visible, onCancel, onFound }) => {
               formats,
             });
 
+            const session = scanSessionRef.current;
+
             const scan = async () => {
               if (
+                session !== scanSessionRef.current ||
                 !videoRef.current ||
                 videoRef.current.readyState < 2 ||
                 !streamRef.current ||
@@ -204,6 +216,16 @@ const Scanner = ({ visible, onCancel, onFound }) => {
                     videoRef.current
                   );
 
+                // El detector es asíncrono: comprobamos la sesión
+                // nuevamente después de detect() para evitar lecturas
+                // atrasadas del código anterior.
+                if (
+                  session !== scanSessionRef.current ||
+                  foundRef.current
+                ) {
+                  return;
+                }
+
                 if (results?.length) {
                   finish(
                     results[0].rawValue ||
@@ -214,10 +236,15 @@ const Scanner = ({ visible, onCancel, onFound }) => {
                 }
               } catch (_) {}
 
-              timerRef.current = setTimeout(
-                scan,
-                180
-              );
+              if (
+                session === scanSessionRef.current &&
+                !foundRef.current
+              ) {
+                timerRef.current = setTimeout(
+                  scan,
+                  180
+                );
+              }
             };
 
             scan();
@@ -363,8 +390,12 @@ const Scanner = ({ visible, onCancel, onFound }) => {
 
   useEffect(() => {
     if (!visible) {
+      // Cerrar el escáner siempre deja una sesión limpia.
+      scanSessionRef.current += 1;
+      foundRef.current = false;
       stopCamera();
       setStarting(false);
+      setManualCode('');
       setStatus('Listo para abrir la cámara');
       setError('');
       touchHandledRef.current = false;
@@ -378,13 +409,20 @@ const Scanner = ({ visible, onCancel, onFound }) => {
   const buscarManual = () => {
     const value = manualCode.trim();
 
-    if (!value) {
-      message.warning('Ingresá un código.');
+    if (!value || foundRef.current) {
+      if (!value) {
+        message.warning('Ingresá un código.');
+      }
       return;
     }
 
-    onFound(value);
+    foundRef.current = true;
+    scanSessionRef.current += 1;
+    stopCamera();
+
+    message.success(`Código ingresado: ${value}`);
     setManualCode('');
+    onFound(value);
   };
 
   return (
