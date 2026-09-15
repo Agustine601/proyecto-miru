@@ -1,6 +1,6 @@
 /* =========================================
    🌱 MIRU - GESTIÓN AGRÍCOLA Y QUÍMICA
-   Estilo general
+   ESTILO GENERAL + RESPONSIVE MOBILE
    ========================================= */
 
 * {
@@ -9,11 +9,18 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 
   font-family:
     "Segoe UI",
@@ -30,25 +37,45 @@ body {
     );
 
   color: #26352a;
+
+  overflow-x: hidden;
+
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* =========================================
    APP
    ========================================= */
 
+#root {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .App {
   min-height: 100vh;
   width: 100%;
+  max-width: 100%;
+
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+
+  overflow-x: hidden;
+
+  animation: aparecer 0.35s ease;
 }
+
 /* =========================================
    SCROLLBAR
    ========================================= */
 
 ::-webkit-scrollbar {
   width: 9px;
+  height: 9px;
 }
 
 ::-webkit-scrollbar-track {
@@ -75,6 +102,7 @@ h4,
 h5,
 h6 {
   color: #23452b;
+  max-width: 100%;
 }
 
 p {
@@ -102,6 +130,8 @@ a:hover {
   border-radius: 8px;
   font-weight: 600;
   transition: all 0.2s ease;
+
+  touch-action: manipulation;
 }
 
 .ant-btn-primary {
@@ -125,6 +155,8 @@ a:hover {
 .ant-picker {
   border-radius: 8px !important;
   border-color: #c8d5c8 !important;
+
+  max-width: 100%;
 }
 
 .ant-input:focus,
@@ -168,6 +200,7 @@ a:hover {
 .ant-card {
   border-radius: 14px;
   border: 1px solid #dce7da;
+  max-width: 100%;
 }
 
 /* =========================================
@@ -177,6 +210,17 @@ a:hover {
 .ant-table {
   border-radius: 12px;
   overflow: hidden;
+}
+
+/*
+   En celular las tablas pueden desplazarse
+   internamente, sin romper toda la página.
+*/
+
+.ant-table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .ant-table-thead > tr > th {
@@ -191,6 +235,7 @@ a:hover {
 
 .ant-alert {
   border-radius: 10px;
+  max-width: 100%;
 }
 
 /* =========================================
@@ -218,23 +263,254 @@ a:hover {
   }
 }
 
-.App {
-  animation: aparecer 0.35s ease;
-}
-
-
 /* =========================================
-   CATÁLOGO BAYER
+   📱 TABLET
    ========================================= */
 
 @media (max-width: 900px) {
   .App {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .ant-btn {
+    min-height: 40px;
+  }
+
+  .ant-input,
+  .ant-input-affix-wrapper {
+    min-height: 40px;
   }
 }
 
+/* =========================================
+   📱 CELULAR
+   ========================================= */
+
 @media (max-width: 700px) {
+  html,
+  body,
+  #root,
+  .App {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .App {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* -----------------------------
+     BOTONES TÁCTILES
+     ----------------------------- */
+
+  .ant-btn {
+    min-height: 44px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* -----------------------------
+     INPUTS CÓMODOS PARA DEDO
+     ----------------------------- */
+
+  .ant-input,
+  .ant-input-affix-wrapper,
+  .ant-select-selector,
+  .ant-picker {
+    min-height: 44px !important;
+  }
+
+  /* -----------------------------
+     CARDS
+     ----------------------------- */
+
+  .ant-card {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .ant-card-body {
+    padding: 14px;
+  }
+
+  /* -----------------------------
+     MODALES
+     ----------------------------- */
+
   .ant-modal {
-    max-width: calc(100vw - 24px);
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+
+    margin: 10px auto;
+    padding-bottom: 0;
+  }
+
+  .ant-modal-content {
+    border-radius: 14px;
+  }
+
+  .ant-modal-body {
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* -----------------------------
+     FORMULARIOS
+     ----------------------------- */
+
+  .ant-form-item {
+    margin-bottom: 14px;
+  }
+
+  /* -----------------------------
+     SELECT
+     ----------------------------- */
+
+  .ant-select {
+    max-width: 100%;
+  }
+
+  /* -----------------------------
+     TABLES
+     ----------------------------- */
+
+  .ant-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* -----------------------------
+     TITULOS
+     ----------------------------- */
+
+  h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  /* -----------------------------
+     ESPACIADO
+     ----------------------------- */
+
+  .ant-row {
+    max-width: 100%;
+  }
+
+  /* Evita que columnas Ant Design
+     desborden el teléfono */
+
+  [class*="ant-col"] {
+    max-width: 100%;
+    min-width: 0;
   }
 }
+
+/* =========================================
+   📱 CELULAR PEQUEÑO
+   ========================================= */
+
+@media (max-width: 480px) {
+  .ant-card-body {
+    padding: 12px;
+  }
+
+  .ant-btn {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .ant-modal {
+    width: calc(100vw - 12px) !important;
+    max-width: calc(100vw - 12px) !important;
+  }
+
+  .ant-modal-header {
+    padding: 14px 16px;
+  }
+
+  .ant-modal-body {
+    padding: 14px 16px;
+  }
+
+  .ant-modal-footer {
+    padding: 10px 16px;
+  }
+}
+
+/* =========================================
+   📱 LANDSCAPE
+   ========================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .ant-modal-body {
+    max-height: calc(100vh - 120px);
+  }
+}
+
+/* =========================================
+   👆 TOUCH / IPHONE
+   ========================================= */
+
+button,
+.ant-btn,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+/* =========================================
+   🚫 EVITAR DESBORDES
+   ========================================= */
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+.ant-layout,
+.ant-layout-content,
+.ant-layout-header,
+.ant-layout-sider {
+  max-width: 100%;
+}
+
+/* =========================================
+   📱 SAFE AREA IPHONE
+   ========================================= */
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+

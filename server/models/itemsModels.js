@@ -18,6 +18,18 @@ const Schema = mongoose.Schema;
 // ================================
 // CONSUMIBLES
 // ================================
+const palletSchema = new Schema(
+  {
+    numeroPallet: { type: String, default: '', trim: true },
+    cantidad: { type: Number, default: 0, min: 0 },
+    ubicacion: { type: String, default: '', trim: true },
+    codigo: { type: String, default: '', trim: true },
+    estado: { type: String, enum: ['activo', 'retirado', 'bloqueado'], default: 'activo' },
+    fechaIngreso: { type: Date, default: Date.now },
+  },
+  { _id: true }
+);
+
 const loteSchema = new Schema(
   {
     numero: {
@@ -51,6 +63,11 @@ const loteSchema = new Schema(
       type: Date,
       default: Date.now,
     },
+
+    pallets: {
+      type: [palletSchema],
+      default: [],
+    },
   },
   {
     _id: true,
@@ -58,10 +75,9 @@ const loteSchema = new Schema(
 );
 const consumableSchema = new Schema({
   nombre: String,
-  solicitante: { type: String, default: '', trim: true },
-  destino: { type: String, default: '', trim: true },
   codigoBarras: { type: String, default: '', trim: true, index: true },
   codigoQR: { type: String, default: '', trim: true, index: true },
+  codigoQRExterno: { type: String, default: '', trim: true, index: true },
   lotes: {
   type: [loteSchema],
   default: [],
@@ -88,6 +104,7 @@ const reagentSchema = new Schema({
   nombre: String,
   codigoBarras: { type: String, default: '', trim: true, index: true },
   codigoQR: { type: String, default: '', trim: true, index: true },
+  codigoQRExterno: { type: String, default: '', trim: true, index: true },
   formula: String,
   cas: String,
   lotes: {
@@ -116,6 +133,7 @@ const equipmentSchema = new Schema({
   nombre: String,
   codigoBarras: { type: String, default: '', trim: true, index: true },
   codigoQR: { type: String, default: '', trim: true, index: true },
+  codigoQRExterno: { type: String, default: '', trim: true, index: true },
   lote: String,
   proveedor: String,
   ubicacion: String,

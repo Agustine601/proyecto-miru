@@ -42,6 +42,3 @@ Productos de referencia incluidos:
 
 La información es de referencia y debe contrastarse con el marbete/ficha vigente antes de utilizar un producto. El catálogo enlaza a las fuentes de Bayer cuando corresponde.
 
-### Variables de entorno
-
-Por seguridad, el archivo `.env` real no se incluye en la distribución. Copiá `.env.example` como `.env` y colocá tu `MONGO_URI`.

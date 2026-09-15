@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {
   Modal,
@@ -10,6 +11,7 @@ import {
   Card,
   Divider,
   Tag,
+  Alert,
   message,
 } from 'antd';
 
@@ -18,10 +20,14 @@ import {
   DeleteOutlined,
 } from '@ant-design/icons';
 
-import { useAddItemMutation } from '../../services/items.js';
-import { useRegistrarMovimientoMutation } from '../../services/movements.js';
+import {
+  useAddItemMutation,
+  useAddStockMutation,
+  useLazyLookupItemQuery,
+} from '../../services/items.js';
 import Scanner from '../Items/Scanner.jsx';
 import { extraerCodigoQR, extraerGS1 } from '../../qr-utils.js';
+import { setDisplay } from '../containers/displaySlice';
 
 const StyledButton = styled(Button)`
   margin-top: 1rem;
@@ -111,9 +117,9 @@ const AddItem = () => {
 
   const [addItem, { isLoading }] =
     useAddItemMutation();
-
-  const [registrarMovimiento] =
-    useRegistrarMovimientoMutation();
+  const [buscarProducto] = useLazyLookupItemQuery();
+  const [agregarStock, { isLoading: agregandoStock }] = useAddStockMutation();
+  const dispatch = useDispatch();
 
   const [nombre, setNombre] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -125,6 +131,14 @@ const AddItem = () => {
   const [scannerKey, setScannerKey] = useState(0);
   const [scanning, setScanning] = useState(false);
   const [codigoQR, setCodigoQR] = useState('');
+  const [codigoQRExterno, setCodigoQRExterno] = useState('');
+  const [consultaQR, setConsultaQR] = useState(null);
+  const [consultaVisible, setConsultaVisible] = useState(false);
+  const [duplicadoVisible, setDuplicadoVisible] = useState(false);
+  const [duplicadoInfo, setDuplicadoInfo] = useState(null);
+  const [ingresoCantidad, setIngresoCantidad] = useState(0);
+  const [ingresoLote, setIngresoLote] = useState('');
+  const [ingresoPallet, setIngresoPallet] = useState('');
 
   const generarCodigoQR = () => {
     const ahora = Date.now().toString(36).toUpperCase();
@@ -211,87 +225,89 @@ const AddItem = () => {
     setScannerKey((key) => key + 1);
   };
 
+  const consultarQR = async (raw) => {
+    const texto = String(raw || '').trim();
+    const gs1 = extraerGS1(texto);
+    const esUrl = /^https?:\/\//i.test(texto);
+    const codigoExtraido = extraerCodigoQR(texto);
+    const resultado = {
+      raw: texto,
+      tipo: esUrl ? 'QR / URL externa' : (gs1.gtin ? 'Código GS1' : 'QR / código'),
+      gtin: gs1.gtin || '', lote: gs1.lote || '', cantidad: Number(gs1.cantidad || 0),
+      vencimiento: gs1.vencimiento || '', producto: '', proveedor: '', solicitante: '', destino: '',
+      origen: 'Lectura local',
+    };
+    if (esUrl && codigoExtraido) {
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 7000);
+      try {
+        const url = `https://logistica-rojas.com.ar/services/api/work-order/dispatch/public/composition/${encodeURIComponent(codigoExtraido)}`;
+        const response = await fetch(url, { signal: controller.signal });
+        if (response.ok) {
+          const data = await response.json();
+          const detalle = data?.requesterDetails?.[0];
+          if (detalle) {
+            resultado.producto = (detalle.product || '').trim();
+            resultado.gtin = (detalle.code || resultado.gtin || '').trim();
+            resultado.lote = detalle.lot || resultado.lote;
+            resultado.cantidad = Number(detalle.quantity) || resultado.cantidad;
+            resultado.vencimiento = detalle.expirationDate || resultado.vencimiento;
+            resultado.proveedor = detalle.provider || 'Logística Rojas';
+            resultado.solicitante = detalle.requesterName || '';
+            resultado.destino = detalle.requesterPlace || '';
+            resultado.origen = 'Logística Rojas';
+          }
+        }
+      } catch (error) {
+        resultado.origen = error?.name === 'AbortError' ? 'Lectura local (consulta externa agotó el tiempo)' : 'Lectura local (consulta externa no disponible)';
+      } finally { window.clearTimeout(timeoutId); }
+    }
+    // Antes de ofrecer el alta, MIRÚ consulta su propio inventario.
+    try {
+      const respuesta = await buscarProducto({
+        ...(categoria ? { categoria } : {}),
+        ...(resultado.gtin ? { codigoBarras: resultado.gtin } : {}),
+        ...(texto ? { codigoQRExterno: texto } : {}),
+        ...(gs1.gtin ? { codigoBarras: gs1.gtin } : {}),
+        ...(gs1.lote && resultado.producto ? { lote: gs1.lote, nombre: resultado.producto } : {}),
+      }).unwrap();
+
+      if (respuesta?.encontrado) {
+        resultado.duplicado = true;
+        resultado.duplicadoInfo = respuesta;
+        setDuplicadoInfo(respuesta);
+        setDuplicadoVisible(true);
+      }
+    } catch (error) {
+      // La consulta de duplicados no debe impedir la lectura del QR.
+      console.warn('No se pudo consultar duplicados en MIRÚ:', error);
+    }
+
+    setCodigoQRExterno(texto);
+    setConsultaQR(resultado);
+    setConsultaVisible(true);
+    return resultado;
+  };
+
+  const aplicarConsultaQR = (datos) => {
+    if (!datos) return;
+    if (datos.producto) setNombre(datos.producto);
+    if (datos.gtin) setCodigoBarras(datos.gtin);
+    if (datos.proveedor) setProveedor(datos.proveedor);
+    if (datos.solicitante) setSolicitante(datos.solicitante);
+    if (datos.destino) setDestino(datos.destino);
+    aplicarLoteEscaneado({ lote: datos.lote, cantidad: datos.cantidad, vencimiento: datos.vencimiento, proveedor: datos.proveedor });
+    setConsultaVisible(false);
+    message.success('Datos cargados. Revisalos antes de guardar el producto.');
+  };
+
   const procesarCodigoEscaneado = async (codigo) => {
     const raw = String(codigo || '').trim();
     if (!raw) return;
-
-    // El código ya fue consumido: cerramos y destruimos la instancia
-    // actual del escáner antes de procesar los datos.
     setScannerVisible(false);
     setScannerKey((key) => key + 1);
     setScanning(true);
-
-    try {
-      const gs1 = extraerGS1(raw);
-      const esUrl = /^https?:\/\//i.test(raw);
-      const codigoExtraido = extraerCodigoQR(raw);
-
-      // Código de barras GS1: completa automáticamente GTIN, lote y vencimiento
-      // cuando esos datos vienen codificados en la etiqueta.
-      if (gs1.gtin) {
-        setCodigoBarras(raw);
-      } else {
-        setCodigoBarras(raw);
-      }
-
-      if (esUrl) {
-        setCodigoQR(codigoExtraido || raw);
-      } else {
-        // Un código de barras no reemplaza el QR propio de MIRÚ.
-        // Guardamos el código leído y dejamos el QR MIRÚ generado aparte.
-        setCodigoBarras(raw);
-      }
-
-      let datos = {
-        lote: gs1.lote || '',
-        cantidad: gs1.cantidad || 0,
-        vencimiento: gs1.vencimiento || '',
-        proveedor: '',
-      };
-
-      // QR de Logística Rojas: si el QR contiene una URL pública,
-      // intentamos recuperar producto, lote y cantidad automáticamente.
-      if (esUrl && codigoExtraido) {
-        try {
-          const url = `https://logistica-rojas.com.ar/services/api/work-order/dispatch/public/composition/${encodeURIComponent(codigoExtraido)}`;
-          const response = await fetch(url);
-          if (response.ok) {
-            const data = await response.json();
-            const detalle = data?.requesterDetails?.[0];
-            if (detalle) {
-              setNombre((detalle.product || '').trim());
-              setCodigoBarras((detalle.code || raw).trim());
-              setCodigoQR(codigoExtraido);
-              setProveedor(detalle.provider || 'Logística Rojas');
-              setUnidad(detalle.measureType || 'unidades');
-              if (detalle.requesterName) setSolicitante(detalle.requesterName);
-              if (detalle.requesterPlace) setDestino(detalle.requesterPlace);
-              datos = {
-                lote: detalle.lot || '',
-                cantidad: Number(detalle.quantity) || 0,
-                vencimiento: detalle.expirationDate || '',
-                proveedor: detalle.provider || 'Logística Rojas',
-              };
-              message.success('QR leído: datos de la orden cargados automáticamente.');
-            }
-          }
-        } catch (error) {
-          console.warn('No se pudo consultar el QR externo; se conserva el código leído.', error);
-        }
-      }
-
-      if (datos.lote || datos.cantidad || datos.vencimiento) {
-        aplicarLoteEscaneado(datos);
-      }
-
-      if (!esUrl) {
-        message.success(gs1.lote || gs1.gtin
-          ? 'Código de barras leído. Lote/vencimiento cargados si estaban codificados.'
-          : 'Código de barras leído. Completá los datos que no estén codificados.');
-      }
-    } finally {
-      setScanning(false);
-    }
+    try { await consultarQR(raw); } finally { setScanning(false); }
   };
 
   const limpiarFormulario = () => {
@@ -302,6 +318,11 @@ const AddItem = () => {
     setDestino('');
     setCodigoBarras('');
     setCodigoQR('');
+    setCodigoQRExterno('');
+    setConsultaQR(null);
+    setConsultaVisible(false);
+    setDuplicadoVisible(false);
+    setDuplicadoInfo(null);
     setProveedor('');
     setUnidad('');
     setStockMinimo(10);
@@ -310,6 +331,64 @@ const AddItem = () => {
     setLotes([
       { ...loteInicial },
     ]);
+  };
+
+  const agregarIngresoAlExistente = async () => {
+    const info = duplicadoInfo;
+    const producto = info?.producto;
+    if (!info?.categoria || !producto?._id) {
+      message.error('No se pudo identificar el producto existente.');
+      return;
+    }
+    const cantidad = Number(ingresoCantidad || 0);
+    const lote = String(ingresoLote || '').trim();
+    if (cantidad <= 0) {
+      message.warning('Indicá una cantidad mayor que cero.');
+      return;
+    }
+    if (!lote) {
+      message.warning('Indicá el lote del ingreso.');
+      return;
+    }
+
+    try {
+      const respuesta = await agregarStock({
+        categoria: info.categoria,
+        id: producto._id,
+        cantidad,
+        lote,
+        numeroPallet: ingresoPallet.trim(),
+        vencimiento: consultaQR?.vencimiento || '',
+        proveedor: consultaQR?.proveedor || producto.proveedor || '',
+        codigo: codigoQRExterno.trim() || codigoBarras.trim(),
+      }).unwrap();
+
+      const pallet = respuesta?.pallet;
+      const productoActualizado = respuesta?.producto || producto;
+      const pendiente = {
+        product: {
+          id: String(productoActualizado._id || producto._id),
+          nombre: productoActualizado.nombre || producto.nombre || 'Sin nombre',
+          lote,
+          categoria: info.categoria,
+          ubicacion: '',
+          cantidad,
+          numeroPallet: pallet?.numeroPallet || ingresoPallet.trim() || '',
+          palletId: pallet?._id ? String(pallet._id) : '',
+        },
+        source: 'ingreso-duplicado',
+        createdAt: Date.now(),
+      };
+      sessionStorage.setItem('miru_pending_warehouse_placement', JSON.stringify(pendiente));
+      setDuplicadoVisible(false);
+      limpiarFormulario();
+      setVisible(false);
+      dispatch(setDisplay('warehouse-map'));
+      message.success('Ingreso agregado. Elegí ahora la ubicación física del pallet en el mapa.');
+    } catch (error) {
+      console.error('Error agregando ingreso al producto existente:', error);
+      message.error(error?.data?.error || 'No se pudo agregar el ingreso.');
+    }
   };
 
   const handleSubmit = async () => {
@@ -380,6 +459,7 @@ const AddItem = () => {
 
       codigoBarras: codigoBarras.trim(),
       codigoQR: codigoQR.trim(),
+      codigoQRExterno: codigoQRExterno.trim(),
 
       lote: primerLote.numero,
 
@@ -427,34 +507,34 @@ const AddItem = () => {
       nuevoProducto
     );
 
+    // Último control antes de guardar: evita duplicados incluso
+    // si el usuario completó los datos manualmente.
+    try {
+      const respuestaLookup = await buscarProducto({
+        categoria,
+        ...(nuevoProducto.codigoBarras ? { codigoBarras: nuevoProducto.codigoBarras } : {}),
+        ...(nuevoProducto.codigoQR ? { codigoQR: nuevoProducto.codigoQR } : {}),
+        ...(nuevoProducto.codigoQRExterno ? { codigoQRExterno: nuevoProducto.codigoQRExterno } : {}),
+        ...(primerLote.numero && nuevoProducto.nombre ? { lote: primerLote.numero, nombre: nuevoProducto.nombre } : {}),
+      }).unwrap();
+
+      if (respuestaLookup?.encontrado) {
+        setDuplicadoInfo(respuestaLookup);
+        setIngresoCantidad(Number(primerLote.cantidad || consultaQR?.cantidad || 0));
+        setIngresoLote(primerLote.numero || consultaQR?.lote || '');
+        setIngresoPallet('');
+        setDuplicadoVisible(true);
+        message.warning('Este producto ya está cargado en MIRÚ.');
+        return;
+      }
+    } catch (lookupError) {
+      console.warn('No se pudo verificar duplicados antes del alta:', lookupError);
+    }
+
     try {
       const respuesta = await addItem(
         nuevoProducto
       ).unwrap();
-
-      // Toda alta con stock queda registrada como ENTRADA.
-      // No vuelve a modificar el stock: el producto ya fue creado
-      // con su cantidad inicial; solamente deja trazabilidad.
-      const productoCreado = respuesta?.producto;
-      if (productoCreado?._id) {
-        const movimientosIniciales = lotesValidos
-          .map((lote) => ({
-            productoId: productoCreado._id,
-            categoria,
-            tipo: 'entrada',
-            cantidad: Number(lote.cantidad || 0),
-            motivo: 'Alta de producto',
-            responsable: 'Usuario',
-            lote: lote.numero.trim(),
-          }))
-          .filter((m) => m.cantidad > 0);
-
-        await Promise.all(
-          movimientosIniciales.map((movimiento) =>
-            registrarMovimiento(movimiento).unwrap()
-          )
-        );
-      }
 
       limpiarFormulario();
       setVisible(false);
@@ -467,6 +547,16 @@ const AddItem = () => {
         'Error al agregar producto:',
         error
       );
+
+      if (error?.status === 409 && error?.data?.duplicado) {
+        setDuplicadoInfo(error.data);
+        setIngresoCantidad(Number(primerLote.cantidad || consultaQR?.cantidad || 0));
+        setIngresoLote(primerLote.numero || consultaQR?.lote || '');
+        setIngresoPallet('');
+        setDuplicadoVisible(true);
+        message.warning('Este producto ya está cargado en MIRÚ.');
+        return;
+      }
 
       message.error(
         error?.data?.error ||
@@ -661,6 +751,15 @@ const AddItem = () => {
               }
             />
           </Form.Item>
+
+          {codigoQRExterno && (
+            <Form.Item label="QR externo leído">
+              <Input value={codigoQRExterno} readOnly />
+              <div style={{ marginTop: 6, color: '#66736a', fontSize: 12 }}>
+                Se conserva separado del QR interno de MIRÚ.
+              </div>
+            </Form.Item>
+          )}
 
           {/* ========================= */}
           {/* LOTES */}
@@ -921,6 +1020,100 @@ const AddItem = () => {
           </Form.Item>
 
         </Form>
+      </Modal>
+
+      <Modal
+        title="Consulta del código escaneado"
+        visible={consultaVisible}
+        onCancel={() => setConsultaVisible(false)}
+        footer={[
+          <Button key="consultar" onClick={() => setConsultaVisible(false)}>Solo consultar</Button>,
+          <Button key="usar" type="primary" onClick={() => aplicarConsultaQR(consultaQR)}>Usar datos para el alta</Button>,
+        ]}
+        centered
+      >
+        {consultaQR && (
+          <div>
+            <Tag color="green">{consultaQR.origen}</Tag>
+            {consultaQR.duplicado && (
+              <Alert
+                style={{ marginTop: 12 }}
+                type="warning"
+                showIcon
+                message="Este producto ya existe en MIRÚ"
+                description="No lo guardes como un producto nuevo. Cerrá esta consulta y, si corresponde, después agregamos el stock/pallet al producto existente."
+              />
+            )}
+            <Divider />
+            <p><strong>Tipo:</strong> {consultaQR.tipo}</p>
+            <p><strong>Contenido leído:</strong></p>
+            <Input.TextArea value={consultaQR.raw} readOnly autoSize={{ minRows: 2, maxRows: 5 }} />
+            {consultaQR.producto && <p><strong>Producto:</strong> {consultaQR.producto}</p>}
+            {consultaQR.gtin && <p><strong>Código / GTIN:</strong> {consultaQR.gtin}</p>}
+            {consultaQR.lote && <p><strong>Lote:</strong> {consultaQR.lote}</p>}
+            {consultaQR.cantidad > 0 && <p><strong>Cantidad:</strong> {consultaQR.cantidad}</p>}
+            {consultaQR.vencimiento && <p><strong>Vencimiento:</strong> {consultaQR.vencimiento}</p>}
+            {consultaQR.proveedor && <p><strong>Proveedor:</strong> {consultaQR.proveedor}</p>}
+            {consultaQR.solicitante && <p><strong>Solicitante:</strong> {consultaQR.solicitante}</p>}
+            {consultaQR.destino && <p><strong>Destino:</strong> {consultaQR.destino}</p>}
+            {!consultaQR.producto && !consultaQR.gtin && !consultaQR.lote && !consultaQR.cantidad && !consultaQR.vencimiento && (
+              <Alert style={{ marginTop: 12 }} type="info" showIcon message="El código fue leído, pero no contiene datos reconocibles." description="MIRÚ conserva el contenido original y podés completar los datos manualmente." />
+            )}
+          </div>
+        )}
+      </Modal>
+
+      <Modal
+        title="Producto ya existente en MIRÚ"
+        visible={duplicadoVisible}
+        onCancel={() => setDuplicadoVisible(false)}
+        footer={[
+          <Button key="cerrar" onClick={() => setDuplicadoVisible(false)}>Cancelar</Button>,
+          <Button key="ingreso" type="primary" loading={agregandoStock} onClick={agregarIngresoAlExistente}>Agregar ingreso y ubicar pallet</Button>,
+        ]}
+        centered
+      >
+        {duplicadoInfo?.producto && (
+          <div>
+            <Alert
+              type="warning"
+              showIcon
+              message="MIRÚ encontró una coincidencia"
+              description={
+                <>
+                  <div style={{ marginTop: 8 }}>
+                    <strong>Producto:</strong> {duplicadoInfo.producto.nombre || 'Sin nombre'}
+                  </div>
+                  <div><strong>Categoría:</strong> {duplicadoInfo.categoria || '—'}</div>
+                  <div><strong>Coincidencia:</strong> {duplicadoInfo.encontradoPor || 'código'}</div>
+                  {duplicadoInfo.producto.codigoBarras && (
+                    <div><strong>Código:</strong> {duplicadoInfo.producto.codigoBarras}</div>
+                  )}
+                  {duplicadoInfo.producto.cantidad != null && (
+                    <div><strong>Stock actual:</strong> {duplicadoInfo.producto.cantidad}</div>
+                  )}
+                </>
+              }
+            />
+            <Divider />
+            <div style={{ fontWeight: 700, marginBottom: 8 }}>Nuevo ingreso</div>
+            <Form.Item label="Lote">
+              <Input value={ingresoLote} onChange={(e) => setIngresoLote(e.target.value)} placeholder="Lote del pallet" />
+            </Form.Item>
+            <Form.Item label="Cantidad">
+              <InputNumber min={0} value={ingresoCantidad} onChange={(v) => setIngresoCantidad(v ?? 0)} style={{ width: '100%' }} />
+            </Form.Item>
+            <Form.Item label="N.º de pallet (opcional)">
+              <Input value={ingresoPallet} onChange={(e) => setIngresoPallet(e.target.value)} placeholder="Ej: 10" />
+            </Form.Item>
+            <Alert
+              type="info"
+              showIcon
+              message="El stock se suma al lote y se crea un pallet independiente."
+              description="Después de guardar, MIRÚ te lleva al mapa del galpón para elegir la posición física."
+            />
+          </div>
+        )}
       </Modal>
 
       <Scanner

@@ -30,6 +30,17 @@ export const itemsApi = createApi({
     }),
 
     // ================================
+    // BUSCAR PRODUCTO EXISTENTE
+    // ================================
+
+    lookupItem: builder.query({
+      query: (params) => ({
+        url: 'lookup',
+        params,
+      }),
+    }),
+
+    // ================================
     // AGREGAR PRODUCTO
     // ================================
 
@@ -47,6 +58,32 @@ export const itemsApi = createApi({
         'Reagent',
         'Equipment',
       ],
+    }),
+
+    // ================================
+    // AGREGAR INGRESO / PALLET A PRODUCTO EXISTENTE
+    // ================================
+
+    addStock: builder.mutation({
+      query: ({ categoria, id, ...body }) => ({
+        url: `${categoria}/${id}/stock`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Consumable', 'Reagent', 'Equipment'],
+    }),
+
+    // ================================
+    // ACTUALIZAR UBICACIÓN DE PALLET
+    // ================================
+
+    updatePalletLocation: builder.mutation({
+      query: ({ categoria, id, palletId, ubicacion }) => ({
+        url: `${categoria}/${id}/pallet/${palletId}/location`,
+        method: 'PUT',
+        body: { ubicacion },
+      }),
+      invalidatesTags: ['Consumable', 'Reagent', 'Equipment'],
     }),
 
     // ================================
@@ -115,6 +152,9 @@ export const {
   useGetReagentsQuery,
   useGetEquipmentQuery,
   useAddItemMutation,
+  useAddStockMutation,
+  useLazyLookupItemQuery,
+  useUpdatePalletLocationMutation,
   useDeleteItemMutation,
   useUpdateItemMutation,
   useResetSystemMutation,

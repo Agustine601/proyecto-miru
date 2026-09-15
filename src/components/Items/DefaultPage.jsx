@@ -35,16 +35,14 @@ const DefaultPage = () => {
   return (
     <Wrapper>
       <Image
-        src="https://cdn-icons-png.flaticon.com/512/6552/6552495.png"
-        alt="Organizador de productos"
+        src="./src/assets/logo-miru-b-400x120.png"
       />
 
       <MainText>
-        Bienvenido a tu organizador de productos
+      
       </MainText>
 
       <SubText>
-        Seleccioná una categoría del menú para comenzar
       </SubText>
     </Wrapper>
   );

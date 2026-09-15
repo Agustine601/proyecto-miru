@@ -74,9 +74,14 @@ const ScannerPage = () => {
       let origen = 'barcode';
 
       // QR de Logística Rojas: intentamos obtener automáticamente la composición.
+      // No exigimos que el producto ya exista en MIRÚ: cualquier QR válido
+      // se puede consultar primero y dar de alta después.
       const pareceUrl = /^https?:\/\//i.test(raw);
-      if (pareceUrl) {
+      const pareceIdentificadorRojas = /^[a-f0-9]{20,}$/i.test(codigoExtraido || '');
+
+      if ((pareceUrl || pareceIdentificadorRojas) && codigoExtraido) {
         const url = `https://logistica-rojas.com.ar/services/api/work-order/dispatch/public/composition/${encodeURIComponent(codigoExtraido)}`;
+        console.log('Consultando composición pública:', url);
         const response = await fetch(url);
         if (response.ok) {
           const data = await response.json();
@@ -85,7 +90,7 @@ const ScannerPage = () => {
             productoImportado = {
               nombre: detalle.product || '',
               codigoBarras: detalle.code || '',
-              codigoQR: codigoExtraido,
+              codigoQR: raw,
               compositionQrCode: data.compositionQrCode || '',
               lote: detalle.lot || '',
               cantidad: Number(detalle.quantity) || 0,
@@ -103,6 +108,8 @@ const ScannerPage = () => {
             };
             origen = 'logistica-rojas';
           }
+        } else {
+          console.warn('La consulta pública respondió:', response.status);
         }
       }
 
@@ -110,8 +117,8 @@ const ScannerPage = () => {
       if (!productoImportado) {
         productoImportado = {
           nombre: '',
-          codigoBarras: gs1.codigoBarras || raw,
-          codigoQR: pareceUrl ? codigoExtraido : '',
+          codigoBarras: gs1.codigoBarras || '',
+          codigoQR: raw,
           lote: gs1.lote || '',
           cantidad: 1,
           unidad: 'unidad',
@@ -120,7 +127,14 @@ const ScannerPage = () => {
         };
       }
 
-      setResultado({ codigo: raw, producto: productoImportado, origen, existente: false, tipoCodigo: pareceUrl ? 'QR' : 'Código de barras' });
+      setResultado({
+        codigo: raw,
+        producto: productoImportado,
+        origen,
+        existente: false,
+        tipoCodigo: pareceUrl ? 'QR' : (origen === 'logistica-rojas' ? 'QR consultado' : 'Código leído'),
+        contenidoQR: raw,
+      });
     } catch (error) {
       // Un barcode no necesita internet: dejamos el código listo para completar y guardar.
       setResultado({
@@ -135,10 +149,10 @@ const ScannerPage = () => {
           vencimiento: gs1.vencimiento || '',
           gtin: gs1.gtin || '',
         },
-        origen: 'barcode',
+        origen: pareceUrl ? 'qr' : 'barcode',
         existente: false,
-        tipoCodigo: 'Código de barras',
-        aviso: error?.message || 'No se pudo consultar el QR. Los datos básicos quedaron disponibles para completar.',
+        tipoCodigo: pareceUrl ? 'QR' : 'Código de barras',
+        aviso: 'No encontramos una ficha automática. El código fue leído correctamente y queda disponible para completar o consultar.',
       });
     } finally {
       setCargando(false);
@@ -197,11 +211,12 @@ const ScannerPage = () => {
   };
 
   const producto = resultado?.producto;
+  const gs1Resultado = resultado?.codigo ? extraerGS1(resultado.codigo) : {};
 
   return (
     <div style={{ width: '100%', maxWidth: 900, padding: 25 }}>
-      <Title level={2}>📷 Escanear e ingresar mercadería</Title>
-      <Text type="secondary">Escaneá un QR o código de barras. MIRÚ intenta reconocerlo automáticamente y prepara la ficha para guardarla.</Text>
+      <Title level={2}>📷 Consultar / ingresar mercadería</Title>
+      <Text type="secondary">Escaneá un QR o código de barras, aunque el producto todavía no exista en MIRÚ. Primero consultamos qué contiene y después decidís si querés incorporarlo.</Text>
 
       <div style={{ margin: '25px 0' }}>
         <Button type="primary" size="large" icon={<CameraOutlined />} onClick={() => { setResultado(null); setVisible(true); }}>
@@ -217,6 +232,19 @@ const ScannerPage = () => {
         <Card title="📦 Datos detectados" style={{ maxWidth: 760 }}>
           {resultado.aviso && <Alert type="warning" showIcon style={{ marginBottom: 16 }} message="Código leído" description={resultado.aviso} />}
           <Alert type="success" showIcon style={{ marginBottom: 20 }} message={resultado.existente ? 'Producto ya registrado' : `Lectura: ${resultado.tipoCodigo}`} description={resultado.existente ? 'MIRÚ encontró un producto existente. Podés revisarlo antes de continuar.' : 'Completá los datos que no estén presentes en la etiqueta y guardalo.'} />
+
+          <Card size="small" type="inner" title="🔎 Contenido leído del código" style={{ marginBottom: 16 }}>
+            <Text copyable style={{ wordBreak: 'break-all' }}>{resultado.contenidoQR || resultado.codigo}</Text>
+            {gs1Resultado && (gs1Resultado.gtin || gs1Resultado.lote || gs1Resultado.vencimiento || gs1Resultado.cantidad) && (
+              <div style={{ marginTop: 10 }}>
+                <Tag>GS1 detectado</Tag>
+                {gs1Resultado.gtin && <Tag>GTIN: {gs1Resultado.gtin}</Tag>}
+                {gs1Resultado.lote && <Tag>Lote: {gs1Resultado.lote}</Tag>}
+                {gs1Resultado.vencimiento && <Tag>Vto: {gs1Resultado.vencimiento}</Tag>}
+                {gs1Resultado.cantidad && <Tag>Cantidad: {gs1Resultado.cantidad}</Tag>}
+              </div>
+            )}
+          </Card>
 
           <Descriptions bordered column={1} size="small">
             <Descriptions.Item label="Producto">
@@ -244,7 +272,7 @@ const ScannerPage = () => {
           </div>
 
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 20 }}>
-            {!resultado.existente && <Button type="primary" size="large" icon={<PlusOutlined />} loading={guardando} onClick={guardarProducto}>Agregar al Almacén</Button>}
+            {!resultado.existente && <Button type="primary" size="large" icon={<PlusOutlined />} loading={guardando} onClick={guardarProducto}>Agregar a MIRÚ</Button>}
             <Button size="large" onClick={() => setResultado(null)}>Cancelar</Button>
           </div>
         </Card>

@@ -19,6 +19,8 @@ router.get('/', (req, res) => {
   res.json('Has llegado a la sección de productos.');
 });
 
+router.get('/lookup', itemsController.lookupItem);
+
 router.get(
   '/consumables',
   itemsController.getConsumables,
@@ -47,11 +49,32 @@ router.get(
 // POST - AGREGAR PRODUCTOS
 // ========================================
 
-router.post('/consumables', itemsController.addConsumable);
+router.post(
+  '/consumables',
+  itemsController.addConsumable,
+  (req, res) => {
+    res.sendStatus(200);
+  }
+);
 
-router.post('/reagents', itemsController.addReagent);
+router.post(
+  '/reagents',
+  itemsController.addReagent,
+  (req, res) => {
+    res.sendStatus(200);
+  }
+);
 
-router.post('/equipment', itemsController.addEquipment);
+router.post(
+  '/equipment',
+  itemsController.addEquipment,
+  (req, res) => {
+    res.sendStatus(200);
+  }
+);
+
+router.post('/:categoria/:id/stock', itemsController.addStock);
+router.put('/:categoria/:id/pallet/:palletId/location', itemsController.updatePalletLocation);
 
 // ========================================
 // DELETE - ELIMINAR PRODUCTOS
