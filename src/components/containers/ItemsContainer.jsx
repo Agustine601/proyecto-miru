@@ -23,12 +23,95 @@ import WorkSheet from '../Items/WorkSheet.jsx';
 import BayerCatalog from '../Items/BayerCatalog.jsx';
 import WarehouseMap from '../Warehouse/WarehouseMap.jsx';
 
+/* =========================================
+   WRAPPER PRINCIPAL
+   ========================================= */
+
 const Wrapper = styled.div`
-  width: 80vw;
+  width: calc(100vw - 270px);
+  min-width: 0;
+
+  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  overflow-x: hidden;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    padding-bottom: 20px;
+  }
 `;
+
+/* =========================================
+   BARRA SUPERIOR
+   ========================================= */
+
+const TopBar = styled.div`
+  display: flex;
+
+  width: 100%;
+  max-width: 100%;
+
+  min-width: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 10px 16px;
+
+  background: #f5f6fb;
+
+  border-bottom: 1px solid #e3e8e1;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 8px;
+
+    padding: 8px 10px;
+
+    position: relative;
+    z-index: 10;
+  }
+`;
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+const Content = styled.div`
+  width: 100%;
+  max-width: 100%;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 16px;
+
+  overflow-x: hidden;
+
+  @media (max-width: 700px) {
+    padding: 10px 8px 20px;
+  }
+`;
+
+/* =========================================
+   ITEMS CONTAINER
+   ========================================= */
 
 const ItemsContainer = () => {
   const display = useSelector(
@@ -38,69 +121,71 @@ const ItemsContainer = () => {
   return (
     <Wrapper>
       <Affix offsetTop={0}>
-        <div
-          style={{
-            display: 'flex',
-            backgroundColor: '#f5f6fb',
-            width: '80vw',
-            justifyContent: 'center',
-          }}
-        >
+        <TopBar>
           <AddItem />
           <SearchBar />
-        </div>
+        </TopBar>
       </Affix>
 
-      {display === 'default' && (
-        <DefaultPage />
-      )}
+      <Content>
+        {display === 'default' && (
+          <DefaultPage />
+        )}
 
-      {display === 'consumables' && (
-        <ConsumablesList />
-      )}
+        {display === 'consumables' && (
+          <ConsumablesList />
+        )}
 
-      {display === 'reagents' && (
-        <ReagentsList />
-      )}
+        {display === 'reagents' && (
+          <ReagentsList />
+        )}
 
-      {display === 'equipment' && (
-        <EquipmentList />
-      )}
+        {display === 'equipment' && (
+          <EquipmentList />
+        )}
 
-      {display === 'favorites' && (
-        <TechnicalChallenges />
-      )}
+        {display === 'favorites' && (
+          <TechnicalChallenges />
+        )}
 
-      {display === 'scanner' && <ScannerPage />}
-      {display === 'work-orders' && <WorkSheet />}
-      {display === 'bayer-catalog' && (
-        <BayerCatalog />
-      )}
+        {display === 'scanner' && (
+          <ScannerPage />
+        )}
 
-      {display === 'warehouse-map' && <WarehouseMap />}
+        {display === 'work-orders' && (
+          <WorkSheet />
+        )}
 
-      {display === 'movements' && (
-        <MovementsHistory />
-      )}
+        {display === 'bayer-catalog' && (
+          <BayerCatalog />
+        )}
 
-      {display === 'alerts' && (
-        <Alerts />
-      )}
+        {display === 'warehouse-map' && (
+          <WarehouseMap />
+        )}
 
-      {display === 'default' && (
-        <Dashboard />
-      )}
+        {display === 'movements' && (
+          <MovementsHistory />
+        )}
 
-      {display === 'traceability' && (
-        <Traceability />
-      )}
+        {display === 'alerts' && (
+          <Alerts />
+        )}
 
-      {display === 'configuracion' && (
-        <Settings />
-      )}
+        {display === 'default' && (
+          <Dashboard />
+        )}
+
+        {display === 'traceability' && (
+          <Traceability />
+        )}
+
+        {display === 'configuracion' && (
+          <Settings />
+        )}
+      </Content>
     </Wrapper>
   );
 };
 
 export default ItemsContainer;
-

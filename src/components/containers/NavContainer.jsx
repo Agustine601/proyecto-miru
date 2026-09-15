@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   Menu,
   Badge,
   Button,
+  Drawer,
 } from 'antd';
 
 import {
@@ -20,15 +22,23 @@ import {
   ScanOutlined,
   FileTextOutlined,
   ApartmentOutlined,
+  MenuOutlined,
 } from '@ant-design/icons';
 
 import styled from 'styled-components';
 
 import { setDisplay } from './displaySlice';
 import { setLogin } from '../../loginSlice';
-import { useGetConsumablesQuery, useGetReagentsQuery } from '../../services/items';
+import {
+  useGetConsumablesQuery,
+  useGetReagentsQuery,
+} from '../../services/items';
 
 const { SubMenu } = Menu;
+
+/* =========================================
+   DESKTOP
+   ========================================= */
 
 const StyledMenu = styled(Menu)`
   width: 270px;
@@ -90,7 +100,15 @@ const StyledMenu = styled(Menu)`
     background: rgba(0, 0, 0, 0.12) !important;
     border-radius: 8px;
   }
+
+  @media (max-width: 700px) {
+    display: none !important;
+  }
 `;
+
+/* =========================================
+   BRAND
+   ========================================= */
 
 const Brand = styled.div`
   padding: 24px 15px 20px;
@@ -121,6 +139,10 @@ const BrandSubtitle = styled.div`
   white-space: nowrap;
 `;
 
+/* =========================================
+   USER
+   ========================================= */
+
 const UserInfo = styled.div`
   margin: 15px 15px 8px 15px;
   padding: 12px;
@@ -147,100 +169,140 @@ const SignOutButton = styled(Button)`
   }
 `;
 
-const NavContainer = () => {
-  const dispatch = useDispatch();
+/* =========================================
+   MOBILE HEADER
+   ========================================= */
 
-  const display = useSelector(
-    (state) => state.display.display
-  );
+const MobileHeader = styled.div`
+  display: none;
 
-  const user = useSelector(
-    (state) => state.user.user
-  );
+  @media (max-width: 700px) {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-  const { data: consumables = [] } =
-    useGetConsumablesQuery();
+    width: 100%;
+    height: 62px;
 
-  const { data: reagents = [] } =
-    useGetReagentsQuery();
+    align-items: center;
+    justify-content: space-between;
 
-  const today = new Date();
+    padding: 8px 12px;
 
-  const productosConAlerta = [
-    ...consumables,
-    ...reagents,
-  ];
+    background: linear-gradient(
+      135deg,
+      #1f4728 0%,
+      #285a32 55%,
+      #1c4025 100%
+    );
 
-  const alertCount = productosConAlerta.filter(
-    (item) => {
-      const stock = Number(item.cantidad || 0);
-      const minimo = Number(item.stockMinimo || 10);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+  }
+`;
 
-      const stockBajo = stock <= minimo;
+const MobileBrand = styled.div`
+  color: white;
+  cursor: pointer;
+  line-height: 1;
 
-      let proximoVencimiento = false;
+  strong {
+    display: block;
+    font-size: 23px;
+    letter-spacing: 2px;
+  }
 
-      if (item.vencimiento) {
-        const vencimiento = new Date(
-          `${item.vencimiento}T23:59:59`
-        );
+  span {
+    display: block;
+    margin-top: 3px;
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    color: #cfe5ce;
+    text-transform: uppercase;
+  }
+`;
 
-        const diferencia =
-          vencimiento.getTime() -
-          today.getTime();
+const MobileMenuButton = styled(Button)`
+  width: 44px !important;
+  height: 44px !important;
 
-        const dias =
-          diferencia /
-          (1000 * 60 * 60 * 24);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 
-        proximoVencimiento =
-          dias <= 30;
-      }
+  border-radius: 10px !important;
 
-      return stockBajo || proximoVencimiento;
-    }
-  ).length;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
 
-  const handleClick = ({ key }) => {
-    dispatch(setDisplay(key));
-  };
+  color: white !important;
 
-  const goHome = () => {
-    dispatch(setDisplay('default'));
-  };
+  font-size: 20px;
+`;
 
-  const handleSignOut = () => {
-    if (
-      window.gapi &&
-      window.gapi.auth2
-    ) {
-      const auth2 =
-        window.gapi.auth2.getAuthInstance();
+/* =========================================
+   MOBILE DRAWER
+   ========================================= */
 
-      if (auth2) {
-        auth2.signOut();
-      }
-    }
+const MobileDrawer = styled(Drawer)`
+  .ant-drawer-header {
+    background: #1f4728;
+    border-bottom: none;
+  }
 
-    dispatch(setLogin(false));
-  };
+  .ant-drawer-title {
+    color: white;
+    font-weight: 700;
+  }
 
+  .ant-drawer-close {
+    color: white;
+  }
+
+  .ant-drawer-body {
+    padding: 8px !important;
+    background: #f4f8f2;
+  }
+
+  .ant-menu {
+    border-right: none !important;
+    background: transparent !important;
+  }
+
+  .ant-menu-item,
+  .ant-menu-submenu-title {
+    min-height: 46px !important;
+    line-height: 46px !important;
+    margin: 4px 0 !important;
+    border-radius: 9px !important;
+    font-weight: 600;
+  }
+
+  .ant-menu-item-selected {
+    background: #397348 !important;
+    color: white !important;
+  }
+
+  .ant-menu-sub {
+    background: #e8f0e5 !important;
+    border-radius: 9px !important;
+  }
+`;
+
+/* =========================================
+   MENU
+   ========================================= */
+
+const MenuContent = ({
+  display,
+  alertCount,
+  handleClick,
+  goHome,
+  user,
+  handleSignOut,
+}) => {
   return (
-    <StyledMenu
-      mode="inline"
-      selectedKeys={[display]}
-      onClick={handleClick}
-    >
-      <Brand onClick={goHome}>
-        <BrandTitle>
-          MIRÚ
-        </BrandTitle>
-
-        <BrandSubtitle>
-          Gestión Agrícola
-        </BrandSubtitle>
-      </Brand>
-
+    <>
       <Menu.Item
         key="default"
         icon={<DatabaseOutlined />}
@@ -257,7 +319,7 @@ const NavContainer = () => {
           key="consumables"
           icon={<PaperClipOutlined />}
         >
-          Semillas 
+          Semillas
         </Menu.Item>
 
         <Menu.Item
@@ -324,11 +386,7 @@ const NavContainer = () => {
             count={alertCount}
             size="small"
           >
-            <BellOutlined
-              style={{
-                color: 'inherit',
-              }}
-            />
+            <BellOutlined />
           </Badge>
         }
       >
@@ -361,7 +419,208 @@ const NavContainer = () => {
       >
         Cerrar sesión
       </SignOutButton>
-    </StyledMenu>
+    </>
+  );
+};
+
+/* =========================================
+   NAV CONTAINER
+   ========================================= */
+
+const NavContainer = () => {
+  const dispatch = useDispatch();
+
+  const [mobileMenuOpen, setMobileMenuOpen] =
+    useState(false);
+
+  const [isMobile, setIsMobile] =
+    useState(window.innerWidth <= 700);
+
+  const display = useSelector(
+    (state) => state.display.display
+  );
+
+  const user = useSelector(
+    (state) => state.user.user
+  );
+
+  const { data: consumables = [] } =
+    useGetConsumablesQuery();
+
+  const { data: reagents = [] } =
+    useGetReagentsQuery();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 700);
+    };
+
+    window.addEventListener(
+      'resize',
+      handleResize
+    );
+
+    return () => {
+      window.removeEventListener(
+        'resize',
+        handleResize
+      );
+    };
+  }, []);
+
+  const today = new Date();
+
+  const productosConAlerta = [
+    ...consumables,
+    ...reagents,
+  ];
+
+  const alertCount =
+    productosConAlerta.filter((item) => {
+      const stock = Number(
+        item.cantidad || 0
+      );
+
+      const minimo = Number(
+        item.stockMinimo || 10
+      );
+
+      const stockBajo =
+        stock <= minimo;
+
+      let proximoVencimiento = false;
+
+      if (item.vencimiento) {
+        const vencimiento = new Date(
+          `${item.vencimiento}T23:59:59`
+        );
+
+        const diferencia =
+          vencimiento.getTime() -
+          today.getTime();
+
+        const dias =
+          diferencia /
+          (1000 * 60 * 60 * 24);
+
+        proximoVencimiento =
+          dias <= 30;
+      }
+
+      return (
+        stockBajo ||
+        proximoVencimiento
+      );
+    }).length;
+
+  const handleClick = ({ key }) => {
+    dispatch(setDisplay(key));
+
+    if (isMobile) {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const goHome = () => {
+    dispatch(setDisplay('default'));
+
+    if (isMobile) {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const handleSignOut = () => {
+    if (
+      window.gapi &&
+      window.gapi.auth2
+    ) {
+      const auth2 =
+        window.gapi.auth2.getAuthInstance();
+
+      if (auth2) {
+        auth2.signOut();
+      }
+    }
+
+    setMobileMenuOpen(false);
+    dispatch(setLogin(false));
+  };
+
+  return (
+    <>
+      {/* =====================================
+          DESKTOP
+          ===================================== */}
+
+      <StyledMenu
+        mode="inline"
+        selectedKeys={[display]}
+        onClick={handleClick}
+      >
+        <Brand onClick={goHome}>
+          <BrandTitle>
+            MIRÚ
+          </BrandTitle>
+
+          <BrandSubtitle>
+            Gestión Agrícola
+          </BrandSubtitle>
+        </Brand>
+
+        <MenuContent
+          display={display}
+          alertCount={alertCount}
+          handleClick={handleClick}
+          goHome={goHome}
+          user={user}
+          handleSignOut={handleSignOut}
+        />
+      </StyledMenu>
+
+      {/* =====================================
+          MOBILE
+          ===================================== */}
+
+      <MobileHeader>
+        <MobileBrand onClick={goHome}>
+          <strong>MIRÚ</strong>
+          <span>Gestión Agrícola</span>
+        </MobileBrand>
+
+        <MobileMenuButton
+          icon={<MenuOutlined />}
+          onClick={() =>
+            setMobileMenuOpen(true)
+          }
+        />
+      </MobileHeader>
+
+      <MobileDrawer
+        title="🌱 MIRÚ"
+        placement="left"
+        width="85%"
+        open={mobileMenuOpen}
+        onClose={() =>
+          setMobileMenuOpen(false)
+        }
+        destroyOnClose
+      >
+        <Menu
+          mode="inline"
+          selectedKeys={[display]}
+          onClick={handleClick}
+        >
+          <MenuContent
+            display={display}
+            alertCount={alertCount}
+            handleClick={handleClick}
+            goHome={goHome}
+            user={user}
+            handleSignOut={handleSignOut}
+          />
+        </Menu>
+      </MobileDrawer>
+    </>
   );
 };
 
