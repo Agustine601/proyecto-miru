@@ -18,7 +18,7 @@ const MovementsHistory = () => {
   const [fechas, setFechas] = useState(null);
 
   const movimientosFiltrados = useMemo(() => {
-    let resultado = movimientos || [];
+    let resultado = Array.isArray(movimientos) ? movimientos : [];
 
     // ==============================
     // BÚSQUEDA

@@ -56,8 +56,8 @@ const WorkSheet = () => {
   const [scannerVisible, setScannerVisible] = useState(false);
 
   const productos = useMemo(() => [
-    ...consumables.map((item) => ({ ...item, categoria: 'consumables' })),
-    ...reagents.map((item) => ({ ...item, categoria: 'reagents' })),
+    ...(Array.isArray(consumables) ? consumables : []).map((item) => ({ ...item, categoria: 'consumables' })),
+    ...(Array.isArray(reagents) ? reagents : []).map((item) => ({ ...item, categoria: 'reagents' })),
   ], [consumables, reagents]);
 
   const productoActual = productos.find((item) => item._id === productoId && item.categoria === categoria);

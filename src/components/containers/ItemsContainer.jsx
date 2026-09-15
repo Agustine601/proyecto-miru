@@ -113,6 +113,62 @@ const Content = styled.div`
    ITEMS CONTAINER
    ========================================= */
 
+class ScreenErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, info) {
+    console.error('MIRÚ - error en pantalla:', error, info);
+  }
+
+  render() {
+    if (!this.state.hasError) return this.props.children;
+
+    return (
+      <div style={{
+        width: '100%',
+        maxWidth: 900,
+        margin: '24px auto',
+        padding: 24,
+        background: '#fff',
+        border: '1px solid #f0caca',
+        borderRadius: 12,
+        boxSizing: 'border-box',
+      }}>
+        <h2 style={{ marginTop: 0 }}>⚠️ No se pudo abrir esta sección</h2>
+        <p>La aplicación sigue funcionando, pero esta pantalla encontró un error.</p>
+        <details>
+          <summary>Ver detalle técnico</summary>
+          <pre style={{ whiteSpace: 'pre-wrap', overflowX: 'auto' }}>
+            {String(this.state.error?.message || this.state.error || 'Error desconocido')}
+          </pre>
+        </details>
+        <button
+          type="button"
+          onClick={() => this.setState({ hasError: false, error: null })}
+          style={{
+            marginTop: 12,
+            padding: '10px 16px',
+            border: 0,
+            borderRadius: 8,
+            background: '#285a32',
+            color: '#fff',
+            cursor: 'pointer',
+          }}
+        >
+          Reintentar
+        </button>
+      </div>
+    );
+  }
+}
+
 const ItemsContainer = () => {
   const display = useSelector(
     (state) => state.display.display
@@ -128,7 +184,8 @@ const ItemsContainer = () => {
       </Affix>
 
       <Content>
-        {display === 'default' && (
+        <ScreenErrorBoundary key={display}>
+          {display === 'default' && (
           <DefaultPage />
         )}
 
@@ -183,6 +240,7 @@ const ItemsContainer = () => {
         {display === 'configuracion' && (
           <Settings />
         )}
+        </ScreenErrorBoundary>
       </Content>
     </Wrapper>
   );

@@ -60,14 +60,16 @@ const Traceability = () => {
    * Cada producto puede tener un lote.
    */
   const productos = useMemo(() => {
+    const consumiblesSeguros = Array.isArray(consumables) ? consumables : [];
+    const reagentesSeguros = Array.isArray(reagents) ? reagents : [];
     return [
-      ...consumables.map((item) => ({
+      ...consumiblesSeguros.map((item) => ({
         ...item,
         categoriaNombre: 'Consumibles',
         categoria: 'consumables',
       })),
 
-      ...reagents.map((item) => ({
+      ...reagentesSeguros.map((item) => ({
         ...item,
         categoriaNombre: 'Productos químicos',
         categoria: 'reagents',
@@ -82,7 +84,9 @@ const Traceability = () => {
   const lotesDisponibles = useMemo(() => {
     const mapa = new Map();
 
-    movimientos.forEach((movimiento) => {
+    const movimientosSeguros = Array.isArray(movimientos) ? movimientos : [];
+
+    movimientosSeguros.forEach((movimiento) => {
       const lote = movimiento.lote || 'SIN-LOTE';
 
       const clave =
@@ -165,7 +169,9 @@ const Traceability = () => {
       return [];
     }
 
-    return movimientos.filter(
+    const movimientosSeguros = Array.isArray(movimientos) ? movimientos : [];
+
+    return movimientosSeguros.filter(
       (movimiento) => {
         const lote =
           movimiento.lote || 'SIN-LOTE';
@@ -211,7 +217,7 @@ const Traceability = () => {
     let salidas = 0;
     let consumos = 0;
 
-    movimientosLote.forEach(
+    (Array.isArray(movimientosLote) ? movimientosLote : []).forEach(
       (movimiento) => {
         const cantidad =
           Number(movimiento.cantidad) || 0;

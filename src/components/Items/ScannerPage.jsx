@@ -35,7 +35,13 @@ const ScannerPage = () => {
   const { data: consumables = [] } = useGetConsumablesQuery();
   const { data: reagents = [] } = useGetReagentsQuery();
 
-  const productosExistentes = useMemo(() => [...consumables, ...reagents], [consumables, reagents]);
+  const productosExistentes = useMemo(
+    () => [
+      ...(Array.isArray(consumables) ? consumables : []),
+      ...(Array.isArray(reagents) ? reagents : []),
+    ],
+    [consumables, reagents]
+  );
 
   const buscarCodigo = async (codigo) => {
     const raw = String(codigo || '').trim();

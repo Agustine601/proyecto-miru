@@ -11,6 +11,11 @@ function LoginOAuth() {
 
   const onLoginSuccess = (credentialResponse) => {
     try {
+      if (!credentialResponse?.credential) {
+        console.error('Google no devolvió una credencial.');
+        return;
+      }
+
       const profile = jwtDecode(credentialResponse.credential);
 
       console.log('Login exitoso:', profile.name);
@@ -32,11 +37,15 @@ function LoginOAuth() {
   };
 
   const onLoginFailure = () => {
-    console.log('Login de Google fallido');
+    console.error('Login de Google fallido.');
   };
 
   const onLogout = () => {
-    googleLogout();
+    try {
+      googleLogout();
+    } catch (error) {
+      console.warn('Error cerrando sesión de Google:', error);
+    }
 
     dispatch(clearUser());
     dispatch(setLogin(false));
@@ -47,7 +56,7 @@ function LoginOAuth() {
       <GoogleLogin
         onSuccess={onLoginSuccess}
         onError={onLoginFailure}
-        useOneTap
+        useOneTap={false}
       />
 
       <button

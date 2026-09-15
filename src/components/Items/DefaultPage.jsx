@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import logoMiru from '../../assets/logo-miru-b-400x120.png';
 
 const Image = styled.img`
   width: 14rem;
+  max-width: 80%;
+  height: auto;
   margin: 1.5rem 0;
 `;
 
 const Wrapper = styled.div`
   width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,18 +39,15 @@ const DefaultPage = () => {
   return (
     <Wrapper>
       <Image
-        src="./src/assets/logo-miru-b-400x120.png"
+        src={logoMiru}
+        alt="MIRÚ - Gestión Agrícola"
       />
 
-      <MainText>
-      
-      </MainText>
+      <MainText></MainText>
 
-      <SubText>
-      </SubText>
+      <SubText></SubText>
     </Wrapper>
   );
 };
 
 export default DefaultPage;
-
