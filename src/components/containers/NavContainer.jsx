@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -29,12 +30,11 @@ import styled from 'styled-components';
 
 import { setDisplay } from './displaySlice';
 import { setLogin } from '../../loginSlice';
+
 import {
   useGetConsumablesQuery,
   useGetReagentsQuery,
 } from '../../services/items';
-
-const { SubMenu } = Menu;
 
 /* =========================================
    DESKTOP
@@ -81,6 +81,11 @@ const StyledMenu = styled(Menu)`
     background: #397348 !important;
     color: #ffffff !important;
     font-weight: 700;
+  }
+
+  .ant-menu-submenu-selected > .ant-menu-submenu-title {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
   }
 
   .ant-menu-submenu-arrow {
@@ -283,6 +288,10 @@ const MobileDrawer = styled(Drawer)`
     color: white !important;
   }
 
+  .ant-menu-submenu-selected > .ant-menu-submenu-title {
+    color: #285a32 !important;
+  }
+
   .ant-menu-sub {
     background: #e8f0e5 !important;
     border-radius: 9px !important;
@@ -290,138 +299,103 @@ const MobileDrawer = styled(Drawer)`
 `;
 
 /* =========================================
-   MENU
+   MENU ITEMS
    ========================================= */
 
-const MenuContent = ({
-  display,
+const createMenuItems = ({
   alertCount,
-  handleClick,
-  goHome,
-  user,
-  handleSignOut,
-}) => {
-  return (
-    <>
-      <Menu.Item
-        key="default"
-        icon={<DatabaseOutlined />}
+}) => [
+  {
+    key: 'default',
+    icon: <DatabaseOutlined />,
+    label: 'Panel principal',
+  },
+
+  {
+    key: 'inventario',
+    icon: <ExperimentOutlined />,
+    label: 'Inventario',
+    children: [
+      {
+        key: 'consumables',
+        icon: <PaperClipOutlined />,
+        label: 'Semillas',
+      },
+      {
+        key: 'reagents',
+        icon: <ExperimentOutlined />,
+        label: 'Agroquímicos',
+      },
+      {
+        key: 'equipment',
+        icon: <ToolOutlined />,
+        label: 'Otros insumos',
+      },
+    ],
+  },
+
+  {
+    key: 'scanner',
+    icon: <ScanOutlined />,
+    label: 'Escanear producto',
+  },
+
+  {
+    key: 'work-orders',
+    icon: <FileTextOutlined />,
+    label: 'Hojas de trabajo',
+  },
+
+  {
+    key: 'warehouse-map',
+    icon: <ApartmentOutlined />,
+    label: 'Mapa del galpón',
+  },
+
+  {
+    key: 'bayer-catalog',
+    icon: <AppstoreOutlined />,
+    label: 'Catálogo Bayer',
+  },
+
+  {
+    key: 'movements',
+    icon: <HistoryOutlined />,
+    label: 'Movimientos',
+  },
+
+  {
+    key: 'traceability',
+    icon: <DatabaseOutlined />,
+    label: 'Trazabilidad',
+  },
+
+  {
+    key: 'alerts',
+    icon: (
+      <Badge
+        count={alertCount}
+        size="small"
       >
-        Panel principal
-      </Menu.Item>
+        <BellOutlined />
+      </Badge>
+    ),
+    label: 'Alertas',
+  },
 
-      <SubMenu
-        key="inventario"
-        icon={<ExperimentOutlined />}
-        title="Inventario"
-      >
-        <Menu.Item
-          key="consumables"
-          icon={<PaperClipOutlined />}
-        >
-          Semillas
-        </Menu.Item>
-
-        <Menu.Item
-          key="reagents"
-          icon={<ExperimentOutlined />}
-        >
-          Agroquímicos
-        </Menu.Item>
-
-        <Menu.Item
-          key="equipment"
-          icon={<ToolOutlined />}
-        >
-          Otros insumos
-        </Menu.Item>
-      </SubMenu>
-
-      <Menu.Item
-        key="scanner"
-        icon={<ScanOutlined />}
-      >
-        Escanear producto
-      </Menu.Item>
-
-      <Menu.Item
-        key="work-orders"
-        icon={<FileTextOutlined />}
-      >
-        Hojas de trabajo
-      </Menu.Item>
-
-      <Menu.Item
-        key="warehouse-map"
-        icon={<ApartmentOutlined />}
-      >
-        Mapa del galpón
-      </Menu.Item>
-
-      <Menu.Item
-        key="bayer-catalog"
-        icon={<AppstoreOutlined />}
-      >
-        Catálogo Bayer
-      </Menu.Item>
-
-      <Menu.Item
-        key="movements"
-        icon={<HistoryOutlined />}
-      >
-        Movimientos
-      </Menu.Item>
-
-      <Menu.Item
-        key="traceability"
-        icon={<DatabaseOutlined />}
-      >
-        Trazabilidad
-      </Menu.Item>
-
-      <Menu.Item
-        key="alerts"
-        icon={
-          <Badge
-            count={alertCount}
-            size="small"
-          >
-            <BellOutlined />
-          </Badge>
-        }
-      >
-        Alertas
-      </Menu.Item>
-
-      <SubMenu
-        key="usuario"
-        icon={<UserOutlined />}
-        title="Usuario"
-      >
-        <Menu.Item
-          key="configuracion"
-          icon={<SettingOutlined />}
-        >
-          Configuración
-        </Menu.Item>
-      </SubMenu>
-
-      <UserInfo>
-        <UserOutlined />{' '}
-        {user?.name ||
-          user?.email ||
-          'Usuario'}
-      </UserInfo>
-
-      <SignOutButton
-        icon={<AlertOutlined />}
-        onClick={handleSignOut}
-      >
-        Cerrar sesión
-      </SignOutButton>
-    </>
-  );
-};
+  {
+    key: 'usuario',
+    icon: <UserOutlined />,
+    label: 'Usuario',
+    children: [
+      {
+        key: 'configuracion',
+        icon: <SettingOutlined />,
+        label: 'Configuración',
+      },
+    ],
+  },
+];
 
 /* =========================================
    NAV CONTAINER
@@ -437,11 +411,11 @@ const NavContainer = () => {
     useState(window.innerWidth <= 700);
 
   const display = useSelector(
-    (state) => state.display.display
+    (state) => state.display?.display || 'default'
   );
 
   const user = useSelector(
-    (state) => state.user.user
+    (state) => state.user?.user
   );
 
   const { data: consumables = [] } =
@@ -471,18 +445,22 @@ const NavContainer = () => {
   const today = new Date();
 
   const productosConAlerta = [
-    ...consumables,
-    ...reagents,
+    ...(Array.isArray(consumables)
+      ? consumables
+      : []),
+    ...(Array.isArray(reagents)
+      ? reagents
+      : []),
   ];
 
   const alertCount =
     productosConAlerta.filter((item) => {
       const stock = Number(
-        item.cantidad || 0
+        item?.cantidad || 0
       );
 
       const minimo = Number(
-        item.stockMinimo || 10
+        item?.stockMinimo || 10
       );
 
       const stockBajo =
@@ -490,7 +468,7 @@ const NavContainer = () => {
 
       let proximoVencimiento = false;
 
-      if (item.vencimiento) {
+      if (item?.vencimiento) {
         const vencimiento = new Date(
           `${item.vencimiento}T23:59:59`
         );
@@ -514,7 +492,31 @@ const NavContainer = () => {
     }).length;
 
   const handleClick = ({ key }) => {
-    dispatch(setDisplay(key));
+    /*
+     * Los SubMenu padre no representan
+     * una pantalla.
+     *
+     * Solo cambiamos display cuando se
+     * selecciona una pantalla real.
+     */
+    const screenKeys = [
+      'default',
+      'consumables',
+      'reagents',
+      'equipment',
+      'scanner',
+      'work-orders',
+      'warehouse-map',
+      'bayer-catalog',
+      'movements',
+      'traceability',
+      'alerts',
+      'configuracion',
+    ];
+
+    if (screenKeys.includes(key)) {
+      dispatch(setDisplay(key));
+    }
 
     if (isMobile) {
       setMobileMenuOpen(false);
@@ -546,6 +548,21 @@ const NavContainer = () => {
     dispatch(setLogin(false));
   };
 
+  const menuItems = createMenuItems({
+    alertCount,
+  });
+
+  /*
+   * IMPORTANTE:
+   * Ant Design necesita que selectedKeys
+   * contenga solamente la pantalla actual.
+   */
+  const selectedKeys =
+    typeof display === 'string' &&
+    display
+      ? [display]
+      : ['default'];
+
   return (
     <>
       {/* =====================================
@@ -554,28 +571,47 @@ const NavContainer = () => {
 
       <StyledMenu
         mode="inline"
-        selectedKeys={[display]}
+        items={menuItems}
+        selectedKeys={selectedKeys}
         onClick={handleClick}
+      />
+
+      {/* Información del usuario y logout
+          fuera del Menu para evitar que
+          Ant Design los trate como items */}
+      <div
+        style={{
+          width: 270,
+          background:
+            'linear-gradient(180deg, #1f4728 0%, #285a32 55%, #1c4025 100%)',
+          marginTop: -120,
+          paddingTop: 120,
+          position: 'sticky',
+          bottom: 0,
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
       >
-        <Brand onClick={goHome}>
-          <BrandTitle>
-            MIRÚ
-          </BrandTitle>
+        <div
+          style={{
+            pointerEvents: 'auto',
+          }}
+        >
+          <UserInfo>
+            <UserOutlined />{' '}
+            {user?.name ||
+              user?.email ||
+              'Usuario'}
+          </UserInfo>
 
-          <BrandSubtitle>
-            Gestión Agrícola
-          </BrandSubtitle>
-        </Brand>
-
-        <MenuContent
-          display={display}
-          alertCount={alertCount}
-          handleClick={handleClick}
-          goHome={goHome}
-          user={user}
-          handleSignOut={handleSignOut}
-        />
-      </StyledMenu>
+          <SignOutButton
+            icon={<AlertOutlined />}
+            onClick={handleSignOut}
+          >
+            Cerrar sesión
+          </SignOutButton>
+        </div>
+      </div>
 
       {/* =====================================
           MOBILE
@@ -607,21 +643,28 @@ const NavContainer = () => {
       >
         <Menu
           mode="inline"
-          selectedKeys={[display]}
+          items={menuItems}
+          selectedKeys={selectedKeys}
           onClick={handleClick}
+        />
+
+        <UserInfo>
+          <UserOutlined />{' '}
+          {user?.name ||
+            user?.email ||
+            'Usuario'}
+        </UserInfo>
+
+        <SignOutButton
+          icon={<AlertOutlined />}
+          onClick={handleSignOut}
         >
-          <MenuContent
-            display={display}
-            alertCount={alertCount}
-            handleClick={handleClick}
-            goHome={goHome}
-            user={user}
-            handleSignOut={handleSignOut}
-          />
-        </Menu>
+          Cerrar sesión
+        </SignOutButton>
       </MobileDrawer>
     </>
   );
 };
 
 export default NavContainer;
+
