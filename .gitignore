@@ -5,3 +5,7 @@ npm-debug.log
 .env
 __pycache__/
 *.pyc
+
+# Claves privadas / certificados
+*.pem
+*-key.pem
