@@ -85,20 +85,6 @@ const controlMax = Array.from({ length: 30 }, (_, i) => ({
    25 FILAS POR LADO
    3 POSICIONES DE PROFUNDIDAD POR FILA
    3 PALLETS POR POSICIÓN
-
-   LADO A:
-   F01-P01 / F01-P02 / F01-P03
-   ...
-   F25-P01 / F25-P02 / F25-P03
-
-   LADO B:
-   F01-P01 / F01-P02 / F01-P03
-   ...
-   F25-P01 / F25-P02 / F25-P03
-
-   TOTAL:
-   150 posiciones
-   450 pallets máximos
 ========================================================= */
 
 const semillasSlots = Array.from(
@@ -167,6 +153,14 @@ const Wrapper = styled.div`
   max-width: 1600px;
   box-sizing: border-box;
   margin: 0 auto;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 10px 8px 30px;
+    overflow-x: hidden;
+  }
 `;
 
 const Header = styled(Card)`
@@ -174,6 +168,16 @@ const Header = styled(Card)`
 
   .ant-card-body {
     padding: 18px 20px;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+
+    .ant-card-body {
+      padding: 14px 12px;
+    }
   }
 `;
 
@@ -183,6 +187,12 @@ const Toolbar = styled.div`
   flex-wrap: wrap;
   align-items: center;
   margin-top: 14px;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    gap: 8px;
+    align-items: stretch;
+  }
 `;
 
 const WarehouseSelector = styled.div`
@@ -191,6 +201,15 @@ const WarehouseSelector = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin-bottom: 4px;
+
+  @media (max-width: 700px) {
+    width: 100%;
+
+    .ant-btn {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+  }
 `;
 
 const Legend = styled.div`
@@ -198,6 +217,18 @@ const Legend = styled.div`
   gap: 8px;
   flex-wrap: wrap;
   margin-top: 12px;
+
+  @media (max-width: 700px) {
+    gap: 5px;
+
+    .ant-tag {
+      margin-right: 0;
+      margin-bottom: 4px;
+      white-space: normal;
+      line-height: 20px;
+      height: auto;
+    }
+  }
 `;
 
 
@@ -231,6 +262,17 @@ const Building = styled.div`
   box-shadow:
     0 10px 35px rgba(0, 0, 0, 0.18),
     inset 0 0 0 1px rgba(255,255,255,0.025);
+
+  @media (max-width: 700px) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: auto;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+  }
 `;
 
 const Wall = styled.div`
@@ -292,6 +334,25 @@ const AgroMap = styled.div`
 
     gap: 12px;
   }
+
+  /* =========================================
+     CELULAR
+  ========================================= */
+  @media (max-width: 700px) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    min-height: auto;
+
+    padding: 58px 8px 28px;
+
+    grid-template-columns: 1fr;
+
+    grid-template-rows: auto;
+
+    gap: 12px;
+  }
 `;
 
 const AgroMapTitle = styled.div`
@@ -308,6 +369,12 @@ const AgroMapTitle = styled.div`
 
   text-shadow:
     0 2px 4px rgba(0,0,0,0.7);
+
+  @media (max-width: 700px) {
+    font-size: 14px;
+    line-height: 1.25;
+    padding: 0 35px;
+  }
 `;
 
 const AgroMapSubtitle = styled.div`
@@ -323,6 +390,12 @@ const AgroMapSubtitle = styled.div`
   font-weight: 700;
 
   letter-spacing: 0.5px;
+
+  @media (max-width: 700px) {
+    font-size: 8px;
+    line-height: 1.3;
+    margin-top: -6px;
+  }
 `;
 
 const AgroControlPanel = styled.div`
@@ -351,6 +424,16 @@ const AgroControlPanel = styled.div`
   box-sizing: border-box;
 
   position: relative;
+
+  @media (max-width: 700px) {
+    grid-column: 1;
+    grid-row: auto;
+
+    width: 100%;
+    max-width: 100%;
+
+    padding: 30px 8px 10px;
+  }
 `;
 
 const AgroControlTitle = styled.div`
@@ -368,6 +451,10 @@ const AgroControlTitle = styled.div`
   font-weight: 900;
 
   letter-spacing: 0.7px;
+
+  @media (max-width: 700px) {
+    font-size: 10px;
+  }
 `;
 
 const AgroMainArea = styled.div`
@@ -384,6 +471,21 @@ const AgroMainArea = styled.div`
     minmax(0, 0.75fr);
 
   gap: 14px;
+
+  @media (max-width: 700px) {
+    grid-column: 1;
+    grid-row: auto;
+
+    width: 100%;
+    max-width: 100%;
+
+    grid-template-rows:
+      auto
+      50px
+      auto;
+
+    gap: 12px;
+  }
 `;
 
 const AgroSideArea = styled.div`
@@ -406,6 +508,28 @@ const AgroSideArea = styled.div`
   border-left: 2px dashed #526057;
 
   box-sizing: border-box;
+
+  @media (max-width: 700px) {
+    grid-column: 1;
+    grid-row: auto;
+
+    width: 100%;
+    max-width: 100%;
+
+    padding-left: 0;
+    padding-top: 12px;
+
+    border-left: none;
+
+    border-top: 2px dashed #526057;
+
+    grid-template-rows:
+      auto
+      44px
+      auto;
+
+    gap: 12px;
+  }
 `;
 
 const AgroSection = styled.div`
@@ -431,6 +555,15 @@ const AgroSection = styled.div`
 
   box-shadow:
     inset 0 0 18px rgba(0,0,0,0.12);
+
+  @media (max-width: 700px) {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 31px 7px 10px;
+
+    border-radius: 9px;
+  }
 `;
 
 const AgroSectionTitle = styled.div`
@@ -448,6 +581,12 @@ const AgroSectionTitle = styled.div`
   font-weight: 900;
 
   letter-spacing: 0.5px;
+
+  @media (max-width: 700px) {
+    left: 8px;
+    font-size: 9px;
+    letter-spacing: 0.2px;
+  }
 `;
 
 const AgroSectionInfo = styled.div`
@@ -460,6 +599,11 @@ const AgroSectionInfo = styled.div`
 
   font-size: 9px;
   font-weight: 700;
+
+  @media (max-width: 700px) {
+    right: 8px;
+    font-size: 7px;
+  }
 `;
 
 const AgroRackGrid = styled.div`
@@ -477,6 +621,20 @@ const AgroRackGrid = styled.div`
   gap: 10px;
 
   align-items: center;
+
+  @media (max-width: 700px) {
+    height: auto;
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    grid-template-rows:
+      repeat(4, minmax(65px, auto));
+
+    gap: 8px;
+
+    padding: 8px 2px;
+  }
 `;
 
 const AgroRackGridSingle = styled.div`
@@ -491,6 +649,20 @@ const AgroRackGridSingle = styled.div`
   gap: 10px;
 
   align-items: center;
+
+  @media (max-width: 700px) {
+    height: auto;
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    grid-template-rows:
+      repeat(2, minmax(65px, auto));
+
+    gap: 8px;
+
+    padding: 8px 2px;
+  }
 `;
 
 const AgroRackGridFour = styled.div`
@@ -505,6 +677,20 @@ const AgroRackGridFour = styled.div`
   gap: 10px;
 
   align-items: center;
+
+  @media (max-width: 700px) {
+    height: auto;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    grid-template-rows:
+      repeat(2, minmax(70px, auto));
+
+    gap: 8px;
+
+    padding: 8px 2px;
+  }
 `;
 
 const AgroAisle = styled.div`
@@ -536,6 +722,14 @@ const AgroAisle = styled.div`
   letter-spacing: 1px;
 
   box-sizing: border-box;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    min-height: 50px;
+
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
 `;
 
 const AgroAisleSub = styled.span`
@@ -548,6 +742,10 @@ const AgroAisleSub = styled.span`
   font-size: 8px;
 
   letter-spacing: 0;
+
+  @media (max-width: 700px) {
+    font-size: 7px;
+  }
 `;
 
 const AgroSideAisle = styled.div`
@@ -568,6 +766,11 @@ const AgroSideAisle = styled.div`
   font-weight: 900;
 
   letter-spacing: 0.5px;
+
+  @media (max-width: 700px) {
+    min-height: 44px;
+    font-size: 8px;
+  }
 `;
 
 const AgroDirection = styled.div`
@@ -584,6 +787,10 @@ const AgroDirection = styled.div`
   justify-content: center;
 
   letter-spacing: 0.5px;
+
+  @media (max-width: 700px) {
+    font-size: 8px;
+  }
 `;
 
 
@@ -641,6 +848,13 @@ const RackMini = styled.div`
       0 5px 14px rgba(0,0,0,0.25),
       0 0 0 2px rgba(39,213,198,0.15);
   }
+
+  @media (max-width: 700px) {
+    height: 62px;
+    padding: 3px;
+    border-width: 1px;
+    border-radius: 5px;
+  }
 `;
 
 const MiniSlots = styled.div`
@@ -655,6 +869,10 @@ const MiniSlots = styled.div`
   height: 100%;
 
   gap: 3px;
+
+  @media (max-width: 700px) {
+    gap: 2px;
+  }
 `;
 
 const MiniSlot = styled.div`
@@ -690,6 +908,10 @@ const MiniSlot = styled.div`
         z-index: 3;
       `
       : ''}
+
+  @media (max-width: 700px) {
+    border-width: 1px;
+  }
 `;
 
 const RackName = styled.div`
@@ -712,6 +934,11 @@ const RackName = styled.div`
     0 1px 3px #000;
 
   letter-spacing: 0.5px;
+
+  @media (max-width: 700px) {
+    top: -15px;
+    font-size: 7px;
+  }
 `;
 
 const RackAccess = styled.div`
@@ -729,6 +956,11 @@ const RackAccess = styled.div`
   font-weight: 800;
 
   white-space: nowrap;
+
+  @media (max-width: 700px) {
+    bottom: -13px;
+    font-size: 5px;
+  }
 `;
 
 
@@ -745,6 +977,11 @@ const ControlGrid = styled.div`
     repeat(10, 1fr);
 
   gap: 5px;
+
+  @media (max-width: 700px) {
+    gap: 4px;
+    min-height: 300px;
+  }
 `;
 
 const ControlRow = styled.div`
@@ -754,6 +991,10 @@ const ControlRow = styled.div`
     repeat(3, 1fr);
 
   gap: 5px;
+
+  @media (max-width: 700px) {
+    gap: 4px;
+  }
 `;
 
 const ControlSlot = styled.div`
@@ -789,6 +1030,11 @@ const ControlSlot = styled.div`
         z-index: 3;
       `
       : ''}
+
+  @media (max-width: 700px) {
+    border-width: 1px;
+    border-radius: 3px;
+  }
 `;
 
 const StackBadge = styled.span`
@@ -804,6 +1050,10 @@ const StackBadge = styled.span`
 
   text-shadow:
     0 1px 2px #000;
+
+  @media (max-width: 700px) {
+    font-size: 6px;
+  }
 `;
 
 const SlotInfo = styled.div`
@@ -834,6 +1084,10 @@ const SlotInfo = styled.div`
   pointer-events: none;
 
   overflow: hidden;
+
+  @media (max-width: 700px) {
+    font-size: 5px;
+  }
 `;
 
 const SlotPallet = styled.div`
@@ -862,6 +1116,10 @@ const SlotQty = styled.div`
   font-size: 6px;
 
   opacity: 0.9;
+
+  @media (max-width: 700px) {
+    font-size: 5px;
+  }
 `;
 
 
@@ -892,6 +1150,12 @@ const Emergency = styled.div`
 
   box-shadow:
     0 2px 6px rgba(0,0,0,0.3);
+
+  @media (max-width: 700px) {
+    border-width: 2px;
+    font-size: 7px;
+    padding: 4px 5px;
+  }
 `;
 
 const Entry = styled.div`
@@ -917,6 +1181,12 @@ const Entry = styled.div`
 
   box-shadow:
     0 2px 6px rgba(0,0,0,0.3);
+
+  @media (max-width: 700px) {
+    border-width: 2px;
+    font-size: 7px;
+    padding: 4px 5px;
+  }
 `;
 
 
@@ -937,6 +1207,13 @@ const SeedsBuildingContent = styled.div`
 
   @media (max-width: 900px) {
     padding: 55px 15px 25px;
+  }
+
+  @media (max-width: 700px) {
+    min-height: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 55px 7px 25px;
   }
 `;
 
@@ -965,6 +1242,7 @@ const SeedsLayout = styled.div`
 
   @media (max-width: 760px) {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 `;
 
@@ -985,6 +1263,11 @@ const SeedsSide = styled.div`
   padding: 10px;
 
   box-sizing: border-box;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    padding: 8px 6px;
+  }
 `;
 
 const SeedsSideTitle = styled.div`
@@ -1001,6 +1284,11 @@ const SeedsSideTitle = styled.div`
   letter-spacing: 0.4px;
 
   line-height: 1.25;
+
+  @media (max-width: 700px) {
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
 `;
 
 const SeedsSideInfo = styled.div`
@@ -1013,6 +1301,12 @@ const SeedsSideInfo = styled.div`
   text-align: center;
 
   margin-bottom: 9px;
+
+  @media (max-width: 700px) {
+    font-size: 7px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
 `;
 
 const SeedsGrid = styled.div`
@@ -1021,6 +1315,10 @@ const SeedsGrid = styled.div`
   grid-template-columns: 1fr;
 
   gap: 4px;
+
+  @media (max-width: 700px) {
+    gap: 3px;
+  }
 `;
 
 const SeedsRow = styled.div`
@@ -1035,6 +1333,14 @@ const SeedsRow = styled.div`
   min-width: 0;
 
   align-items: stretch;
+
+  @media (max-width: 700px) {
+    grid-template-columns:
+      22px
+      repeat(3, minmax(0, 1fr));
+
+    gap: 3px;
+  }
 `;
 
 const SeedsRowNumber = styled.div`
@@ -1050,6 +1356,10 @@ const SeedsRowNumber = styled.div`
   font-weight: 900;
 
   writing-mode: horizontal-tb;
+
+  @media (max-width: 700px) {
+    font-size: 6px;
+  }
 `;
 
 const SeedsSlot = styled.div`
@@ -1101,6 +1411,12 @@ const SeedsSlot = styled.div`
         z-index: 3;
       `
       : ''}
+
+  @media (max-width: 700px) {
+    min-height: 38px;
+    padding: 2px;
+    border-width: 1px;
+  }
 `;
 
 const SeedsSlotId = styled.div`
@@ -1115,6 +1431,10 @@ const SeedsSlotId = styled.div`
   line-height: 1;
 
   margin-bottom: 2px;
+
+  @media (max-width: 700px) {
+    font-size: 5px;
+  }
 `;
 
 const SeedsSlotContent = styled.div`
@@ -1145,6 +1465,11 @@ const SeedsSlotContent = styled.div`
     0 1px 2px #000;
 
   overflow: hidden;
+
+  @media (max-width: 700px) {
+    font-size: 5px;
+    min-height: 15px;
+  }
 `;
 
 const SeedsStackBadge = styled.div`
@@ -1161,6 +1486,12 @@ const SeedsStackBadge = styled.div`
 
   text-shadow:
     0 1px 2px #000;
+
+  @media (max-width: 700px) {
+    font-size: 5px;
+    top: 1px;
+    right: 2px;
+  }
 `;
 
 const SeedsAisle = styled.div`
@@ -1192,6 +1523,11 @@ const SeedsAisle = styled.div`
   padding: 12px;
 
   box-sizing: border-box;
+
+  @media (max-width: 760px) {
+    min-height: 100px;
+    width: 100%;
+  }
 `;
 
 const SeedsAisleInner = styled.div`
@@ -1202,12 +1538,21 @@ const SeedsAisleInner = styled.div`
   font-size: 14px;
 
   line-height: 1.4;
+
+  @media (max-width: 700px) {
+    font-size: 11px;
+  }
 `;
 
 const SeedsAisleIcon = styled.div`
   font-size: 38px;
 
   margin-bottom: 10px;
+
+  @media (max-width: 700px) {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
 `;
 
 const SeedsWallLabel = styled.div`
@@ -1218,6 +1563,10 @@ const SeedsWallLabel = styled.div`
   font-size: 10px;
 
   font-weight: 800;
+
+  @media (max-width: 700px) {
+    font-size: 7px;
+  }
 `;
 
 const SeedsMapTitle = styled.div`
@@ -1239,6 +1588,11 @@ const SeedsMapTitle = styled.div`
   text-align: center;
 
   white-space: nowrap;
+
+  @media (max-width: 700px) {
+    font-size: 13px;
+    top: 14px;
+  }
 `;
 
 const SeedsMapSubtitle = styled.div`
@@ -1258,6 +1612,11 @@ const SeedsMapSubtitle = styled.div`
   text-align: center;
 
   white-space: nowrap;
+
+  @media (max-width: 700px) {
+    font-size: 7px;
+    top: 35px;
+  }
 `;
 
 const SeedsEntry = styled.div`
@@ -1282,6 +1641,12 @@ const SeedsEntry = styled.div`
   padding: 5px 7px;
 
   border-radius: 3px;
+
+  @media (max-width: 700px) {
+    border-width: 2px;
+    font-size: 7px;
+    padding: 3px 5px;
+  }
 `;
 
 const SeedsEmergency = styled.div`
@@ -1305,6 +1670,12 @@ const SeedsEmergency = styled.div`
   padding: 5px 7px;
 
   border-radius: 3px;
+
+  @media (max-width: 700px) {
+    border-width: 2px;
+    font-size: 7px;
+    padding: 3px 5px;
+  }
 `;
 
 
@@ -2371,7 +2742,7 @@ export default function WarehouseMap() {
 
   /* =========================================================
      SEMILLAS SLOT
-========================================================= */
+  ========================================================= */
 
   const renderSemillasSlot =
     slot => {
@@ -2807,6 +3178,7 @@ export default function WarehouseMap() {
 
             style={{
               maxWidth: 380,
+              width: '100%',
             }}
 
             allowClear
@@ -3230,6 +3602,8 @@ export default function WarehouseMap() {
       <Card
         style={{
           marginTop: 16,
+          width: '100%',
+          maxWidth: '100%',
         }}
 
         title={
@@ -3747,6 +4121,11 @@ const Unassigned = styled.div`
   gap: 8px;
 
   margin-top: 12px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
 `;
 
 const ProductCard = styled.div`
@@ -3766,6 +4145,12 @@ const ProductCard = styled.div`
   &:hover {
     border-color: #7ca07e;
   }
+
+  @media (max-width: 700px) {
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+  }
 `;
 
 const StatsGrid = styled.div`
@@ -3784,7 +4169,8 @@ const StatsGrid = styled.div`
   }
 
   @media (max-width: 520px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
   }
 `;
 
@@ -3797,6 +4183,12 @@ const StatCard = styled.div`
   padding: 10px 12px;
 
   background: #fafcfb;
+
+  min-width: 0;
+
+  @media (max-width: 520px) {
+    padding: 8px;
+  }
 `;
 
 const StatValue = styled.div`
@@ -3807,6 +4199,10 @@ const StatValue = styled.div`
   color: #23452b;
 
   line-height: 1.1;
+
+  @media (max-width: 520px) {
+    font-size: 17px;
+  }
 `;
 
 const StatLabel = styled.div`
@@ -3815,4 +4211,9 @@ const StatLabel = styled.div`
   color: #66736a;
 
   margin-top: 4px;
+
+  @media (max-width: 520px) {
+    font-size: 9px;
+    line-height: 1.2;
+  }
 `;
