@@ -9,7 +9,7 @@ import App from './App.jsx';
 import './index.css';
 
 const clientId =
- 261481707145-q95uebl2j0k3bnlmlo19l61hm1sv30v9.apps.googleusercontent.com
+ '261481707145-q95uebl2j0k3bnlmlo19l61hm1sv30v9.apps.googleusercontent.com'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
