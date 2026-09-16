@@ -15,7 +15,7 @@
     "@ant-design/icons": "^4.7.0",
     "@react-oauth/google": "^0.13.5",
     "@reduxjs/toolkit": "^1.8.1",
-    "antd": "^4.19.5",
+    "antd": "^4.24.16",
     "bcryptjs": "^2.4.3",
     "dotenv": "^17.4.2",
     "express": "^4.17.3",
