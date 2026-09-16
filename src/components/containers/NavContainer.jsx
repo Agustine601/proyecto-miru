@@ -284,114 +284,6 @@ const MobileDrawer = styled(Drawer)`
 `;
 
 /* =========================================
-   MENU
-   ========================================= */
-
-const MenuContent = ({ alertCount }) => (
-  <>
-    <Menu.Item
-      key="default"
-      icon={<DatabaseOutlined />}
-    >
-      Panel principal
-    </Menu.Item>
-
-    <Menu.SubMenu
-      key="inventario"
-      icon={<ExperimentOutlined />}
-      title="Inventario"
-    >
-      <Menu.Item
-        key="consumables"
-        icon={<PaperClipOutlined />}
-      >
-        Semillas
-      </Menu.Item>
-
-      <Menu.Item
-        key="reagents"
-        icon={<ExperimentOutlined />}
-      >
-        Agroquímicos
-      </Menu.Item>
-
-      <Menu.Item
-        key="equipment"
-        icon={<ToolOutlined />}
-      >
-        Otros insumos
-      </Menu.Item>
-    </Menu.SubMenu>
-
-    <Menu.Item
-      key="scanner"
-      icon={<ScanOutlined />}
-    >
-      Escanear producto
-    </Menu.Item>
-
-    <Menu.Item
-      key="work-orders"
-      icon={<FileTextOutlined />}
-    >
-      Hojas de trabajo
-    </Menu.Item>
-
-    <Menu.Item
-      key="warehouse-map"
-      icon={<ApartmentOutlined />}
-    >
-      Mapa del galpón
-    </Menu.Item>
-
-    <Menu.Item
-      key="bayer-catalog"
-      icon={<AppstoreOutlined />}
-    >
-      Catálogo Bayer
-    </Menu.Item>
-
-    <Menu.Item
-      key="movements"
-      icon={<HistoryOutlined />}
-    >
-      Movimientos
-    </Menu.Item>
-
-    <Menu.Item
-      key="traceability"
-      icon={<DatabaseOutlined />}
-    >
-      Trazabilidad
-    </Menu.Item>
-
-    <Menu.Item
-      key="alerts"
-      icon={
-        <Badge count={alertCount} size="small">
-          <BellOutlined />
-        </Badge>
-      }
-    >
-      Alertas
-    </Menu.Item>
-
-    <Menu.SubMenu
-      key="usuario"
-      icon={<UserOutlined />}
-      title="Usuario"
-    >
-      <Menu.Item
-        key="configuracion"
-        icon={<SettingOutlined />}
-      >
-        Configuración
-      </Menu.Item>
-    </Menu.SubMenu>
-  </>
-);
-
-/* =========================================
    NAV CONTAINER
    ========================================= */
 
@@ -464,11 +356,101 @@ const NavContainer = () => {
     }).length;
 
   /* =========================================
-     CAMBIO IMPORTANTE:
-     El Menu controla TODOS los clicks.
+     MENU ITEMS
      ========================================= */
 
-  const handleMenuClick = ({ key }) => {
+  const menuItems = [
+    {
+      key: 'default',
+      icon: <DatabaseOutlined />,
+      label: 'Panel principal',
+    },
+    {
+      key: 'inventario',
+      icon: <ExperimentOutlined />,
+      label: 'Inventario',
+      children: [
+        {
+          key: 'consumables',
+          icon: <PaperClipOutlined />,
+          label: 'Semillas',
+        },
+        {
+          key: 'reagents',
+          icon: <ExperimentOutlined />,
+          label: 'Agroquímicos',
+        },
+        {
+          key: 'equipment',
+          icon: <ToolOutlined />,
+          label: 'Otros insumos',
+        },
+      ],
+    },
+    {
+      key: 'scanner',
+      icon: <ScanOutlined />,
+      label: 'Escanear producto',
+    },
+    {
+      key: 'work-orders',
+      icon: <FileTextOutlined />,
+      label: 'Hojas de trabajo',
+    },
+    {
+      key: 'warehouse-map',
+      icon: <ApartmentOutlined />,
+      label: 'Mapa del galpón',
+    },
+    {
+      key: 'bayer-catalog',
+      icon: <AppstoreOutlined />,
+      label: 'Catálogo Bayer',
+    },
+    {
+      key: 'movements',
+      icon: <HistoryOutlined />,
+      label: 'Movimientos',
+    },
+    {
+      key: 'traceability',
+      icon: <DatabaseOutlined />,
+      label: 'Trazabilidad',
+    },
+    {
+      key: 'alerts',
+      icon: (
+        <Badge count={alertCount} size="small">
+          <BellOutlined />
+        </Badge>
+      ),
+      label: 'Alertas',
+    },
+    {
+      key: 'usuario',
+      icon: <UserOutlined />,
+      label: 'Usuario',
+      children: [
+        {
+          key: 'configuracion',
+          icon: <SettingOutlined />,
+          label: 'Configuración',
+        },
+      ],
+    },
+  ];
+
+  /* =========================================
+     CLICK DEL MENU
+     ========================================= */
+
+  const handleMenuClick = (info) => {
+    console.log('MIRÚ - EVENTO COMPLETO:', info);
+
+    const key = info?.key;
+
+    console.log('MIRÚ - KEY:', key);
+
     const screenKeys = [
       'default',
       'consumables',
@@ -484,9 +466,9 @@ const NavContainer = () => {
       'configuracion',
     ];
 
-    console.log('MIRÚ - menú seleccionado:', key);
-
     if (screenKeys.includes(key)) {
+      console.log('MIRÚ - CAMBIANDO PANTALLA:', key);
+
       dispatch(setDisplay(key));
 
       if (isMobile) {
@@ -495,6 +477,10 @@ const NavContainer = () => {
     }
   };
 
+  /* =========================================
+     HOME
+     ========================================= */
+
   const goHome = () => {
     dispatch(setDisplay('default'));
 
@@ -502,6 +488,10 @@ const NavContainer = () => {
       setMobileMenuOpen(false);
     }
   };
+
+  /* =========================================
+     LOGOUT
+     ========================================= */
 
   const handleSignOut = () => {
     if (window.gapi && window.gapi.auth2) {
@@ -516,10 +506,18 @@ const NavContainer = () => {
     dispatch(setLogin(false));
   };
 
+  /* =========================================
+     SELECTED
+     ========================================= */
+
   const selectedKeys =
     typeof display === 'string' && display
       ? [display]
       : ['default'];
+
+  /* =========================================
+     RENDER
+     ========================================= */
 
   return (
     <>
@@ -530,6 +528,7 @@ const NavContainer = () => {
       <DesktopSidebar>
         <Brand onClick={goHome}>
           <BrandTitle>MIRÚ</BrandTitle>
+
           <BrandSubtitle>
             Gestión Agrícola
           </BrandSubtitle>
@@ -538,10 +537,9 @@ const NavContainer = () => {
         <StyledMenu
           mode="inline"
           selectedKeys={selectedKeys}
+          items={menuItems}
           onClick={handleMenuClick}
-        >
-          <MenuContent alertCount={alertCount} />
-        </StyledMenu>
+        />
 
         <DesktopFooter>
           <UserInfo>
@@ -587,10 +585,9 @@ const NavContainer = () => {
         <Menu
           mode="inline"
           selectedKeys={selectedKeys}
+          items={menuItems}
           onClick={handleMenuClick}
-        >
-          <MenuContent alertCount={alertCount} />
-        </Menu>
+        />
 
         <UserInfo>
           <UserOutlined />{' '}
