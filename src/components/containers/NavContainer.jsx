@@ -284,16 +284,14 @@ const MobileDrawer = styled(Drawer)`
 `;
 
 /* =========================================
-   MENU ITEMS
-   Compatible con Ant Design 4.19.5
+   MENU
    ========================================= */
 
-const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
+const MenuContent = ({ alertCount }) => (
   <>
     <Menu.Item
       key="default"
       icon={<DatabaseOutlined />}
-      onClick={onClick}
     >
       Panel principal
     </Menu.Item>
@@ -306,7 +304,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
       <Menu.Item
         key="consumables"
         icon={<PaperClipOutlined />}
-        onClick={onClick}
       >
         Semillas
       </Menu.Item>
@@ -314,7 +311,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
       <Menu.Item
         key="reagents"
         icon={<ExperimentOutlined />}
-        onClick={onClick}
       >
         Agroquímicos
       </Menu.Item>
@@ -322,7 +318,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
       <Menu.Item
         key="equipment"
         icon={<ToolOutlined />}
-        onClick={onClick}
       >
         Otros insumos
       </Menu.Item>
@@ -331,7 +326,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
     <Menu.Item
       key="scanner"
       icon={<ScanOutlined />}
-      onClick={onClick}
     >
       Escanear producto
     </Menu.Item>
@@ -339,7 +333,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
     <Menu.Item
       key="work-orders"
       icon={<FileTextOutlined />}
-      onClick={onClick}
     >
       Hojas de trabajo
     </Menu.Item>
@@ -347,7 +340,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
     <Menu.Item
       key="warehouse-map"
       icon={<ApartmentOutlined />}
-      onClick={onClick}
     >
       Mapa del galpón
     </Menu.Item>
@@ -355,7 +347,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
     <Menu.Item
       key="bayer-catalog"
       icon={<AppstoreOutlined />}
-      onClick={onClick}
     >
       Catálogo Bayer
     </Menu.Item>
@@ -363,7 +354,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
     <Menu.Item
       key="movements"
       icon={<HistoryOutlined />}
-      onClick={onClick}
     >
       Movimientos
     </Menu.Item>
@@ -371,7 +361,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
     <Menu.Item
       key="traceability"
       icon={<DatabaseOutlined />}
-      onClick={onClick}
     >
       Trazabilidad
     </Menu.Item>
@@ -383,7 +372,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
           <BellOutlined />
         </Badge>
       }
-      onClick={onClick}
     >
       Alertas
     </Menu.Item>
@@ -396,7 +384,6 @@ const MenuContent = ({ alertCount, onClick, selectedKeys }) => (
       <Menu.Item
         key="configuracion"
         icon={<SettingOutlined />}
-        onClick={onClick}
       >
         Configuración
       </Menu.Item>
@@ -413,8 +400,9 @@ const NavContainer = () => {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const [isMobile, setIsMobile] =
-    useState(window.innerWidth <= 700);
+  const [isMobile, setIsMobile] = useState(
+    window.innerWidth <= 700
+  );
 
   const display = useSelector(
     (state) => state.display?.display || 'default'
@@ -475,7 +463,12 @@ const NavContainer = () => {
       return stockBajo || proximoVencimiento;
     }).length;
 
-  const handleClick = ({ key }) => {
+  /* =========================================
+     CAMBIO IMPORTANTE:
+     El Menu controla TODOS los clicks.
+     ========================================= */
+
+  const handleMenuClick = ({ key }) => {
     const screenKeys = [
       'default',
       'consumables',
@@ -491,12 +484,14 @@ const NavContainer = () => {
       'configuracion',
     ];
 
+    console.log('MIRÚ - menú seleccionado:', key);
+
     if (screenKeys.includes(key)) {
       dispatch(setDisplay(key));
-    }
 
-    if (isMobile) {
-      setMobileMenuOpen(false);
+      if (isMobile) {
+        setMobileMenuOpen(false);
+      }
     }
   };
 
@@ -528,29 +523,32 @@ const NavContainer = () => {
 
   return (
     <>
-      {/* DESKTOP */}
+      {/* =========================================
+          DESKTOP
+          ========================================= */}
 
       <DesktopSidebar>
         <Brand onClick={goHome}>
           <BrandTitle>MIRÚ</BrandTitle>
-          <BrandSubtitle>Gestión Agrícola</BrandSubtitle>
+          <BrandSubtitle>
+            Gestión Agrícola
+          </BrandSubtitle>
         </Brand>
 
         <StyledMenu
           mode="inline"
           selectedKeys={selectedKeys}
+          onClick={handleMenuClick}
         >
-          <MenuContent
-            alertCount={alertCount}
-            onClick={handleClick}
-            selectedKeys={selectedKeys}
-          />
+          <MenuContent alertCount={alertCount} />
         </StyledMenu>
 
         <DesktopFooter>
           <UserInfo>
             <UserOutlined />{' '}
-            {user?.name || user?.email || 'Usuario'}
+            {user?.name ||
+              user?.email ||
+              'Usuario'}
           </UserInfo>
 
           <SignOutButton
@@ -562,7 +560,9 @@ const NavContainer = () => {
         </DesktopFooter>
       </DesktopSidebar>
 
-      {/* MOBILE */}
+      {/* =========================================
+          MOBILE
+          ========================================= */}
 
       <MobileHeader>
         <MobileBrand onClick={goHome}>
@@ -587,17 +587,16 @@ const NavContainer = () => {
         <Menu
           mode="inline"
           selectedKeys={selectedKeys}
+          onClick={handleMenuClick}
         >
-          <MenuContent
-            alertCount={alertCount}
-            onClick={handleClick}
-            selectedKeys={selectedKeys}
-          />
+          <MenuContent alertCount={alertCount} />
         </Menu>
 
         <UserInfo>
           <UserOutlined />{' '}
-          {user?.name || user?.email || 'Usuario'}
+          {user?.name ||
+            user?.email ||
+            'Usuario'}
         </UserInfo>
 
         <SignOutButton
