@@ -22,6 +22,45 @@ const sessionController = require('./controllers/sessionController');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/qr/lookup', async (req, res) => {
+  const code = String(req.query.code || '').trim();
+
+  if (!code) {
+    return res.status(400).json({
+      error: 'Falta el identificador de composición.',
+    });
+  }
+
+  try {
+    const url =
+      `https://logistica-rojas.com/services/api/work-order/dispatch/public/composition/${encodeURIComponent(code)}`;
+
+    const response = await fetch(url, {
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      return res.status(response.status).json({
+        error: `El servicio externo respondió ${response.status}.`,
+      });
+    }
+
+    const data = await response.json();
+
+    return res.status(200).json({
+      fuente: 'logistica-rojas',
+      data,
+    });
+  } catch (error) {
+    console.error('Error consultando QR externo:', error);
+    return res.status(502).json({
+      error: 'No se pudo consultar el servicio externo.',
+    });
+  }
+});
+
 // Generador QR local. No depende de api.qrserver ni de servicios externos.
 app.get('/qr', (req, res) => {
   const data = String(req.query.data || '').slice(0, 2048);
@@ -95,7 +134,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     return res
       .status(200)
-      .sendFile(path.join(__dirname, '../index.html'));
+      .sendFile(path.join(__dirname, '../build/index.html'));
   });
 }
 
@@ -123,21 +162,22 @@ app.use(({ code, error }, req, res, next) => {
 // SERVIDOR
 // ========================================
 
-if (process.env.RENDER) {
-  // Render proporciona HTTPS externamente.
-  // No necesitamos certificados .pem.
+const certificatePath = path.join(__dirname, '../192.168.1.52+2.pem');
+const privateKeyPath = path.join(__dirname, '../192.168.1.52+2-key.pem');
+const hasLocalCertificates =
+  fs.existsSync(certificatePath) && fs.existsSync(privateKeyPath);
+
+if (process.env.RENDER || !hasLocalCertificates) {
+  // Render termina HTTPS externamente. En desarrollo, HTTP permite iniciar
+  // el proyecto aun si las claves locales no se distribuyeron con el ZIP.
   app.listen(port, '0.0.0.0', () => {
-    console.log(`MIRÚ funcionando en el puerto ${port}`);
+    console.log(`MIRÚ funcionando en http://localhost:${port}`);
   });
 } else {
-  // Desarrollo local: HTTPS con certificados locales.
+  // HTTPS local es opcional cuando los certificados están disponibles.
   const httpsOptions = {
-    key: fs.readFileSync(
-      path.join(__dirname, '../192.168.1.52+2-key.pem')
-    ),
-    cert: fs.readFileSync(
-      path.join(__dirname, '../192.168.1.52+2.pem')
-    ),
+    key: fs.readFileSync(privateKeyPath),
+    cert: fs.readFileSync(certificatePath),
   };
 
   https.createServer(httpsOptions, app).listen(

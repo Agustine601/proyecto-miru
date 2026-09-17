@@ -17,6 +17,17 @@ Storeroom is a lab supply management application that makes it easier to track a
 
 ## Demo
 
+## Ejecutar localmente
+
+1. Copiá `.env.example` como `.env` y completá `MONGO_URI`.
+2. Instalá las dependencias con `npm install`.
+3. Ejecutá `npm run dev`.
+4. Abrí `http://localhost:8080` e iniciá sesión. Allí aparecen los botones
+   laterales; en celular se encuentran dentro del botón de menú superior.
+
+El servidor inicia por HTTP automáticamente si no existen certificados locales,
+por lo que no hace falta incluir archivos `.pem` para el uso local.
+
 
 
 ## Key technologies used

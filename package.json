@@ -25,7 +25,8 @@
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.0",
     "regenerator-runtime": "^0.14.1",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "@zxing/browser": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",

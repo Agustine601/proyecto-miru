@@ -49,29 +49,11 @@ router.get(
 // POST - AGREGAR PRODUCTOS
 // ========================================
 
-router.post(
-  '/consumables',
-  itemsController.addConsumable,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.post('/consumables', itemsController.addConsumable);
 
-router.post(
-  '/reagents',
-  itemsController.addReagent,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.post('/reagents', itemsController.addReagent);
 
-router.post(
-  '/equipment',
-  itemsController.addEquipment,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.post('/equipment', itemsController.addEquipment);
 
 router.post('/:categoria/:id/stock', itemsController.addStock);
 router.put('/:categoria/:id/pallet/:palletId/location', itemsController.updatePalletLocation);
@@ -80,56 +62,20 @@ router.put('/:categoria/:id/pallet/:palletId/location', itemsController.updatePa
 // DELETE - ELIMINAR PRODUCTOS
 // ========================================
 
-router.delete(
-  '/consumables/:id',
-  itemsController.deleteConsumable,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.delete('/consumables/:id', itemsController.deleteConsumable);
 
-router.delete(
-  '/reagents/:id',
-  itemsController.deleteReagent,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.delete('/reagents/:id', itemsController.deleteReagent);
 
-router.delete(
-  '/equipment/:id',
-  itemsController.deleteEquipment,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.delete('/equipment/:id', itemsController.deleteEquipment);
 
 // ========================================
 // UPDATE - ACTUALIZAR PRODUCTOS
 // ========================================
 
-router.put(
-  '/consumables/:id',
-  itemsController.updateConsumable,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.put('/consumables/:id', itemsController.updateConsumable);
 
-router.put(
-  '/reagents/:id',
-  itemsController.updateReagent,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.put('/reagents/:id', itemsController.updateReagent);
 
-router.put(
-  '/equipment/:id',
-  itemsController.updateEquipment,
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.put('/equipment/:id', itemsController.updateEquipment);
 
 module.exports = router;

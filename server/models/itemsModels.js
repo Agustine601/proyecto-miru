@@ -92,6 +92,7 @@ const consumableSchema = new Schema({
   unidad: String,
   ubicacion: String,
   descripcion: String,
+  datosQR: { type: mongoose.Schema.Types.Mixed, default: null },
 });
 
 const Consumable = mongoose.model('Consumable', consumableSchema);
@@ -121,6 +122,7 @@ const reagentSchema = new Schema({
   },
   ubicacion: String,
   descripcion: String,
+  datosQR: { type: mongoose.Schema.Types.Mixed, default: null },
 });
 
 const Reagent = mongoose.model('Reagent', reagentSchema);
@@ -139,6 +141,7 @@ const equipmentSchema = new Schema({
   ubicacion: String,
   descripcion: String,
   ultimoMantenimiento: String,
+  datosQR: { type: mongoose.Schema.Types.Mixed, default: null },
 });
 
 const Equipment = mongoose.model('Equipment', equipmentSchema);
@@ -182,6 +185,7 @@ const seedSchema = new Schema({
   ubicacion: String,
 
   descripcion: String,
+  datosQR: { type: mongoose.Schema.Types.Mixed, default: null },
 });
 
 const Seed = mongoose.model('Seed', seedSchema);

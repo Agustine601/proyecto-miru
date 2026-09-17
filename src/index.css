@@ -23,6 +23,7 @@ body {
   max-width: 100%;
 
   font-family:
+    "Archivo",
     "Segoe UI",
     Arial,
     Helvetica,
@@ -103,6 +104,7 @@ h5,
 h6 {
   color: #23452b;
   max-width: 100%;
+  font-family: "MuseoModerno", "Archivo", "Segoe UI", Arial, sans-serif;
 }
 
 p {
@@ -204,6 +206,22 @@ a:hover {
 }
 
 /* =========================================
+   MICRO INTERACCIONES
+   ========================================= */
+
+.ant-card {
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (min-width: 701px) {
+  .ant-card:hover {
+    box-shadow: 0 8px 24px rgba(35, 69, 43, 0.08);
+  }
+}
+
+/* =========================================
    TABLAS
    ========================================= */
 
@@ -268,11 +286,6 @@ a:hover {
    ========================================= */
 
 @media (max-width: 900px) {
-  .App {
-    flex-direction: column;
-    width: 100%;
-  }
-
   .ant-btn {
     min-height: 40px;
   }

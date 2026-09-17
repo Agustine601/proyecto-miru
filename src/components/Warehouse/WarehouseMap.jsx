@@ -34,14 +34,18 @@ import {
    RACKS · AGROQUÍMICOS
 ========================================================= */
 
-const makeRack = (n, access, group) =>
-  Array.from({ length: 12 }, (_, i) => ({
+const makeRack = (n, access, group, positions = 12) =>
+  Array.from({ length: positions }, (_, i) => ({
     id: `R${String(n).padStart(2, '0')}-P${String(i + 1).padStart(2, '0')}`,
     rack: n,
     position: i + 1,
     access,
     group,
   }));
+
+// R18–R25 tienen una columna menos: se eliminan P10–P12,
+// que corresponden a las casillas marcadas sobre el pasillo.
+const rackPositionCount = rack => rack?.length || 12;
 
 const racksFront = Array.from(
   { length: 16 },
@@ -50,18 +54,18 @@ const racksFront = Array.from(
 
 const racksSide = Array.from(
   { length: 8 },
-  (_, i) => makeRack(i + 18, 'costado', 'racks-18-25')
+  (_, i) => makeRack(i + 18, 'costado', 'racks-18-25', 9)
 );
 
 const racksFront2 = Array.from(
   { length: 4 },
   (_, i) => makeRack(i + 26, 'frente', 'racks-26-29')
-);
+).filter((rack) => rack[0]?.rack !== 28);
 
 const racksSide2 = Array.from(
   { length: 4 },
   (_, i) => makeRack(i + 30, 'costado', 'racks-30-33')
-);
+).filter((rack) => rack[0]?.rack !== 32);
 
 
 /* =========================================================
@@ -861,7 +865,7 @@ const MiniSlots = styled.div`
   display: grid;
 
   grid-template-columns:
-    repeat(4, 1fr);
+    repeat(${p => p.columns || 4}, 1fr);
 
   grid-template-rows:
     repeat(3, 1fr);
@@ -1730,6 +1734,8 @@ export default function WarehouseMap() {
     setDetail,
   ] = useState(null);
 
+  const [editing, setEditing] = useState(false);
+
 
   /* =========================================================
      ALL RACKS
@@ -1741,6 +1747,14 @@ export default function WarehouseMap() {
     ...racksFront2,
     ...racksSide2,
   ];
+
+  const validAgroSlotIds = useMemo(
+    () => new Set([
+      ...allRacks.flat().map(slot => slot.id),
+      ...controlMax.map(slot => slot.id),
+    ]),
+    []
+  );
 
 
   /* =========================================================
@@ -1777,7 +1791,7 @@ export default function WarehouseMap() {
       const pending =
         JSON.parse(raw);
 
-      if (pending?.product?.id) {
+      if (pending?.product?._id || pending?.product?.id) {
         setSelectedProduct({
           ...pending.product,
           _pendingPlacement: true,
@@ -1864,6 +1878,10 @@ export default function WarehouseMap() {
   const occupiedEntries =
     Object.entries(
       occupied
+    ).filter(([slotId]) =>
+      warehouse === 'agroquimicos'
+        ? validAgroSlotIds.has(slotId)
+        : true
     );
 
   const occupiedPallets =
@@ -2335,11 +2353,22 @@ export default function WarehouseMap() {
   const save =
     async () => {
       try {
+        const cleanedOccupied =
+          warehouse === 'agroquimicos'
+            ? Object.fromEntries(
+                Object.entries(state.occupied || {}).filter(([slotId]) =>
+                  validAgroSlotIds.has(slotId)
+                )
+              )
+            : state.occupied || {};
+
         const currentMaps = {
           ...savedMaps,
 
-          [warehouse]:
-            state,
+          [warehouse]: {
+            ...state,
+            occupied: cleanedOccupied,
+          },
         };
 
         await saveMap(
@@ -2416,7 +2445,7 @@ export default function WarehouseMap() {
         title={
           `Rack ${String(
             rack[0].rack
-          ).padStart(2, '0')} · 12 pallets · acceso ${
+          ).padStart(2, '0')} · ${rack.length} posiciones · acceso ${
             side
               ? 'lateral'
               : 'frontal'
@@ -2467,7 +2496,7 @@ export default function WarehouseMap() {
             )}
           </RackName>
 
-          <MiniSlots>
+          <MiniSlots columns={rack.length === 9 ? 3 : 4}>
             {rack.map(
               slot => {
                 const stack =
@@ -3185,6 +3214,14 @@ export default function WarehouseMap() {
           />
 
           <Button
+            type={editing ? 'default' : 'primary'}
+            icon={<DragOutlined />}
+            onClick={() => setEditing((v) => !v)}
+          >
+            {editing ? 'Salir de edición' : 'Editar mapa'}
+          </Button>
+
+          <Button
             type="primary"
 
             icon={
@@ -3498,7 +3535,7 @@ export default function WarehouseMap() {
                 </AgroSectionTitle>
 
                 <AgroSectionInfo>
-                  8 racks · acceso con mula
+                  8 racks · 9 posiciones c/u · acceso con mula
                 </AgroSectionInfo>
 
                 <AgroRackGridSingle>
@@ -3527,11 +3564,11 @@ export default function WarehouseMap() {
               <AgroSection>
 
                 <AgroSectionTitle>
-                  RACKS 26–29
+                  RACKS 26–27 · 29
                 </AgroSectionTitle>
 
                 <AgroSectionInfo>
-                  4 racks
+                  3 racks
                 </AgroSectionInfo>
 
                 <AgroRackGridFour>
@@ -3557,11 +3594,11 @@ export default function WarehouseMap() {
               <AgroSection>
 
                 <AgroSectionTitle>
-                  RACKS 30–33 · ACCESO LATERAL
+                  RACKS 30–31 · 33 · ACCESO LATERAL
                 </AgroSectionTitle>
 
                 <AgroSectionInfo>
-                  4 racks · mula
+                  3 racks · mula
                 </AgroSectionInfo>
 
                 <AgroRackGridFour>
@@ -3745,7 +3782,7 @@ export default function WarehouseMap() {
               ).padStart(
                 2,
                 '0'
-              )} · 12 posiciones`
+              )} · ${detail?.rack >= 18 && detail?.rack <= 25 ? 9 : 12} posiciones`
             : detail?.id
         }
 
@@ -3871,7 +3908,7 @@ export default function WarehouseMap() {
               <b>
                 Capacidad:
               </b>{' '}
-              12 pallets ·{' '}
+              {(detail.rack >= 18 && detail.rack <= 25 ? 9 : 12)} pallets ·{' '}
 
               <b>
                 Acceso:

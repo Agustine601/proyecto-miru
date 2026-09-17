@@ -29,6 +29,7 @@ import {
   bayerSeeds,
   bayerSeedTypes,
 } from '../../data/bayerProducts';
+import { quimecoProducts, rizobacterProducts } from '../../data/providerProducts';
 
 const { Panel } = Collapse;
 
@@ -89,6 +90,7 @@ const FilterBar = styled.div`
 `;
 
 const BayerCatalog = () => {
+  const [proveedor, setProveedor] = useState('bayer');
   const [seccion, setSeccion] = useState('agroquimicos');
   const [tipo, setTipo] = useState('Todos');
   const [busqueda, setBusqueda] = useState('');
@@ -100,9 +102,14 @@ const BayerCatalog = () => {
   const [ubicacion, setUbicacion] = useState('');
   const [addItem, { isLoading }] = useAddItemMutation();
 
-  const esSemilla = seccion === 'semillas';
-  const catalogoActual = esSemilla ? bayerSeeds : bayerProducts;
-  const tiposActuales = esSemilla ? bayerSeedTypes : bayerTypes;
+  const esSemilla = proveedor === 'bayer' && seccion === 'semillas';
+  const proveedorActual = proveedor === 'quimeco'
+    ? { nombre: 'Quimeco', url: 'https://quimeco.com.ar/productos/', products: quimecoProducts }
+    : proveedor === 'rizobacter'
+      ? { nombre: 'Rizobacter', url: 'https://www.rizobacter.com/ar/es/productos/', products: rizobacterProducts }
+      : { nombre: 'Bayer', url: 'https://www.agro.bayer.com.ar/cp', products: esSemilla ? bayerSeeds : bayerProducts };
+  const catalogoActual = proveedorActual.products;
+  const tiposActuales = [...new Set(['Todos', ...catalogoActual.map((item) => item.tipo).filter(Boolean)])];
   const categoriaInventario = esSemilla ? 'consumables' : 'reagents';
   const etiquetaCategoria = esSemilla ? 'Semillas' : 'Agroquímicos';
 
@@ -110,6 +117,13 @@ const BayerCatalog = () => {
     if (tipo === 'Todos') return catalogoActual;
     return catalogoActual.filter((item) => item.tipo === tipo);
   }, [catalogoActual, tipo]);
+
+  const cambiarProveedor = (valor) => {
+    setProveedor(valor);
+    setSeccion('agroquimicos');
+    setTipo('Todos');
+    setBusqueda('');
+  };
 
   const cambiarSeccion = (valor) => {
     setSeccion(valor);
@@ -157,20 +171,20 @@ const BayerCatalog = () => {
           : producto.nombre,
         formula: producto.categoria === 'consumables' ? undefined : '',
         cas: producto.categoria === 'consumables' ? undefined : '',
-        proveedor: 'Bayer',
+        proveedor: proveedorActual.nombre,
         vencimiento,
         cantidad: Number(cantidad),
         stockMinimo: 10,
         unidad,
         ubicacion,
-        descripcion: `${producto.tipo} Bayer${producto.region ? ` · Región ${producto.region}` : ''}${producto.madurezRelativa ? ` · MR ${producto.madurezRelativa}` : ''}${producto.tecnologia ? ` · Tecnología ${producto.tecnologia}` : ''}. ${producto.descripcion}`,
+        descripcion: `${producto.tipo} ${proveedorActual.nombre}${producto.region ? ` · Región ${producto.region}` : ''}${producto.madurezRelativa ? ` · MR ${producto.madurezRelativa}` : ''}${producto.tecnologia ? ` · Tecnología ${producto.tecnologia}` : ''}. ${producto.descripcion}`,
         lotes: [
           {
             numero: lote.trim(),
             cantidad: Number(cantidad),
             vencimiento,
             ubicacion,
-            proveedor: 'Bayer',
+            proveedor: proveedorActual.nombre,
           },
         ],
       }).unwrap();
@@ -187,12 +201,12 @@ const BayerCatalog = () => {
       <Hero>
         <Row gutter={[24, 16]} align="middle">
           <Col xs={24} md={17}>
-            <Tag color="green">CATÁLOGO BAYER</Tag>
+            <Tag color="green">CATÁLOGOS DE PROVEEDORES</Tag>
             <Typography.Title level={2} style={{ margin: '10px 0 6px' }}>
-              Bayer: agroquímicos y semillas para MIRÚ
+              Catálogo {proveedorActual.nombre} para MIRÚ
             </Typography.Title>
             <Typography.Paragraph style={{ maxWidth: 760, marginBottom: 0 }}>
-              Elegí el catálogo que querés consultar. Las semillas se cargan en Semillas y los productos de protección de cultivos en Agroquímicos.
+              Elegí el catálogo que querés consultar. Consultá los productos del proveedor seleccionado y cargalos directamente al inventario.
             </Typography.Paragraph>
           </Col>
           <Col xs={24} md={7} style={{ textAlign: 'center' }}>
@@ -203,10 +217,24 @@ const BayerCatalog = () => {
       </Hero>
 
       <FilterBar>
-        <Select value={seccion} onChange={cambiarSeccion} style={{ minWidth: 180 }}>
-          <Select.Option value="agroquimicos">🧪 Agroquímicos</Select.Option>
-          <Select.Option value="semillas">🌱 Semillas</Select.Option>
-        </Select>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', width: '100%', alignItems: 'center' }}>
+          {['bayer', 'quimeco', 'rizobacter'].map((p) => (
+            <Button
+              key={p}
+              type={proveedor === p ? 'primary' : 'default'}
+              onClick={() => cambiarProveedor(p)}
+              style={{ fontWeight: 800 }}
+            >
+              {p === 'bayer' ? '🟢 Bayer' : p === 'quimeco' ? '🟠 Quimeco' : '🔵 Rizobacter'}
+            </Button>
+          ))}
+          {proveedor === 'bayer' && (
+            <Select value={seccion} onChange={cambiarSeccion} style={{ minWidth: 170 }}>
+              <Select.Option value="agroquimicos">🧪 Agroquímicos</Select.Option>
+              <Select.Option value="semillas">🌱 Semillas</Select.Option>
+            </Select>
+          )}
+        </div>
         <strong>Filtrar:</strong>
         <Select value={tipo} onChange={setTipo} style={{ minWidth: 180 }}>
           {tiposActuales.map((item) => (
@@ -226,7 +254,7 @@ const BayerCatalog = () => {
 
       <Row gutter={[18, 18]}>
         {productosFiltrados.map((item) => (
-          <Col xs={24} sm={12} lg={8} key={`${item.nombre}-${item.region || item.tipo}`}>
+          <Col xs={24} sm={12} lg={8} key={`${proveedor}-${item.nombre}-${item.region || item.tipo}`}>
             <ProductCard>
               {item.imagen ? (
                 <img
@@ -289,12 +317,12 @@ const BayerCatalog = () => {
               <Button
                 type="link"
                 icon={<LinkOutlined />}
-                href={item.url}
+                href={item.url || proveedorActual.url}
                 target="_blank"
                 rel="noreferrer"
                 style={{ marginTop: 4 }}
               >
-                Ver fuente Bayer
+                Ver fuente {proveedorActual.nombre}
               </Button>
             </ProductCard>
           </Col>

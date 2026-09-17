@@ -405,7 +405,7 @@ const NavContainer = () => {
     {
       key: 'bayer-catalog',
       icon: <AppstoreOutlined />,
-      label: 'Catálogo Bayer',
+      label: 'Catálogos de proveedores',
     },
     {
       key: 'movements',
