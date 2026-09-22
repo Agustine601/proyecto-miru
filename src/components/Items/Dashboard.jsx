@@ -160,10 +160,10 @@ const Dashboard = () => {
           padding: '26px 28px',
           borderRadius: 20,
           background:
-            'linear-gradient(135deg, #285832 0%, #397348 55%, #5d8b62 100%)',
+            'linear-gradient(135deg, #082f49 0%, #0b5a69 52%, #16a26b 100%)',
           color: '#fff',
           boxShadow:
-            '0 10px 30px rgba(40, 88, 50, 0.18)',
+            '0 14px 34px rgba(8, 47, 73, 0.20)',
         }}
       >
         <div
@@ -210,7 +210,7 @@ const Dashboard = () => {
           marginBottom: 20,
           borderRadius: 18,
           boxShadow:
-            '0 5px 20px rgba(35, 69, 43, 0.08)',
+            '0 7px 24px rgba(31, 55, 83, 0.08)',
         }}
       >
         <div
@@ -220,7 +220,7 @@ const Dashboard = () => {
         >
           <div
             style={{
-              color: '#718074',
+              color: '#66758a',
               fontSize: 12,
               fontWeight: 700,
               letterSpacing: 0.5,
@@ -234,7 +234,7 @@ const Dashboard = () => {
               marginTop: 4,
               fontSize: 21,
               fontWeight: 700,
-              color: '#23452b',
+              color: '#173b62',
             }}
           >
             ¿Qué querés hacer?
@@ -321,7 +321,7 @@ const Dashboard = () => {
               height: '100%',
               cursor: 'pointer',
               boxShadow:
-                '0 5px 20px rgba(35, 69, 43, 0.08)',
+                '0 7px 24px rgba(31, 55, 83, 0.08)',
             }}
           >
             <Statistic
@@ -329,7 +329,7 @@ const Dashboard = () => {
               value={estadisticas.total}
               prefix={<DatabaseOutlined />}
               valueStyle={{
-                color: '#285832',
+                color: '#176b4d',
                 fontSize: 34,
                 fontWeight: 750,
               }}
@@ -338,7 +338,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#718074',
+                color: '#66758a',
                 fontSize: 13,
               }}
             >
@@ -348,7 +348,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#397348',
+                color: '#168a5b',
                 fontWeight: 600,
               }}
             >
@@ -367,7 +367,7 @@ const Dashboard = () => {
               height: '100%',
               cursor: 'pointer',
               boxShadow:
-                '0 5px 20px rgba(35, 69, 43, 0.08)',
+                '0 7px 24px rgba(31, 55, 83, 0.08)',
             }}
           >
             <Statistic
@@ -375,7 +375,7 @@ const Dashboard = () => {
               value={estadisticas.reagentes}
               prefix={<ExperimentOutlined />}
               valueStyle={{
-                color: '#397348',
+                color: '#168a5b',
                 fontSize: 34,
                 fontWeight: 750,
               }}
@@ -384,7 +384,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#718074',
+                color: '#66758a',
                 fontSize: 13,
               }}
             >
@@ -394,7 +394,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#397348',
+                color: '#168a5b',
                 fontWeight: 600,
               }}
             >
@@ -413,7 +413,7 @@ const Dashboard = () => {
               height: '100%',
               cursor: 'pointer',
               boxShadow:
-                '0 5px 20px rgba(35, 69, 43, 0.08)',
+                '0 7px 24px rgba(31, 55, 83, 0.08)',
             }}
           >
             <Statistic
@@ -421,7 +421,7 @@ const Dashboard = () => {
               value={estadisticas.consumibles}
               prefix={<PaperClipOutlined />}
               valueStyle={{
-                color: '#5d8b62',
+                color: '#3478c5',
                 fontSize: 34,
                 fontWeight: 750,
               }}
@@ -430,7 +430,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#718074',
+                color: '#66758a',
                 fontSize: 13,
               }}
             >
@@ -440,7 +440,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#397348',
+                color: '#168a5b',
                 fontWeight: 600,
               }}
             >
@@ -458,7 +458,7 @@ const Dashboard = () => {
         style={{
           marginTop: 18,
           borderRadius: 18,
-          boxShadow: '0 5px 20px rgba(35, 69, 43, 0.08)',
+          boxShadow: '0 7px 24px rgba(31, 55, 83, 0.08)',
         }}
         bodyStyle={{ padding: 18 }}
       >
@@ -473,12 +473,12 @@ const Dashboard = () => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <MessageOutlined style={{ fontSize: 24, color: '#397348' }} />
+            <MessageOutlined style={{ fontSize: 24, color: '#168a5b' }} />
             <div>
-              <div style={{ color: '#23452b', fontSize: 20, fontWeight: 750 }}>
+              <div style={{ color: '#173b62', fontSize: 20, fontWeight: 750 }}>
                 Comunicaciones
               </div>
-              <div style={{ color: '#718074', fontSize: 12 }}>
+              <div style={{ color: '#66758a', fontSize: 12 }}>
                 Lo último entre los sectores de MIRÚ
               </div>
             </div>
@@ -687,7 +687,7 @@ const Dashboard = () => {
           marginTop: 20,
           borderRadius: 18,
           boxShadow:
-            '0 5px 20px rgba(35, 69, 43, 0.08)',
+            '0 7px 24px rgba(31, 55, 83, 0.08)',
         }}
       >
         <div
@@ -713,7 +713,7 @@ const Dashboard = () => {
               style={{
                 margin: 0,
                 fontSize: 22,
-                color: '#23452b',
+                color: '#173b62',
               }}
             >
               Estado del inventario
@@ -722,7 +722,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 3,
-                color: '#718074',
+                color: '#66758a',
                 fontSize: 13,
               }}
             >
@@ -778,20 +778,20 @@ const Dashboard = () => {
               borderRadius: 18,
               height: '100%',
               boxShadow:
-                '0 5px 20px rgba(35, 69, 43, 0.08)',
+                '0 7px 24px rgba(31, 55, 83, 0.08)',
             }}
           >
             <InboxOutlined
               style={{
                 fontSize: 25,
-                color: '#397348',
+                color: '#168a5b',
               }}
             />
 
             <div
               style={{
                 marginTop: 10,
-                color: '#718074',
+                color: '#66758a',
                 fontSize: 12,
                 fontWeight: 700,
               }}
@@ -804,7 +804,7 @@ const Dashboard = () => {
                 marginTop: 5,
                 fontSize: 23,
                 fontWeight: 750,
-                color: '#23452b',
+                color: '#173b62',
               }}
             >
               {estadisticas.total}
@@ -813,7 +813,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 4,
-                color: '#718074',
+                color: '#66758a',
               }}
             >
               productos registrados
@@ -828,20 +828,20 @@ const Dashboard = () => {
               borderRadius: 18,
               height: '100%',
               boxShadow:
-                '0 5px 20px rgba(35, 69, 43, 0.08)',
+                '0 7px 24px rgba(31, 55, 83, 0.08)',
             }}
           >
             <SwapOutlined
               style={{
                 fontSize: 25,
-                color: '#397348',
+                color: '#168a5b',
               }}
             />
 
             <div
               style={{
                 marginTop: 10,
-                color: '#718074',
+                color: '#66758a',
                 fontSize: 12,
                 fontWeight: 700,
               }}
@@ -854,7 +854,7 @@ const Dashboard = () => {
                 marginTop: 5,
                 fontSize: 23,
                 fontWeight: 750,
-                color: '#23452b',
+                color: '#173b62',
               }}
             >
               Movimientos
@@ -880,7 +880,7 @@ const Dashboard = () => {
               borderRadius: 18,
               height: '100%',
               boxShadow:
-                '0 5px 20px rgba(35, 69, 43, 0.08)',
+                '0 7px 24px rgba(31, 55, 83, 0.08)',
             }}
           >
             <WarningOutlined
@@ -896,7 +896,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 10,
-                color: '#718074',
+                color: '#66758a',
                 fontSize: 12,
                 fontWeight: 700,
               }}
@@ -909,7 +909,7 @@ const Dashboard = () => {
                 marginTop: 5,
                 fontSize: 23,
                 fontWeight: 750,
-                color: '#23452b',
+                color: '#173b62',
               }}
             >
               {totalAlertas}

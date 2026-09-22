@@ -187,7 +187,7 @@ export const bayerProducts = [
     descripcion: 'Uniformidad y velocidad de apertura de bochas. Mayor calidad del algodón y reducción del tiempo de cosecha.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://gunisigitarim.com.tr/tema/genel/uploads/urunler/finishpro_brandtag.png',
   },
   {
     nombre: 'Hussar Plus',
@@ -207,7 +207,7 @@ export const bayerProducts = [
     descripcion: 'Gránulos solubles para el control post-emergente de malezas gramíneas, ciperáceas y de hoja ancha en pre-siembra.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://www.bipolos.com/539-medium_default/la-tijereta-box.jpg',
   },
   {
     nombre: 'La Tijereta Platinum II',
@@ -217,7 +217,7 @@ export const bayerProducts = [
     descripcion: 'Nueva fórmula con mayor concentración. Aplica desde barbecho hasta post emergencia en cultivos con tolerancia al glifosato y desde barbecho hasta presiembra en el resto.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://www.agro.bayer.com.ar/_next/image?q=100&url=https%3A%2F%2Fcs-assets.bayer.com%2Fis%2Fimage%2Fbayer%2Fpromo+CP-lt%3Awide%3Ffmt%3Dwebp&w=3840',
   },
   {
     nombre: 'Latium Super',
@@ -420,7 +420,7 @@ export const bayerProducts = [
     descripcion: 'Persistencia de 7 a 10 días. Rápida detención del daño y control de orugas de diversos estadíos.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://assets-global.website-files.com/635e80790124f4698af4bf20/63f49634da759864ebc79c86_INSECTICIDA-BELT.jpg',
   },
   {
     nombre: 'Calypso',
@@ -430,7 +430,7 @@ export const bayerProducts = [
     descripcion: 'Buenas propiedades sistémicas y de contacto con bajas dosis de aplicación. Excelente fitocompatibilidad y perfil ecotoxicológico.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://chemickepostreky.sk/media/catalog/product/cache/a573e23a619ce86d6520c16122a78a03/1/8/18034_63edff18730a52ab5c8fa9d835fdfea6.jpg',
   },
   {
     nombre: 'Confidor',
@@ -440,7 +440,7 @@ export const bayerProducts = [
     descripcion: 'Protege puntos de crecimiento y ofrece seguridad en el control de estadios inmaduros.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://cf.shopee.com.my/file/56579d5e1f2e5c6e0b7c60774c4e725b',
   },
   {
     nombre: 'Decis FLOW',
@@ -470,7 +470,7 @@ export const bayerProducts = [
     descripcion: 'Prolongada persistencia, amplio espectro y protección de nuevos tejidos. Útil en estrategias de manejo integrado de plagas.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://d21wnpygiixlkt.cloudfront.net/assets/Crop%20Protection%20Content/CP%20products/Insecticides%20final%20packshots/Movento-Packshot.jpg',
   },
   {
     nombre: 'Movento Plus',
@@ -626,7 +626,7 @@ export const bayerProducts = [
     descripcion: 'Terápico de semilla que combina tres ingredientes activos y un neonicotinoide para proteger semilla y plántula.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://www.iturriagasa.com.ar/wp-content/uploads/2022/07/chucarro.png',
   },
   {
     nombre: 'Cropstar',
@@ -676,7 +676,7 @@ export const bayerProducts = [
     descripcion: 'Terápico de semilla que brinda protección frente a enfermedades provenientes de rastrojo en estadios muy tempranos.',
     fuente: 'AgroBayer Argentina',
     url: BAYER_CP,
-    imagen: '',
+    imagen: 'https://cs-assets.bayer.com/is/image/bayer/SEED_TREATMENT_SCENIC_080_FS_carousel_image_2',
   },
   {
     nombre: 'Sunato',

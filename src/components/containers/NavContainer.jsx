@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -24,6 +24,8 @@ import {
   ApartmentOutlined,
   MenuOutlined,
   MessageOutlined,
+  HomeOutlined,
+  InboxOutlined,
 } from '@ant-design/icons';
 
 import styled from 'styled-components';
@@ -51,8 +53,8 @@ const DesktopSidebar = styled.aside`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: linear-gradient(180deg, #1f4728 0%, #285a32 55%, #1c4025 100%);
-  box-shadow: 4px 0 18px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(180deg, #082f49 0%, #0b4864 48%, #0b3550 100%);
+  box-shadow: 4px 0 24px rgba(8, 47, 73, 0.18);
 
   @media (max-width: 700px) {
     display: none;
@@ -73,29 +75,29 @@ const StyledMenu = styled(Menu)`
     margin: 4px 10px !important;
     width: calc(100% - 20px) !important;
     border-radius: 8px !important;
-    color: #eaf4e9 !important;
+    color: #eaf5ff !important;
     font-weight: 500;
   }
 
   .ant-menu-item:hover,
   .ant-menu-submenu-title:hover {
-    background: rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.10) !important;
     color: #ffffff !important;
   }
 
   .ant-menu-item-selected {
-    background: #397348 !important;
+    background: linear-gradient(135deg, #16a26b, #0e8f62) !important;
     color: #ffffff !important;
     font-weight: 700;
   }
 
   .ant-menu-submenu-arrow {
-    color: #dcebdd !important;
+    color: #d4e8f6 !important;
   }
 
   .ant-menu-item .anticon,
   .ant-menu-submenu-title .anticon {
-    color: #cfe5ce !important;
+    color: #bfe7d7 !important;
   }
 
   .ant-menu-item-selected .anticon {
@@ -103,7 +105,7 @@ const StyledMenu = styled(Menu)`
   }
 
   .ant-menu-sub {
-    background: rgba(0, 0, 0, 0.12) !important;
+    background: rgba(4, 25, 40, 0.28) !important;
     border-radius: 8px;
   }
 `;
@@ -116,7 +118,7 @@ const Brand = styled.div`
   padding: 24px 15px 20px;
   text-align: center;
   color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
   margin-bottom: 10px;
   cursor: pointer;
 `;
@@ -158,7 +160,7 @@ const SignOutButton = styled(Button)`
   width: calc(100% - 30px);
   margin: 5px 15px 20px 15px;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  background: rgba(255, 255, 255, 0.06) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
   color: #ffffff !important;
   border-radius: 8px !important;
 
@@ -173,6 +175,103 @@ const DesktopFooter = styled.div`
   flex: 0 0 auto;
   background: linear-gradient(180deg, #285a32 0%, #1c4025 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+`;
+
+/* =========================================
+   DESKTOP TOP BAR
+   ========================================= */
+
+const DesktopTopbar = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 64px;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid #dfe8f0;
+  box-shadow: 0 4px 18px rgba(35, 69, 43, 0.05);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
+`;
+
+const TopbarTitle = styled.div`
+  min-width: 0;
+
+  strong {
+    display: block;
+    color: #23452b;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  span {
+    display: block;
+    margin-top: 2px;
+    color: #7b8a7e;
+    font-size: 12px;
+  }
+`;
+
+const TopbarUser = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 12px;
+  border: 1px solid #dce6ef;
+  border-radius: 12px;
+  background: #f6fbff;
+  color: #164d3b;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+`;
+
+/* =========================================
+   MOBILE OPERATOR BAR
+   ========================================= */
+
+const OperatorBar = styled.div`
+  display: none;
+
+  @media (max-width: 700px) {
+    display: flex;
+    gap: 8px;
+    padding: 9px 12px 11px;
+    overflow-x: auto;
+    background: #f6fbff;
+    border-bottom: 1px solid #dfe8f0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+
+const OperatorButton = styled(Button)`
+  flex: 0 0 auto;
+  min-width: 92px !important;
+  height: 42px !important;
+  padding: 0 11px !important;
+  border: 1px solid #dbe7ef !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  color: #145b43 !important;
+  box-shadow: 0 4px 12px rgba(31, 55, 83, 0.07);
+  font-size: 12px !important;
+  font-weight: 700 !important;
+
+  .anticon {
+    font-size: 16px;
+  }
 `;
 
 /* =========================================
@@ -192,12 +291,7 @@ const MobileHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 8px 12px;
-    background: linear-gradient(
-      135deg,
-      #1f4728 0%,
-      #285a32 55%,
-      #1c4025 100%
-    );
+    background: linear-gradient(135deg, #082f49 0%, #0b4864 55%, #0b3550 100%);
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
   }
 `;
@@ -257,7 +351,7 @@ const MobileDrawer = styled(Drawer)`
 
   .ant-drawer-body {
     padding: 8px !important;
-    background: #f4f8f2;
+    background: #f2f7fb;
   }
 
   .ant-menu {
@@ -275,12 +369,12 @@ const MobileDrawer = styled(Drawer)`
   }
 
   .ant-menu-item-selected {
-    background: #397348 !important;
+    background: linear-gradient(135deg, #16a26b, #0e8f62) !important;
     color: white !important;
   }
 
   .ant-menu-sub {
-    background: #e8f0e5 !important;
+    background: #e8f4ef !important;
     border-radius: 9px !important;
   }
 `;
@@ -414,7 +508,7 @@ const NavContainer = () => {
     {
       key: 'bayer-catalog',
       icon: <AppstoreOutlined />,
-      label: 'Catálogos de proveedores',
+      label: 'Catálogo Bayer',
     },
     {
       key: 'movements',
@@ -534,6 +628,25 @@ const NavContainer = () => {
       ? [display]
       : ['default'];
 
+  const screenTitles = {
+    default: ['Panel principal', 'Resumen general de MIRÚ'],
+    consumables: ['Semillas', 'Inventario'],
+    reagents: ['Agroquímicos', 'Inventario'],
+    equipment: ['Otros insumos', 'Inventario'],
+    scanner: ['Escanear producto', 'Operación rápida'],
+    'work-orders': ['Hojas de trabajo', 'Gestión operativa'],
+    'warehouse-map': ['Mapa del galpón', 'Ubicaciones y capacidad'],
+    'bayer-catalog': ['Catálogo Bayer', 'Productos'],
+    movements: ['Movimientos', 'Entradas y salidas'],
+    communications: ['Comunicaciones', 'Mensajes internos'],
+    traceability: ['Trazabilidad', 'Seguimiento'],
+    alerts: ['Alertas', 'Control'],
+    configuracion: ['Configuración', 'Usuario'],
+  };
+
+  const [screenTitle, screenSubtitle] =
+    screenTitles[display] || screenTitles.default;
+
   /* =========================================
      RENDER
      ========================================= */
@@ -577,6 +690,17 @@ const NavContainer = () => {
         </DesktopFooter>
       </DesktopSidebar>
 
+      <DesktopTopbar>
+        <TopbarTitle>
+          <strong>{screenTitle}</strong>
+          <span>{screenSubtitle}</span>
+        </TopbarTitle>
+        <TopbarUser>
+          <UserOutlined />
+          {user?.name || user?.email || 'Usuario'}
+        </TopbarUser>
+      </DesktopTopbar>
+
       {/* =========================================
           MOBILE
           ========================================= */}
@@ -592,6 +716,14 @@ const NavContainer = () => {
           onClick={() => setMobileMenuOpen(true)}
         />
       </MobileHeader>
+
+      <OperatorBar>
+        <OperatorButton icon={<ScanOutlined />} onClick={() => dispatch(setDisplay('scanner'))}>Escanear</OperatorButton>
+        <OperatorButton icon={<InboxOutlined />} onClick={() => dispatch(setDisplay('consumables'))}>Stock</OperatorButton>
+        <OperatorButton icon={<ApartmentOutlined />} onClick={() => dispatch(setDisplay('warehouse-map'))}>Mapa</OperatorButton>
+        <OperatorButton icon={<HistoryOutlined />} onClick={() => dispatch(setDisplay('movements'))}>Movimientos</OperatorButton>
+        <OperatorButton icon={<MessageOutlined />} onClick={() => dispatch(setDisplay('communications'))}>Mensajes</OperatorButton>
+      </OperatorBar>
 
       <MobileDrawer
         title="🌱 MIRÚ"

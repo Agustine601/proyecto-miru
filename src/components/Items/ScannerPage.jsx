@@ -19,6 +19,7 @@ import {
   CameraOutlined,
   CopyOutlined,
   DatabaseOutlined,
+  FileTextOutlined,
   PlusOutlined,
   ScanOutlined,
 } from '@ant-design/icons';
@@ -37,6 +38,7 @@ import {
   formatearDatosQR,
 } from '../../qr-utils';
 import Scanner from './Scanner.jsx';
+import RemitoPhotoReader from './RemitoPhotoReader.jsx';
 import { setDisplay } from '../containers/displaySlice';
 
 const { Title, Text } = Typography;
@@ -68,6 +70,7 @@ const ScannerPage = () => {
   const [solicitante, setSolicitante] = useState('');
   const [destino, setDestino] = useState('');
   const [ubicacion, setUbicacion] = useState('');
+  const [remitoOpen, setRemitoOpen] = useState(false);
 
   const [addItem, { isLoading: guardando }] = useAddItemMutation();
   const [addStock] = useAddStockMutation();
@@ -83,6 +86,46 @@ const ScannerPage = () => {
     ],
     [consumables, reagents]
   );
+
+  const aplicarDatosRemito = (remito) => {
+    const partidas = Array.isArray(remito?.products)
+      ? remito.products.filter((p) => p?.lote || p?.cantidad)
+      : [];
+    const primera = partidas[0] || {};
+
+    setResultado({
+      codigo: '',
+      origen: 'remito-foto',
+      existente: false,
+      tipoCodigo: 'Datos extraídos del remito',
+      contenidoQR: '',
+      remito,
+      partidas,
+      producto: {
+        nombre: primera.producto || '',
+        codigoBarras: '',
+        codigoQR: '',
+        lote: primera.lote || '',
+        cantidad: primera.cantidad || 0,
+        unidad: primera.unidad || 'unidad',
+        vencimiento: '',
+        proveedor: remito.proveedor || '',
+      },
+      datosQR: { tipo: 'Remito / OCR', campos: [] },
+    });
+    if (remito?.destino) setDestino(remito.destino);
+    setRemitoOpen(false);
+    message.success(`${partidas.length || 1} partida(s) detectada(s). Revisalas antes de dar de alta.`);
+  };
+
+  const actualizarPartida = (index, campo, value) => {
+    setResultado((actual) => ({
+      ...actual,
+      partidas: (actual.partidas || []).map((partida, i) =>
+        i === index ? { ...partida, [campo]: value } : partida
+      ),
+    }));
+  };
 
   const buscarCodigo = async (codigo) => {
     const raw = String(codigo || '').trim();
@@ -355,12 +398,12 @@ const ScannerPage = () => {
       );
     }
 
-    const lote =
-      producto.lote ||
-      `SIN-LOTE-${Date.now()}`;
-
-    const cantidad =
-      Number(producto.cantidad) || 0;
+    const partidas = Array.isArray(resultado.partidas) && resultado.partidas.length
+      ? resultado.partidas
+      : [{ lote: producto.lote || `SIN-LOTE-${Date.now()}`, cantidad: Number(producto.cantidad) || 0, unidad: producto.unidad || 'unidad' }];
+    const primeraPartida = partidas[0];
+    const lote = primeraPartida.lote || `SIN-LOTE-${Date.now()}`;
+    const cantidad = Number(primeraPartida.cantidad) || 0;
 
     const datosQR = {
       ...(resultado.datosQR || {}),
@@ -433,32 +476,22 @@ const ScannerPage = () => {
       let palletId = '';
       let stockRespuesta = null;
 
-      if (
-        (categoria === 'consumables' ||
-          categoria === 'reagents') &&
-        cantidad > 0
-      ) {
-        stockRespuesta =
-          await addStock({
+      if (categoria === 'consumables' || categoria === 'reagents') {
+        for (const partida of partidas) {
+          const qty = Number(partida.cantidad) || 0;
+          if (qty <= 0) continue;
+          stockRespuesta = await addStock({
             categoria,
             id: productoGuardado._id,
-            cantidad,
-            lote,
-            vencimiento:
-              producto.vencimiento || '',
-            proveedor:
-              producto.proveedor ||
-              'Logística Rojas',
-            numeroPallet:
-              producto.numeroPallet ||
-              undefined,
-            codigo:
-              resultado.codigo || '',
+            cantidad: qty,
+            lote: partida.lote || `SIN-LOTE-${Date.now()}`,
+            vencimiento: partida.vencimiento || producto.vencimiento || '',
+            proveedor: producto.proveedor || resultado.remito?.proveedor || 'Logística Rojas',
+            numeroPallet: partida.numeroPallet || producto.numeroPallet || undefined,
+            codigo: resultado.codigo || '',
           }).unwrap();
-
-        palletId =
-          stockRespuesta?.pallet?._id ||
-          '';
+          if (!palletId) palletId = stockRespuesta?.pallet?._id || '';
+        }
       }
 
       const listoParaMapa = {
@@ -566,6 +599,7 @@ const ScannerPage = () => {
           </div>
         </div>
 
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 20 }}>
         <Button
           type="primary"
           size="large"
@@ -582,7 +616,22 @@ const ScannerPage = () => {
         >
           Abrir cámara y escanear
         </Button>
+        <Button
+          size="large"
+          icon={<FileTextOutlined />}
+          onClick={() => setRemitoOpen(true)}
+          style={{ height: 50, borderRadius: 12 }}
+        >
+          Leer remito con foto
+        </Button>
+        </div>
       </Card>
+
+      <RemitoPhotoReader
+        open={remitoOpen}
+        onCancel={() => setRemitoOpen(false)}
+        onDetected={aplicarDatosRemito}
+      />
 
       {cargando && (
         <Card style={{ textAlign: 'center' }}>
@@ -723,6 +772,22 @@ const ScannerPage = () => {
                   key={`${campo.key}-${index}`}
                   campo={campo}
                 />
+              ))}
+            </Card>
+          )}
+
+          {resultado.origen === 'remito-foto' && Array.isArray(resultado.partidas) && resultado.partidas.length > 0 && (
+            <Card size="small" type="inner" title="📦 Partidas detectadas del remito" style={{ marginBottom: 18 }}>
+              {resultado.partidas.map((partida, index) => (
+                <Card key={index} size="small" style={{ marginBottom: 10 }}>
+                  <Tag color="green">Partida {index + 1}</Tag>
+                  <Input style={{ marginTop: 8 }} value={partida.producto || ''} onChange={(e) => actualizarPartida(index, 'producto', e.target.value)} placeholder="Producto" />
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(160px,1fr))', gap: 8, marginTop: 8 }}>
+                    <Input value={partida.lote || ''} onChange={(e) => actualizarPartida(index, 'lote', e.target.value)} placeholder="Lote" />
+                    <Input type="number" value={partida.cantidad ?? 0} onChange={(e) => actualizarPartida(index, 'cantidad', Number(e.target.value) || 0)} placeholder="Cantidad" />
+                    <Input value={partida.unidad || ''} onChange={(e) => actualizarPartida(index, 'unidad', e.target.value)} placeholder="Unidad" />
+                  </div>
+                </Card>
               ))}
             </Card>
           )}

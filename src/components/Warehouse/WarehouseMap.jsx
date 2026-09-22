@@ -15,6 +15,8 @@ import {
   SearchOutlined,
   SaveOutlined,
   DeleteOutlined,
+  EditOutlined,
+  CheckOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -34,18 +36,14 @@ import {
    RACKS · AGROQUÍMICOS
 ========================================================= */
 
-const makeRack = (n, access, group, positions = 12) =>
-  Array.from({ length: positions }, (_, i) => ({
+const makeRack = (n, access, group) =>
+  Array.from({ length: 12 }, (_, i) => ({
     id: `R${String(n).padStart(2, '0')}-P${String(i + 1).padStart(2, '0')}`,
     rack: n,
     position: i + 1,
     access,
     group,
   }));
-
-// R18–R25 tienen una columna menos: se eliminan P10–P12,
-// que corresponden a las casillas marcadas sobre el pasillo.
-const rackPositionCount = rack => rack?.length || 12;
 
 const racksFront = Array.from(
   { length: 16 },
@@ -54,18 +52,31 @@ const racksFront = Array.from(
 
 const racksSide = Array.from(
   { length: 8 },
-  (_, i) => makeRack(i + 18, 'costado', 'racks-18-25', 9)
+  (_, i) => makeRack(i + 18, 'costado', 'racks-18-25')
 );
+
+// Ajuste físico solicitado: la cuarta posición de estos racks no existe.
+// Se mantiene como editable para poder restaurarla si el galpón cambia.
+const DEFAULT_BLOCKED_AGRO = [
+  'R18-P04',
+  'R19-P04',
+  'R20-P04',
+  'R21-P04',
+  'R22-P04',
+  'R23-P04',
+  'R24-P04',
+  'R25-P04',
+];
 
 const racksFront2 = Array.from(
   { length: 4 },
   (_, i) => makeRack(i + 26, 'frente', 'racks-26-29')
-).filter((rack) => rack[0]?.rack !== 28);
+);
 
 const racksSide2 = Array.from(
   { length: 4 },
   (_, i) => makeRack(i + 30, 'costado', 'racks-30-33')
-).filter((rack) => rack[0]?.rack !== 32);
+);
 
 
 /* =========================================================
@@ -145,6 +156,80 @@ function stackOf(value) {
       ? [value]
       : [];
 }
+
+/* =========================================================
+   CAPACIDADES FÍSICAS
+   - Pallet de líquidos: máximo 720 litros.
+   - Racks penetrantes (R18-R25): máximo 960 kg por posición.
+   No modifica la distribución ni las posiciones del mapa.
+========================================================= */
+const MAX_LITERS_PER_PALLET = 720;
+const MAX_KG_PENETRANTE = 960;
+
+const normalizeUnit = value =>
+  String(value || '')
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+const getQuantity = value => {
+  const raw =
+    value?.cantidad ??
+    value?.pallet?.cantidad ??
+    value?.quantity ??
+    value?.pallet?.quantity ??
+    0;
+
+  // Acepta tanto 720 como textos del tipo "720 L", "960 kg"
+  // y formatos argentinos como "720,5".
+  if (typeof raw === 'number') {
+    return Number.isFinite(raw) ? raw : 0;
+  }
+
+  const normalized = String(raw)
+    .trim()
+    .replace(/\\s+/g, '')
+    .replace(',', '.')
+    .replace(/[^0-9.-]/g, '');
+
+  const quantity = Number(normalized);
+  return Number.isFinite(quantity) ? quantity : 0;
+};
+
+const getUnit = value =>
+  normalizeUnit(
+    value?.unidad ??
+    value?.pallet?.unidad ??
+    value?.unidadMedida ??
+    value?.unidadStock ??
+    value?.unit ??
+    value?.pallet?.unit ??
+    value?.measureType ??
+    value?.pallet?.measureType ??
+    ''
+  );
+
+const isLiquidUnit = unit =>
+  /(^|\b)(l|lt|lts|litro|litros)(\b|$)/i.test(unit);
+
+const isKgUnit = unit =>
+  /(^|\b)(kg|kgs|kilo|kilos|kilogramo|kilogramos)(\b|$)/i.test(unit);
+
+const inferUnitFromName = value => {
+  const name = itemName(value);
+  if (/\b(l|lt|lts|litro|litros)\b/i.test(name)) return 'litros';
+  if (/\b(kg|kgs|kilo|kilos|kilogramo|kilogramos)\b/i.test(name)) return 'kg';
+  return '';
+};
+
+const palletUnit = value => {
+  const explicit = getUnit(value);
+  return explicit || inferUnitFromName(value);
+};
+
+const isPenetranteSlot = slotId =>
+  /^R(?:18|19|20|21|22|23|24|25)-P\d+$/i.test(String(slotId || ''));
 
 
 /* =========================================================
@@ -297,6 +382,23 @@ const BottomWall = styled(Wall)`
   right: 0;
   height: 5px;
   bottom: 0;
+`;
+
+const MapEditButton = styled(Button)`
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 60;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.28);
+
+  @media (max-width: 700px) {
+    top: 10px;
+    right: 10px;
+    height: 32px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
 `;
 
 
@@ -865,7 +967,7 @@ const MiniSlots = styled.div`
   display: grid;
 
   grid-template-columns:
-    repeat(${p => p.columns || 4}, 1fr);
+    repeat(4, 1fr);
 
   grid-template-rows:
     repeat(3, 1fr);
@@ -1734,7 +1836,11 @@ export default function WarehouseMap() {
     setDetail,
   ] = useState(null);
 
-  const [editing, setEditing] = useState(false);
+  // Modo edición: permite adaptar el mapa físico sin tocar el código.
+  const [
+    editMode,
+    setEditMode,
+  ] = useState(false);
 
 
   /* =========================================================
@@ -1748,30 +1854,29 @@ export default function WarehouseMap() {
     ...racksSide2,
   ];
 
-  const validAgroSlotIds = useMemo(
-    () => new Set([
-      ...allRacks.flat().map(slot => slot.id),
-      ...controlMax.map(slot => slot.id),
-    ]),
-    []
-  );
-
 
   /* =========================================================
      MAPAS GUARDADOS
   ========================================================= */
 
-  const savedMaps = {
-    agroquimicos:
-      saved?.agroquimicos || {
-        occupied:
-          saved?.occupied || {},
-      },
+  const savedAgro = saved?.agroquimicos || {
+    occupied: saved?.occupied || {},
+  };
 
-    semillas:
-      saved?.semillas || {
-        occupied: {},
-      },
+  const savedMaps = {
+    agroquimicos: {
+      ...savedAgro,
+      blocked: Array.isArray(savedAgro.blocked)
+        ? savedAgro.blocked
+        : DEFAULT_BLOCKED_AGRO,
+    },
+
+    semillas: {
+      ...(saved?.semillas || { occupied: {} }),
+      blocked: Array.isArray(saved?.semillas?.blocked)
+        ? saved.semillas.blocked
+        : [],
+    },
   };
 
 
@@ -1864,6 +1969,34 @@ export default function WarehouseMap() {
   const occupied =
     state.occupied || {};
 
+  const blocked =
+    Array.isArray(state.blocked)
+      ? state.blocked
+      : [];
+
+  const isBlocked =
+    slotId => blocked.includes(slotId);
+
+  const toggleBlocked =
+    slotId => {
+      if (stackOf(occupied[slotId]).length) {
+        message.warning(
+          `No podés bloquear ${slotId} mientras tenga un pallet. Primero retiralo o movelo.`
+        );
+        return;
+      }
+
+      const nextBlocked =
+        isBlocked(slotId)
+          ? blocked.filter(id => id !== slotId)
+          : [...blocked, slotId];
+
+      setMap({
+        ...state,
+        blocked: nextBlocked,
+      });
+    };
+
 
   /* =========================================================
      ESTADÍSTICAS
@@ -1871,17 +2004,14 @@ export default function WarehouseMap() {
 
   const allSlots =
     warehouse === 'semillas'
-      ? semillasSlots.length
-      : allRacks.length +
-        controlMax.length;
+      ? semillasSlots.filter(slot => !isBlocked(slot.id)).length
+      : allRacks.reduce((total, rack) =>
+          total + rack.filter(slot => !isBlocked(slot.id)).length, 0
+        ) + controlMax.filter(slot => !isBlocked(slot.id)).length;
 
   const occupiedEntries =
     Object.entries(
       occupied
-    ).filter(([slotId]) =>
-      warehouse === 'agroquimicos'
-        ? validAgroSlotIds.has(slotId)
-        : true
     );
 
   const occupiedPallets =
@@ -2082,6 +2212,47 @@ export default function WarehouseMap() {
 
 
   /* =========================================================
+     VALIDAR CAPACIDAD FÍSICA
+  ========================================================= */
+
+  const validarCapacidadPallet = (slotId, product) => {
+    const quantity = getQuantity(product);
+    const unit = palletUnit(product);
+
+    // El límite de 720 aplica únicamente cuando la mercadería está
+    // expresada en litros. No se mezclan litros con kilos.
+    if (isLiquidUnit(unit) && quantity > MAX_LITERS_PER_PALLET) {
+      message.error(
+        `LÍMITE SUPERADO: este pallet tiene ${quantity} L y el máximo es ${MAX_LITERS_PER_PALLET} L.`
+      );
+      return false;
+    }
+
+    // Los racks penetrantes R18-R25 se controlan en kilos.
+    if (isPenetranteSlot(slotId)) {
+      if (!isKgUnit(unit)) {
+        if (quantity > 0 && isLiquidUnit(unit)) {
+          return true;
+        }
+        message.warning(
+          `No se puede aplicar el límite de ${MAX_KG_PENETRANTE} kg porque la unidad del pallet no está indicada como kg. Unidad detectada: "${unit || 'sin unidad'}".`
+        );
+        return false;
+      }
+
+      if (quantity > MAX_KG_PENETRANTE) {
+        message.error(
+          `LÍMITE SUPERADO: este pallet tiene ${quantity} kg y el máximo del rack penetrante es ${MAX_KG_PENETRANTE} kg.`
+        );
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+
+  /* =========================================================
      COLOCAR PALLET
   ========================================================= */
 
@@ -2092,6 +2263,8 @@ export default function WarehouseMap() {
       maxStack = 1
     ) => {
       if (!product) return;
+
+      if (!validarCapacidadPallet(slotId, product)) return;
 
       const current =
         stackOf(
@@ -2202,6 +2375,8 @@ export default function WarehouseMap() {
         source[
           source.length - 1
         ];
+
+      if (!validarCapacidadPallet(to, pallet)) return;
 
       const ok =
         await sincronizarUbicacionPallet(
@@ -2353,22 +2528,11 @@ export default function WarehouseMap() {
   const save =
     async () => {
       try {
-        const cleanedOccupied =
-          warehouse === 'agroquimicos'
-            ? Object.fromEntries(
-                Object.entries(state.occupied || {}).filter(([slotId]) =>
-                  validAgroSlotIds.has(slotId)
-                )
-              )
-            : state.occupied || {};
-
         const currentMaps = {
           ...savedMaps,
 
-          [warehouse]: {
-            ...state,
-            occupied: cleanedOccupied,
-          },
+          [warehouse]:
+            state,
         };
 
         await saveMap(
@@ -2439,163 +2603,115 @@ export default function WarehouseMap() {
     (
       rack,
       side = false
-    ) => (
-      <Tooltip
-        key={rack[0].rack}
-        title={
-          `Rack ${String(
-            rack[0].rack
-          ).padStart(2, '0')} · ${rack.length} posiciones · acceso ${
-            side
-              ? 'lateral'
-              : 'frontal'
-          }`
-        }
-      >
-        <RackMini
-          side={side}
+    ) => {
+      const visibleSlots =
+        editMode
+          ? rack
+          : rack.filter(slot => !isBlocked(slot.id));
 
-          onClick={() =>
-            setDetail({
-              id:
-                `R${String(
-                  rack[0].rack
-                ).padStart(
-                  2,
-                  '0'
-                )}`,
-
-              rack:
-                rack[0].rack,
-
-              product:
-                rack.flatMap(
-                  slot =>
-                    stackOf(
-                      occupied[
-                        slot.id
-                      ]
-                    ).map(
-                      pallet => ({
-                        ...pallet,
-                        slot:
-                          slot.id,
-                      })
-                    )
-                ),
-            })
+      return (
+        <Tooltip
+          key={rack[0].rack}
+          title={
+            `Rack ${String(
+              rack[0].rack
+            ).padStart(2, '0')} · ${visibleSlots.length} posiciones activas · acceso ${
+              side ? 'lateral' : 'frontal'
+            }`
           }
         >
-          <RackName>
-            R
-            {String(
-              rack[0].rack
-            ).padStart(
-              2,
-              '0'
-            )}
-          </RackName>
+          <RackMini
+            side={side}
+            onClick={() =>
+              !editMode &&
+              setDetail({
+                id: `R${String(rack[0].rack).padStart(2, '0')}`,
+                rack: rack[0].rack,
+                product: rack.flatMap(slot =>
+                  stackOf(occupied[slot.id]).map(pallet => ({
+                    ...pallet,
+                    slot: slot.id,
+                  }))
+                ),
+              })
+            }
+          >
+            <RackName>
+              R{String(rack[0].rack).padStart(2, '0')}
+            </RackName>
 
-          <MiniSlots columns={rack.length === 9 ? 3 : 4}>
-            {rack.map(
-              slot => {
-                const stack =
-                  stackOf(
-                    occupied[
-                      slot.id
-                    ]
+            <MiniSlots>
+              {visibleSlots.map(slot => {
+                const stack = stackOf(occupied[slot.id]);
+                const blockedSlot = isBlocked(slot.id);
+
+                if (blockedSlot) {
+                  return (
+                    <MiniSlot
+                      key={slot.id}
+                      occupied={false}
+                      onClick={e => {
+                        e.stopPropagation();
+                        toggleBlocked(slot.id);
+                      }}
+                      title={`${slot.id} · BLOQUEADA / sin posición física`}
+                      style={{
+                        borderColor: '#e05a5a',
+                        background: 'repeating-linear-gradient(135deg, rgba(224,90,90,.18), rgba(224,90,90,.18) 5px, rgba(255,255,255,.025) 5px, rgba(255,255,255,.025) 10px)',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <span style={{
+                        fontSize: 6,
+                        color: '#ff9b9b',
+                        fontWeight: 900,
+                        textAlign: 'center',
+                      }}>
+                        BLOQ.
+                      </span>
+                    </MiniSlot>
                   );
+                }
 
                 return (
                   <Tooltip
-                    key={
-                      slot.id
-                    }
-                    title={`${slot.id}${
-                      stack[0]
-                        ? ` · ${stack[0].nombre}`
-                        : ' · Libre'
-                    }`}
+                    key={slot.id}
+                    title={`${slot.id}${stack[0] ? ` · ${stack[0].nombre}` : ' · Libre'}${editMode ? ' · clic para bloquear' : ''}`}
                   >
                     <MiniSlot
-                      occupied={
-                        !!stack.length
-                      }
-
-                      highlight={isMatch(
-                        stack[0]
-                      )}
-
-                      draggable={
-                        !!stack.length
-                      }
-
-                      onDragStart={
-                        e => {
-                          e.stopPropagation();
-
-                          setDragged(
-                            slot.id
-                          );
-
-                          setSelectedProduct(
-                            null
-                          );
-                        }
-                      }
-
-                      onDragOver={
-                        e =>
-                          e.preventDefault()
-                      }
-
+                      occupied={!!stack.length}
+                      highlight={isMatch(stack[0])}
+                      draggable={editMode ? false : !!stack.length}
+                      onDragStart={e => {
+                        if (editMode) return;
+                        e.stopPropagation();
+                        setDragged(slot.id);
+                        setSelectedProduct(null);
+                      }}
+                      onDragOver={e => e.preventDefault()}
                       onDrop={e => {
                         e.stopPropagation();
-
-                        addOrMove(
-                          slot.id,
-                          1
-                        );
+                        if (editMode) return;
+                        addOrMove(slot.id, 1);
                       }}
-
                       onClick={e => {
                         e.stopPropagation();
-
-                        addOrMove(
-                          slot.id,
-                          1
-                        );
+                        if (editMode) {
+                          toggleBlocked(slot.id);
+                          return;
+                        }
+                        addOrMove(slot.id, 1);
                       }}
                     >
                       {stack[0] && (
                         <SlotInfo>
                           {(() => {
-                            const label =
-                              slotLabel(
-                                stack[0]
-                              );
-
+                            const label = slotLabel(stack[0]);
                             return (
                               <>
-                                <SlotPallet>
-                                  {
-                                    label.pallet
-                                  }
-                                </SlotPallet>
-
-                                <SlotLot>
-                                  {
-                                    label.lote
-                                  }
-                                </SlotLot>
-
-                                {label.qty && (
-                                  <SlotQty>
-                                    {
-                                      label.qty
-                                    }
-                                  </SlotQty>
-                                )}
+                                <SlotPallet>{label.pallet}</SlotPallet>
+                                <SlotLot>{label.lote}</SlotLot>
+                                {label.qty && <SlotQty>{label.qty}</SlotQty>}
                               </>
                             );
                           })()}
@@ -2604,19 +2720,16 @@ export default function WarehouseMap() {
                     </MiniSlot>
                   </Tooltip>
                 );
-              }
-            )}
-          </MiniSlots>
+              })}
+            </MiniSlots>
 
-          <RackAccess>
-            {side
-              ? 'ACCESO LATERAL'
-              : 'ACCESO FRONTAL'}
-          </RackAccess>
-        </RackMini>
-      </Tooltip>
-    );
-
+            <RackAccess>
+              {side ? 'ACCESO LATERAL' : 'ACCESO FRONTAL'}
+            </RackAccess>
+          </RackMini>
+        </Tooltip>
+      );
+    };
 
   /* =========================================================
      CONTROL MAX
@@ -2657,6 +2770,9 @@ export default function WarehouseMap() {
                           stack.length - 1
                         ];
 
+                      const blockedSlot =
+                        isBlocked(slot.id);
+
                       return (
                         <Tooltip
                           key={
@@ -2664,15 +2780,21 @@ export default function WarehouseMap() {
                           }
 
                           title={`${slot.id}${
-                            product
-                              ? ` · ${product.nombre}`
-                              : ' · Libre'
+                            blockedSlot
+                              ? ' · BLOQUEADA'
+                              : product
+                                ? ` · ${product.nombre}`
+                                : ' · Libre'
                           } · ${stack.length}/2`}
                         >
                           <ControlSlot
                             occupied={
                               !!product
                             }
+                            style={blockedSlot ? {
+                              borderColor: '#e05a5a',
+                              background: 'repeating-linear-gradient(135deg, rgba(224,90,90,.18), rgba(224,90,90,.18) 5px, rgba(255,255,255,.025) 5px, rgba(255,255,255,.025) 10px)',
+                            } : undefined}
 
                             highlight={isMatch(
                               product
@@ -2683,6 +2805,7 @@ export default function WarehouseMap() {
                             }
 
                             onDragStart={() => {
+                              if (editMode || blockedSlot) return;
                               setDragged(
                                 slot.id
                               );
@@ -2697,19 +2820,18 @@ export default function WarehouseMap() {
                                 e.preventDefault()
                             }
 
-                            onDrop={() =>
-                              addOrMove(
-                                slot.id,
-                                2
-                              )
-                            }
+                            onDrop={() => {
+                              if (editMode) return;
+                              addOrMove(slot.id, 2);
+                            }}
 
-                            onClick={() =>
-                              addOrMove(
-                                slot.id,
-                                2
-                              )
-                            }
+                            onClick={() => {
+                              if (editMode) {
+                                toggleBlocked(slot.id);
+                                return;
+                              }
+                              addOrMove(slot.id, 2);
+                            }}
                           >
 
                             <StackBadge>
@@ -2719,7 +2841,9 @@ export default function WarehouseMap() {
                               /2
                             </StackBadge>
 
-                            {product && (
+                            {blockedSlot ? (
+                              <span style={{ color: '#ff9b9b', fontSize: 7, fontWeight: 900 }}>BLOQ.</span>
+                            ) : product && (
                               <SlotInfo>
                                 {(() => {
                                   const label =
@@ -2785,6 +2909,9 @@ export default function WarehouseMap() {
           stack.length - 1
         ];
 
+      const blockedSlot =
+        isBlocked(slot.id);
+
       const label =
         product
           ? slotLabel(product)
@@ -2804,6 +2931,10 @@ export default function WarehouseMap() {
             occupied={
               stack.length > 0
             }
+            style={blockedSlot ? {
+              borderColor: '#e05a5a',
+              background: 'repeating-linear-gradient(135deg, rgba(224,90,90,.18), rgba(224,90,90,.18) 5px, rgba(255,255,255,.025) 5px, rgba(255,255,255,.025) 10px)',
+            } : undefined}
 
             highlight={isMatch(
               product
@@ -2814,6 +2945,7 @@ export default function WarehouseMap() {
             }
 
             onDragStart={e => {
+              if (editMode || blockedSlot) return;
               e.stopPropagation();
 
               setDragged(
@@ -2831,20 +2963,17 @@ export default function WarehouseMap() {
 
             onDrop={e => {
               e.stopPropagation();
-
-              addOrMove(
-                slot.id,
-                3
-              );
+              if (editMode) return;
+              addOrMove(slot.id, 3);
             }}
 
             onClick={e => {
               e.stopPropagation();
-
-              addOrMove(
-                slot.id,
-                3
-              );
+              if (editMode) {
+                toggleBlocked(slot.id);
+                return;
+              }
+              addOrMove(slot.id, 3);
             }}
           >
 
@@ -2861,7 +2990,11 @@ export default function WarehouseMap() {
               {stack.length}/3
             </SeedsStackBadge>
 
-            {product ? (
+            {blockedSlot ? (
+              <SeedsSlotContent>
+                <span style={{ color: '#ff9b9b', fontWeight: 900 }}>BLOQ.</span>
+              </SeedsSlotContent>
+            ) : product ? (
               <SeedsSlotContent>
 
                 <SlotPallet>
@@ -2940,7 +3073,7 @@ export default function WarehouseMap() {
                   )}
                 </SeedsRowNumber>
 
-                {fila.map(
+                {(editMode ? fila : fila.filter(slot => !isBlocked(slot.id))).map(
                   renderSemillasSlot
                 )}
 
@@ -2950,6 +3083,19 @@ export default function WarehouseMap() {
 
       return (
         <Building>
+
+          <MapEditButton
+            type={editMode ? 'default' : 'primary'}
+            icon={editMode ? <CheckOutlined /> : <EditOutlined />}
+            onClick={() => {
+              setEditMode(value => !value);
+              setDragged(null);
+              setSelectedProduct(null);
+              setDetail(null);
+            }}
+          >
+            {editMode ? 'Terminar edición' : '✏️ Editar mapa'}
+          </MapEditButton>
 
           <TopWall />
           <BottomWall />
@@ -3214,11 +3360,16 @@ export default function WarehouseMap() {
           />
 
           <Button
-            type={editing ? 'default' : 'primary'}
-            icon={<DragOutlined />}
-            onClick={() => setEditing((v) => !v)}
+            type={editMode ? 'default' : 'primary'}
+            icon={editMode ? <CheckOutlined /> : <EditOutlined />}
+            onClick={() => {
+              setEditMode(value => !value);
+              setDragged(null);
+              setSelectedProduct(null);
+              setDetail(null);
+            }}
           >
-            {editing ? 'Salir de edición' : 'Editar mapa'}
+            {editMode ? 'Terminar edición' : 'Editar mapa'}
           </Button>
 
           <Button
@@ -3254,6 +3405,22 @@ export default function WarehouseMap() {
 
         </Toolbar>
 
+        {editMode && (
+          <div style={{
+            marginTop: 10,
+            padding: '9px 12px',
+            border: '1px dashed #d46a6a',
+            borderRadius: 8,
+            background: '#fff7f7',
+            color: '#8f3434',
+            fontSize: 12,
+            fontWeight: 700,
+          }}>
+            ✏️ <b>Modo edición:</b> hacé clic sobre una posición para quitarla del mapa físico.
+            Las posiciones bloqueadas aparecen en rojo y podés volver a hacer clic para recuperarlas.
+            Si una posición tiene un pallet, primero hay que retirarlo o moverlo. Después tocá <b>Guardar mapa</b>.
+          </div>
+        )}
 
         {/* ===================================================
             STATS
@@ -3417,6 +3584,19 @@ export default function WarehouseMap() {
 
         <Building>
 
+          <MapEditButton
+            type={editMode ? 'default' : 'primary'}
+            icon={editMode ? <CheckOutlined /> : <EditOutlined />}
+            onClick={() => {
+              setEditMode(value => !value);
+              setDragged(null);
+              setSelectedProduct(null);
+              setDetail(null);
+            }}
+          >
+            {editMode ? 'Terminar edición' : '✏️ Editar mapa'}
+          </MapEditButton>
+
           <TopWall />
           <BottomWall />
 
@@ -3535,7 +3715,7 @@ export default function WarehouseMap() {
                 </AgroSectionTitle>
 
                 <AgroSectionInfo>
-                  8 racks · 9 posiciones c/u · acceso con mula
+                  8 racks · acceso con mula
                 </AgroSectionInfo>
 
                 <AgroRackGridSingle>
@@ -3564,11 +3744,11 @@ export default function WarehouseMap() {
               <AgroSection>
 
                 <AgroSectionTitle>
-                  RACKS 26–27 · 29
+                  RACKS 26–29
                 </AgroSectionTitle>
 
                 <AgroSectionInfo>
-                  3 racks
+                  4 racks
                 </AgroSectionInfo>
 
                 <AgroRackGridFour>
@@ -3594,11 +3774,11 @@ export default function WarehouseMap() {
               <AgroSection>
 
                 <AgroSectionTitle>
-                  RACKS 30–31 · 33 · ACCESO LATERAL
+                  RACKS 30–33 · ACCESO LATERAL
                 </AgroSectionTitle>
 
                 <AgroSectionInfo>
-                  3 racks · mula
+                  4 racks · mula
                 </AgroSectionInfo>
 
                 <AgroRackGridFour>
@@ -3782,7 +3962,7 @@ export default function WarehouseMap() {
               ).padStart(
                 2,
                 '0'
-              )} · ${detail?.rack >= 18 && detail?.rack <= 25 ? 9 : 12} posiciones`
+              )} · 12 posiciones`
             : detail?.id
         }
 
@@ -3908,7 +4088,7 @@ export default function WarehouseMap() {
               <b>
                 Capacidad:
               </b>{' '}
-              {(detail.rack >= 18 && detail.rack <= 25 ? 9 : 12)} pallets ·{' '}
+              12 pallets ·{' '}
 
               <b>
                 Acceso:

@@ -2,10 +2,60 @@
 // Fuentes oficiales consultadas: Bayer, Quimeco y Rizobacter Argentina.
 // Los productos y categorías pueden cambiar; el botón "Fuente oficial" siempre enlaza al sitio del proveedor.
 
-const item = (nombre, tipo, descripcion='', url='') => ({
-  nombre, tipo, descripcion: descripcion || `Producto ${nombre} del portfolio de ${tipo}.`,
-  icono: '🧪', color: 'green', categoria: 'reagents', fuente: tipo, url,
-});
+const supplierImages = {
+  // Quimeco — imágenes directas verificadas en su catálogo oficial.
+  'X-Trim® LowFlow NEO': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/04/caja-xtrim-lowflow-neo.jpg',
+  'X-Trim® LowFlow': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/04/caja-xtrim-lowflow.jpg',
+  'X-Trim® Power': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/09/caja-xtrim-power.jpg',
+  'Aceite Winnow Ultra': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-ultra-winnow.jpg',
+  'Micro Winnow': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-micro-winnow.jpg',
+  'Activate Total Mix': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-activate-totalmix.jpg',
+  'Activate Max': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-activate-max.jpg',
+  'Fulldrop': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-fulldrop.jpg',
+  'Aceite Quimeco': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/aceite-quimeco.jpg',
+  'Aceite Quimeco Plus': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/aceite-quimeco-plus.jpg',
+  'Aceite Winnow': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/aceite-winnow.jpg',
+  'Combo Bio Soja': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-combo-bio-soja.jpg',
+  'Combo Bio Trigo': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-combo-bio-trigo.jpg',
+  'X-Mart': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-xmart.jpg',
+  'Protect Pack Full': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-protect-pack-full.jpg',
+  'Protect Pack': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/caja-protect-pack.jpg',
+  'Inoculante Quimeco': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/box-inoculante.jpg',
+  'Combo Trigo': 'https://quimeco.com.ar/sitio/wp-content/uploads/2026/07/caja-pack-trigo.jpg',
+  'Xilonen': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/bidon-xilonen.jpg',
+  'Xilonen Fosfitos': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/bidon-xilonen-fosfitos.jpg',
+  'Xilonen Zinc': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/bidon-xilonen-zinc.jpg',
+  'Xilonen Boro': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/bidon-xilonen-boro.jpg',
+  'Xilogrow': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/xilogrow.jpg',
+  'Limpiador Quimeco': 'https://quimeco.com.ar/sitio/wp-content/uploads/2025/11/limpiador-quimeco.jpg',
+
+  // Rizobacter — imágenes directas verificadas en el portfolio oficial actual.
+  'Rizoderma TMX': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2026-07/Rizoderma%20TMX_0.png?itok=u_L4HFvw',
+  'Rizopower Z': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2026-03/RIZOBACTER%20-%20RIZO%20POWER%20Z%20-%202026.png?itok=dKGfJblp',
+  'Rizopower N-Bio': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2026-03/RIZOBACTER%20-%20RIZO%20POWER%20N-BIO%20-%202026_0.png?itok=CU81z721',
+  'Rizopower B': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2026-03/RIZOBACTER%20-%20RIZO%20POWER%20B%20-%202026.png?itok=U6frKYnz',
+  'Rizospray Wet': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2026-01/RIZOBACTER%20-%20LOGO%20-%20RIZOSPRAY%20WET%20-%20222X70PX%20-%202026.jpg?itok=0EI2HTsj',
+  'RizowetEco': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2025-07/LOGO-RIZOWET-222x70.png?itok=hZwCzTL5',
+  'Majestene': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2025-09/Majestene.png?itok=oiAJTRjR',
+  'Rizospray Extremo Mineral': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2025-06/LOGO%20RIZOSPRAY%20EXTREMO%20MINERAL%20PNG222X70.png?itok=knqtQS_g',
+  'Aterix': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2025-06/aterix.png?itok=cxnvSH3G',
+  'Rizopower': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2025-06/Rizopower%20%28COL%29%201.png?itok=NGzuTPmi',
+  'Rizospray Pro Maní': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2025-04/Rizospray-pro-mani.png?itok=cO_G0dAm',
+  'Balboa': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2025-04/Logo%20balboa.png?itok=7vk5_5d0i',
+  'Rizomix': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2024-12/INOCUANTES%20Y%20BIOINDUCTORES%20-%20fondo%20blanco-09.png?itok=qsMTJ1rd',
+  'Ribol Liq': 'https://www.rizobacter.com/sites/default/files/styles/medium/public/2024-12/Logos%20web%20222x70%20fondo%20blanco-06_0.jpg?itok=iZj6KlYF',
+};
+
+const item = (nombre, tipo, descripcion='', url='') => {
+  const esRizobacter = String(url).includes('rizobacter.com');
+  return {
+    nombre, tipo, descripcion: descripcion || `Producto ${nombre} del portfolio de ${tipo}.`,
+    icono: esRizobacter ? '🌱' : '🧪',
+    color: esRizobacter ? 'cyan' : 'gold',
+    categoria: 'reagents', fuente: esRizobacter ? 'Rizobacter' : 'Quimeco', url,
+    imagen: supplierImages[nombre],
+  };
+};
 
 export const quimecoProducts = [
   item('X-Trim® LowFlow NEO','Coadyuvante especializado','Coadyuvante especializado Quimeco.','https://quimeco.com.ar/productos/'),

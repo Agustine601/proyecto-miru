@@ -30,14 +30,11 @@ body {
     sans-serif;
 
   background:
-    linear-gradient(
-      135deg,
-      #f4f8f2 0%,
-      #edf4eb 50%,
-      #f8faf7 100%
-    );
+    radial-gradient(circle at 12% 8%, rgba(34, 197, 94, 0.08), transparent 24%),
+    radial-gradient(circle at 88% 12%, rgba(59, 130, 246, 0.07), transparent 22%),
+    linear-gradient(135deg, #f5f8fc 0%, #eef7f2 52%, #f8fafc 100%);
 
-  color: #26352a;
+  color: #233044;
 
   overflow-x: hidden;
 
@@ -102,13 +99,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: #23452b;
+  color: #173b62;
   max-width: 100%;
   font-family: "MuseoModerno", "Archivo", "Segoe UI", Arial, sans-serif;
 }
 
 p {
-  color: #3f4d42;
+  color: #526174;
 }
 
 /* =========================================
@@ -116,12 +113,12 @@ p {
    ========================================= */
 
 a {
-  color: #397348;
+  color: #168a5b;
   text-decoration: none;
 }
 
 a:hover {
-  color: #245630;
+  color: #0f6f49;
 }
 
 /* =========================================
@@ -138,13 +135,13 @@ a:hover {
 
 .ant-btn-primary {
   background: #397348;
-  border-color: #397348;
+  border-color: #168a5b;
 }
 
 .ant-btn-primary:hover,
 .ant-btn-primary:focus {
-  background: #2d6039;
-  border-color: #2d6039;
+  background: linear-gradient(135deg, #11875a, #0c754d);
+  border-color: #11875a;
 }
 
 /* =========================================
@@ -156,7 +153,7 @@ a:hover {
 .ant-select-selector,
 .ant-picker {
   border-radius: 8px !important;
-  border-color: #c8d5c8 !important;
+  border-color: #cbd7e4 !important;
 
   max-width: 100%;
 }
@@ -164,8 +161,8 @@ a:hover {
 .ant-input:focus,
 .ant-input-affix-wrapper-focused,
 .ant-select-focused .ant-select-selector {
-  border-color: #5d8b62 !important;
-  box-shadow: 0 0 0 2px rgba(75, 120, 82, 0.12) !important;
+  border-color: #269f70 !important;
+  box-shadow: 0 0 0 3px rgba(38, 159, 112, 0.12) !important;
 }
 
 /* =========================================
@@ -178,7 +175,7 @@ a:hover {
 }
 
 .ant-modal-header {
-  border-bottom: 1px solid #e1e9df;
+  border-bottom: 1px solid #e2e9f1;
 }
 
 .ant-modal-title {
@@ -201,7 +198,7 @@ a:hover {
 
 .ant-card {
   border-radius: 14px;
-  border: 1px solid #dce7da;
+  border: 1px solid #e1e8f0;
   max-width: 100%;
 }
 
@@ -217,7 +214,7 @@ a:hover {
 
 @media (min-width: 701px) {
   .ant-card:hover {
-    box-shadow: 0 8px 24px rgba(35, 69, 43, 0.08);
+    box-shadow: 0 12px 28px rgba(31, 55, 83, 0.10);
   }
 }
 
@@ -242,8 +239,8 @@ a:hover {
 }
 
 .ant-table-thead > tr > th {
-  background: #e8f0e5 !important;
-  color: #285832 !important;
+  background: #eaf4f0 !important;
+  color: #145b43 !important;
   font-weight: 700;
 }
 
@@ -261,8 +258,52 @@ a:hover {
    ========================================= */
 
 ::selection {
-  background: #8aae8c;
+  background: #2ab27b;
   color: white;
+}
+
+
+/* =========================================
+   MIRÚ · UI FLUIDA / BÚSQUEDA
+   ========================================= */
+
+.ant-input-search {
+  width: 100%;
+}
+
+.ant-input-search .ant-input-affix-wrapper {
+  min-height: 44px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 12px 0 0 12px !important;
+  box-shadow: 0 4px 14px rgba(35, 69, 43, 0.06);
+}
+
+.ant-input-search .ant-input-search-button {
+  height: 44px;
+  border-radius: 0 12px 12px 0 !important;
+}
+
+.inventory-filter .ant-select-selector {
+  min-height: 44px !important;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: 0 4px 14px rgba(35, 69, 43, 0.05);
+}
+
+.scan-button {
+  min-height: 44px;
+  border-radius: 12px !important;
+  box-shadow: 0 5px 14px rgba(57, 115, 72, 0.16);
+}
+
+@media (max-width: 700px) {
+  .ant-input-search .ant-input-affix-wrapper,
+  .ant-input-search .ant-input-search-button,
+  .inventory-filter .ant-select-selector,
+  .scan-button {
+    min-height: 46px !important;
+  }
 }
 
 /* =========================================
@@ -527,3 +568,61 @@ svg {
   }
 }
 
+
+
+/* =========================================
+   MIRÚ 2.0 · BARRA SUPERIOR / OPERADOR
+   ========================================= */
+
+@media (min-width: 701px) {
+  .App {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .ant-layout-content,
+  main {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+
+/* =========================================
+   MIRÚ · PALETA CONTEMPORÁNEA
+   ========================================= */
+.ant-card {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 22px rgba(31, 55, 83, 0.06);
+}
+
+.ant-btn:not(.ant-btn-primary):hover,
+.ant-btn:not(.ant-btn-primary):focus {
+  color: #176b4d;
+  border-color: #8fd8bb;
+  background: #f2fbf7;
+}
+
+.ant-tag {
+  border: none;
+}
+
+.ant-statistic-title {
+  color: #66758a !important;
+  font-weight: 650;
+}
+
+.ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: inherit !important;
+}
+
+@media (max-width: 700px) {
+  body {
+    background: #f4f7fb;
+  }
+
+  .ant-card {
+    border-radius: 16px;
+  }
+}

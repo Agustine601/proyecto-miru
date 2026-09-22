@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Affix } from 'antd';
 
 import 'antd/dist/antd.css';
 
@@ -29,15 +28,14 @@ import Communications from '../Items/Communications.jsx';
    ========================================= */
 
 const Wrapper = styled.div`
-  width: calc(100vw - 270px);
+  flex: 1 1 auto;
+  width: auto;
   min-width: 0;
-
+  max-width: none;
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
-  align-items: center;
-
+  align-items: stretch;
   overflow-x: hidden;
 
   @media (max-width: 700px) {
@@ -55,24 +53,17 @@ const Wrapper = styled.div`
 
 const TopBar = styled.div`
   display: flex;
-
   width: 100%;
   max-width: 100%;
-
   min-width: 0;
-
   align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
-  padding: 10px 16px;
-
-  background: #f5f6fb;
-
-  border-bottom: 1px solid #e3e8e1;
-
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  justify-content: flex-start;
+  gap: 14px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(35, 69, 43, 0.08);
+  box-shadow: 0 4px 18px rgba(35, 69, 43, 0.05);
+  backdrop-filter: blur(12px);
 
   @media (max-width: 700px) {
     flex-direction: column;
@@ -177,12 +168,10 @@ const ItemsContainer = () => {
 
   return (
     <Wrapper>
-      <Affix offsetTop={0}>
-        <TopBar>
-          <AddItem />
-          <SearchBar />
-        </TopBar>
-      </Affix>
+      <TopBar>
+        <AddItem />
+        <SearchBar />
+      </TopBar>
 
       <Content>
         <ScreenErrorBoundary key={display}>
