@@ -11,6 +11,7 @@ import { itemsApi } from '../services/items';
 import { movementsApi } from '../services/movements';
 import { workOrdersApi } from '../services/workOrders';
 import { warehouseApi } from '../services/warehouse';
+import { communicationsApi } from '../services/communications';
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export const store = configureStore({
     [movementsApi.reducerPath]: movementsApi.reducer,
     [workOrdersApi.reducerPath]: workOrdersApi.reducer,
     [warehouseApi.reducerPath]: warehouseApi.reducer,
+    [communicationsApi.reducerPath]: communicationsApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -30,7 +32,8 @@ export const store = configureStore({
       .concat(itemsApi.middleware)
       .concat(movementsApi.middleware)
       .concat(workOrdersApi.middleware)
-      .concat(warehouseApi.middleware),
+      .concat(warehouseApi.middleware)
+      .concat(communicationsApi.middleware),
 });
 
 setupListeners(store.dispatch);

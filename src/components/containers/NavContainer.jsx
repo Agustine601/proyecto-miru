@@ -23,6 +23,7 @@ import {
   FileTextOutlined,
   ApartmentOutlined,
   MenuOutlined,
+  MessageOutlined,
 } from '@ant-design/icons';
 
 import styled from 'styled-components';
@@ -34,6 +35,7 @@ import {
   useGetConsumablesQuery,
   useGetReagentsQuery,
 } from '../../services/items';
+import { useGetCommunicationsQuery } from '../../services/communications';
 
 /* =========================================
    DESKTOP
@@ -310,6 +312,13 @@ const NavContainer = () => {
   const { data: reagents = [] } =
     useGetReagentsQuery();
 
+  const { data: communications = [] } =
+    useGetCommunicationsQuery(undefined, { pollingInterval: 10000 });
+
+  const communicationUnread = communications.filter(
+    (item) => item?.recipientArea && !item?.read
+  ).length;
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 700);
@@ -413,6 +422,15 @@ const NavContainer = () => {
       label: 'Movimientos',
     },
     {
+      key: 'communications',
+      icon: (
+        <Badge count={communicationUnread} size="small">
+          <MessageOutlined />
+        </Badge>
+      ),
+      label: 'Comunicaciones',
+    },
+    {
       key: 'traceability',
       icon: <DatabaseOutlined />,
       label: 'Trazabilidad',
@@ -461,6 +479,7 @@ const NavContainer = () => {
       'warehouse-map',
       'bayer-catalog',
       'movements',
+      'communications',
       'traceability',
       'alerts',
       'configuracion',

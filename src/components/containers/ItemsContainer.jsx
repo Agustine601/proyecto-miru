@@ -22,6 +22,7 @@ import ScannerPage from '../Items/ScannerPage.jsx';
 import WorkSheet from '../Items/WorkSheet.jsx';
 import BayerCatalog from '../Items/BayerCatalog.jsx';
 import WarehouseMap from '../Warehouse/WarehouseMap.jsx';
+import Communications from '../Items/Communications.jsx';
 
 /* =========================================
    WRAPPER PRINCIPAL
@@ -239,6 +240,10 @@ const ItemsContainer = () => {
 
         {display === 'configuracion' && (
           <Settings />
+        )}
+
+        {display === 'communications' && (
+          <Communications />
         )}
         </ScreenErrorBoundary>
       </Content>

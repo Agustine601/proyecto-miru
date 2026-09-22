@@ -10,6 +10,7 @@ const itemsRouter = require('./routes/items');
 const movementsRouter = require('./routes/movements');
 const workOrdersRouter = require('./routes/workOrders');
 const warehouseMapRouter = require('./routes/warehouseMap');
+const communicationsRouter = require('./routes/communications');
 
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
@@ -98,6 +99,9 @@ app.use('/work-orders', workOrdersRouter);
 
 // Mapa de ubicaciones del galpón
 app.use('/warehouse-map', warehouseMapRouter);
+
+// Comunicaciones internas
+app.use('/communications', communicationsRouter);
 
 app.post(
   '/signup',

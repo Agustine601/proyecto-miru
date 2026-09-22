@@ -2,23 +2,76 @@ const express = require('express');
 const WarehouseMap = require('../models/warehouseMapModel');
 const router = express.Router();
 
-router.get('/', async (req,res,next)=>{
-  try {
-    const map = await WarehouseMap.findOne({ key:'main' }).lean();
-    res.json(map || { key:'main', occupied:{} });
-  } catch (error) { next({ code:500, error }); }
+const normalizeSection = (section) => ({
+  occupied:
+    section?.occupied && typeof section.occupied === 'object'
+      ? section.occupied
+      : {},
+  blocked:
+    Array.isArray(section?.blocked)
+      ? [...new Set(section.blocked.map(String))]
+      : [],
 });
 
-router.put('/', async (req,res,next)=>{
+router.get('/', async (req, res, next) => {
   try {
-    const occupied = req.body?.occupied && typeof req.body.occupied === 'object' ? req.body.occupied : {};
+    const map = await WarehouseMap.findOne({ key: 'main' }).lean();
+
+    if (!map) {
+      return res.json({
+        key: 'main',
+        agroquimicos: { occupied: {}, blocked: [] },
+        semillas: { occupied: {}, blocked: [] },
+        occupied: {},
+      });
+    }
+
+    const agroquimicos = normalizeSection(
+      map.agroquimicos && typeof map.agroquimicos === 'object'
+        ? map.agroquimicos
+        : { occupied: map.occupied || {} }
+    );
+    const semillas = normalizeSection(map.semillas);
+
+    return res.json({ ...map, agroquimicos, semillas });
+  } catch (error) {
+    next({ code: 500, error });
+  }
+});
+
+router.put('/', async (req, res, next) => {
+  try {
+    const hasSections =
+      req.body?.agroquimicos || req.body?.semillas;
+
+    const agroquimicos = normalizeSection(
+      hasSections
+        ? req.body.agroquimicos
+        : { occupied: req.body?.occupied || {} }
+    );
+    const semillas = normalizeSection(req.body?.semillas);
+
     const map = await WarehouseMap.findOneAndUpdate(
-      { key:'main' },
-      { $set:{ occupied }, $setOnInsert:{ key:'main' } },
-      { new:true, upsert:true, setDefaultsOnInsert:true }
+      { key: 'main' },
+      {
+        $set: {
+          agroquimicos,
+          semillas,
+          occupied: agroquimicos.occupied,
+        },
+        $setOnInsert: { key: 'main' },
+      },
+      { new: true, upsert: true, setDefaultsOnInsert: true }
     ).lean();
-    res.json(map);
-  } catch (error) { next({ code:500, error }); }
+
+    return res.json({
+      ...map,
+      agroquimicos: normalizeSection(map.agroquimicos),
+      semillas: normalizeSection(map.semillas),
+    });
+  } catch (error) {
+    next({ code: 500, error });
+  }
 });
 
 module.exports = router;

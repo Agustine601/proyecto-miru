@@ -1,0 +1,6664 @@
+[
+  {
+    "nombre": "2.4D ENLIST x 20 Lts - (5630)",
+    "codigoInterno": "5630",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "26F6128D41",
+        "cantidad": 1200,
+        "vencimiento": "29/06/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "26A6128C86",
+        "cantidad": 260,
+        "vencimiento": "26/01/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1460,
+    "vencimiento": "26/01/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "2.4D ME JASPEK 30% X 20 Lt - (5225)",
+    "codigoInterno": "5225",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "AF-40089",
+        "cantidad": 20,
+        "vencimiento": "02/11/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "02/11/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "2.4D ME WEIZEN NT 30% X 20 Lt - (5220)",
+    "codigoInterno": "5220",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "PHA6H00168 CYO",
+        "cantidad": 3820,
+        "vencimiento": "24/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "PHA6H00167 CYO",
+        "cantidad": 7700,
+        "vencimiento": "21/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "PHA6F00105 CYO",
+        "cantidad": 400,
+        "vencimiento": "11/06/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "PHA6I00188 CYO",
+        "cantidad": 960,
+        "vencimiento": "07/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "PHA6H00141 CYO",
+        "cantidad": 20,
+        "vencimiento": "06/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "PHA6H00143 CYO",
+        "cantidad": 2420,
+        "vencimiento": "06/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "PHA6H00144 CYO",
+        "cantidad": 1180,
+        "vencimiento": "06/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "PHA6I00186 CYO",
+        "cantidad": 1920,
+        "vencimiento": "04/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "PHA6I00185 CYO",
+        "cantidad": 8640,
+        "vencimiento": "03/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 27060,
+    "vencimiento": "03/09/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "ACETOCLOR 90% HARNESS X 20 Lt - (5030)",
+    "codigoInterno": "5030",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Z24HA10004",
+        "cantidad": 900,
+        "vencimiento": "30/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z24NH11007",
+        "cantidad": 140,
+        "vencimiento": "30/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1040,
+    "vencimiento": "30/11/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "ADENGO x Lt. - (5002)",
+    "codigoInterno": "5002",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "LA47002154",
+        "cantidad": 100,
+        "vencimiento": "30/06/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002145",
+        "cantidad": 115,
+        "vencimiento": "26/06/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002139",
+        "cantidad": 520,
+        "vencimiento": "24/06/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002090",
+        "cantidad": 155,
+        "vencimiento": "22/04/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002137",
+        "cantidad": 120,
+        "vencimiento": "21/06/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002136",
+        "cantidad": 90,
+        "vencimiento": "19/06/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002025 C",
+        "cantidad": 40,
+        "vencimiento": "17/11/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002025cp",
+        "cantidad": 100,
+        "vencimiento": "17/11/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002177",
+        "cantidad": 360,
+        "vencimiento": "16/07/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002086",
+        "cantidad": 1600,
+        "vencimiento": "16/04/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002105",
+        "cantidad": 865,
+        "vencimiento": "12/06/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002073",
+        "cantidad": 1100,
+        "vencimiento": "12/03/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002157",
+        "cantidad": 550,
+        "vencimiento": "05/07/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002156",
+        "cantidad": 90,
+        "vencimiento": "03/07/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5805,
+    "vencimiento": "03/07/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "ATRAZINA 50% TRAC X 20 Lt - (5109)",
+    "codigoInterno": "5109",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 100,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 100,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "ATRAZINA 90% AGROTERRUM X 10 Kg - (5673)",
+    "codigoInterno": "5673",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "26RFA2509 CYO",
+        "cantidad": 14670,
+        "vencimiento": "27/04/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 14670,
+    "vencimiento": "27/04/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "ATRAZINA 90% TRAC X 10 Kg - (5102)",
+    "codigoInterno": "5102",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "26BL04025",
+        "cantidad": 9120,
+        "vencimiento": "30/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 9120,
+    "vencimiento": "30/04/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "BRODAL X 5 LT - (5085)",
+    "codigoInterno": "5085",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "LA47001216",
+        "cantidad": 5,
+        "vencimiento": "30/06/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47001950",
+        "cantidad": 280,
+        "vencimiento": "09/10/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47001950C",
+        "cantidad": 20,
+        "vencimiento": "09/10/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47001828",
+        "cantidad": 45,
+        "vencimiento": "08/07/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47001827",
+        "cantidad": 35,
+        "vencimiento": "04/07/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47001827cp",
+        "cantidad": 45,
+        "vencimiento": "04/07/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 430,
+    "vencimiento": "04/07/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "CARFENTRAZONE 40% SHARK X Lt. - (5012)",
+    "codigoInterno": "5012",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "2003-25-530",
+        "cantidad": 1,
+        "vencimiento": "31/03/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "2316-23-876",
+        "cantidad": 24,
+        "vencimiento": "30/09/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 25,
+    "vencimiento": "30/09/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "CLETODIM 24% LATIUM X 5 Lt - (5036)",
+    "codigoInterno": "5036",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 5,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "CLETODIM 24% LUXOR  X 20 Lt - (5101)",
+    "codigoInterno": "5101",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "20260418",
+        "cantidad": 10240,
+        "vencimiento": "18/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 10240,
+    "vencimiento": "18/04/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "CLETODIM 24% RAINBOW/AGROTERRUM X 20 Lt - (5087)",
+    "codigoInterno": "5087",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "RAA5009CL",
+        "cantidad": 20,
+        "vencimiento": "16/09/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "26RFA1758 CYO",
+        "cantidad": 29200,
+        "vencimiento": "02/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 29220,
+    "vencimiento": "02/04/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "CLETODIM 36% CLEVERDIM X 10 Lt - (5089)",
+    "codigoInterno": "5089",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 10,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 10,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "CLETODIM 36% LATIUM SUPER X 10 Lt - (5114)",
+    "codigoInterno": "5114",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "LA47002192",
+        "cantidad": 350,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "25RFA3401",
+        "cantidad": 390,
+        "vencimiento": "27/07/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002260",
+        "cantidad": 480,
+        "vencimiento": "26/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002190",
+        "cantidad": 840,
+        "vencimiento": "24/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "26RFA0768",
+        "cantidad": 500,
+        "vencimiento": "21/02/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47001908",
+        "cantidad": 190,
+        "vencimiento": "20/09/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002185",
+        "cantidad": 490,
+        "vencimiento": "15/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "25RFA5496",
+        "cantidad": 20,
+        "vencimiento": "11/10/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "25RFA7173",
+        "cantidad": 1010,
+        "vencimiento": "11/01/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "25RFA5960",
+        "cantidad": 600,
+        "vencimiento": "09/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002198",
+        "cantidad": 280,
+        "vencimiento": "08/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA47002196",
+        "cantidad": 1620,
+        "vencimiento": "06/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "25RFA7104",
+        "cantidad": 4210,
+        "vencimiento": "02/01/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 10980,
+    "vencimiento": "02/01/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "CLORIMURON 75% SIGMA x KG 100 Gr - (5675)",
+    "codigoInterno": "5675",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "20250520",
+        "cantidad": 114.6,
+        "vencimiento": "20/05/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "20230512",
+        "cantidad": 7.4,
+        "vencimiento": "12/05/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 122,
+    "vencimiento": "12/05/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "CONVEY X 1Lt. - (5079)",
+    "codigoInterno": "5079",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "2308006",
+        "cantidad": 10,
+        "vencimiento": "01/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 10,
+    "vencimiento": "01/08/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "DICAMBA 48% GALOPE X 5 Lt - (5015)",
+    "codigoInterno": "5015",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "050825",
+        "cantidad": 130,
+        "vencimiento": "30/06/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 130,
+    "vencimiento": "30/06/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "DICLOSULAM 84% AGROTERRUM X 500 Gr - (5677)",
+    "codigoInterno": "5677",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "25RFA3387",
+        "cantidad": 41,
+        "vencimiento": "30/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "26RFA0854 CYO",
+        "cantidad": 288.5,
+        "vencimiento": "21/02/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 329.5,
+    "vencimiento": "21/02/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "DICLOSULAM 84% PRECORE X 500 Gr - (5660)",
+    "codigoInterno": "5660",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "RA23RFS1849",
+        "cantidad": 0.5,
+        "vencimiento": "15/06/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 0.5,
+    "vencimiento": "15/06/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "DICLOSULAM 84% RIDOF WG X 200 Gr - (5111)",
+    "codigoInterno": "5111",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "2024062402",
+        "cantidad": 5.8,
+        "vencimiento": "24/06/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "20240415",
+        "cantidad": 5.8,
+        "vencimiento": "14/04/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 11.6,
+    "vencimiento": "14/04/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "DIFLUFENICAN 50% TUKEN X 500 Gr - (5084)",
+    "codigoInterno": "5084",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "AF30002",
+        "cantidad": 5,
+        "vencimiento": "01/06/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5,
+    "vencimiento": "01/06/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FINESSE WG X 150 Gr - (5657)",
+    "codigoInterno": "5657",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "DEC.22CRO14",
+        "cantidad": 35.1,
+        "vencimiento": "31/03/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 35.1,
+    "vencimiento": "31/03/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FLUMETSULAM PRESIDE X 5 Lt. - (5054)",
+    "codigoInterno": "5054",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "C064N9LSLA",
+        "cantidad": 5,
+        "vencimiento": "20/09/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5,
+    "vencimiento": "20/09/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FLUMIOXAZIN 48% AGROTERRUM X 5 Lt.  - (5661)",
+    "codigoInterno": "5661",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "AGT4004FL",
+        "cantidad": 20,
+        "vencimiento": "31/05/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AGT5004FL",
+        "cantidad": 100,
+        "vencimiento": "12/08/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AGT5005FL",
+        "cantidad": 425,
+        "vencimiento": "12/08/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AGT5005FLcyop",
+        "cantidad": 295,
+        "vencimiento": "12/08/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "25RFA4087 CYO",
+        "cantidad": 2800,
+        "vencimiento": "03/08/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 3640,
+    "vencimiento": "03/08/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FLUMIOXAZIN 48% ESPUELA X 5 Lt. - (5092)",
+    "codigoInterno": "5092",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "SIN-60020",
+        "cantidad": 1100,
+        "vencimiento": "13/06/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1100,
+    "vencimiento": "13/06/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FLUMIOXAZIN 48% INSUAGRO (agroxazin) - (5096)",
+    "codigoInterno": "5096",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "110061",
+        "cantidad": 180,
+        "vencimiento": "01/08/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 180,
+    "vencimiento": "01/08/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FLUROCLORIDONA RAINBOW EC X 20 Lt - (5021)",
+    "codigoInterno": "5021",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "L16-25",
+        "cantidad": 800,
+        "vencimiento": "27/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 800,
+    "vencimiento": "27/04/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FLUROXIPIR 48 % DELTA X 5 Lt - (5693)",
+    "codigoInterno": "5693",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "BLFL241125",
+        "cantidad": 90,
+        "vencimiento": "30/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 90,
+    "vencimiento": "30/11/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FLUROXIPIR 48% AGROTERRUM X 5 Lt - (5664)",
+    "codigoInterno": "5664",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "A6T4002FL",
+        "cantidad": 5,
+        "vencimiento": "31/05/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "26RFA0865 CYO",
+        "cantidad": 720,
+        "vencimiento": "21/02/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 725,
+    "vencimiento": "21/02/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FOMESAFEN - ALEF  x 5 Lts - (5022)",
+    "codigoInterno": "5022",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "17088028",
+        "cantidad": 20,
+        "vencimiento": "30/09/2019",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "30/09/2019",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FOMESAFEN ADOC X 10Lt - (5222)",
+    "codigoInterno": "5222",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "ASN-30007",
+        "cantidad": 30,
+        "vencimiento": "30/09/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 30,
+    "vencimiento": "30/09/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "FOMESAFEN AGROTERRUM X 20 Lt - (5695)",
+    "codigoInterno": "5695",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "04-23",
+        "cantidad": 100,
+        "vencimiento": "30/11/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 100,
+    "vencimiento": "30/11/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "GLIFOSATO ROUND UP CONTROLMAX X 15 Kg - (5075)",
+    "codigoInterno": "5075",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Z26NG06001",
+        "cantidad": 15360,
+        "vencimiento": "30/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG05037",
+        "cantidad": 1500,
+        "vencimiento": "25/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG05039",
+        "cantidad": 585,
+        "vencimiento": "25/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG05040",
+        "cantidad": 960,
+        "vencimiento": "25/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG05042",
+        "cantidad": 4005,
+        "vencimiento": "25/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG05044",
+        "cantidad": 15,
+        "vencimiento": "25/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG04088",
+        "cantidad": 885,
+        "vencimiento": "23/04/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG04091",
+        "cantidad": 10560,
+        "vencimiento": "23/04/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG05001",
+        "cantidad": 345,
+        "vencimiento": "23/04/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG05004",
+        "cantidad": 15,
+        "vencimiento": "23/04/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG02096",
+        "cantidad": 10005,
+        "vencimiento": "17/02/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG03089",
+        "cantidad": 1440,
+        "vencimiento": "16/03/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG03083",
+        "cantidad": 4800,
+        "vencimiento": "15/03/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG04068",
+        "cantidad": 4800,
+        "vencimiento": "13/04/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG03065",
+        "cantidad": 4800,
+        "vencimiento": "13/03/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG03063",
+        "cantidad": 6720,
+        "vencimiento": "12/03/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG07001",
+        "cantidad": 4800,
+        "vencimiento": "06/07/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG04036",
+        "cantidad": 960,
+        "vencimiento": "06/04/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG04038",
+        "cantidad": 3720,
+        "vencimiento": "06/04/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26NG03021",
+        "cantidad": 3840,
+        "vencimiento": "02/03/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 80115,
+    "vencimiento": "02/03/2031",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "GLIFOSATO ROUND UP FG X 15 Kg - (5105)",
+    "codigoInterno": "5105",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Z25ND03018",
+        "cantidad": 4005,
+        "vencimiento": "03/03/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 4005,
+    "vencimiento": "03/03/2030",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "GLIFOSATO ROUND UP FULL II X 20 Lt - (5024)",
+    "codigoInterno": "5024",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 700,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 700,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "GLIFOSATO ROUND UP TOP x 20 Lt - (5632)",
+    "codigoInterno": "5632",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Z26TP07011",
+        "cantidad": 600,
+        "vencimiento": "30/07/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP06009",
+        "cantidad": 2880,
+        "vencimiento": "28/06/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP05012",
+        "cantidad": 40,
+        "vencimiento": "26/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP05014",
+        "cantidad": 3720,
+        "vencimiento": "26/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP06007",
+        "cantidad": 3840,
+        "vencimiento": "26/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP05008",
+        "cantidad": 8420,
+        "vencimiento": "25/06/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP05011",
+        "cantidad": 16580,
+        "vencimiento": "25/05/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP04007",
+        "cantidad": 10000,
+        "vencimiento": "18/04/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP08001",
+        "cantidad": 2000,
+        "vencimiento": "03/08/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP07012",
+        "cantidad": 360,
+        "vencimiento": "02/08/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP07013",
+        "cantidad": 6720,
+        "vencimiento": "02/08/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Z26TP07014",
+        "cantidad": 7920,
+        "vencimiento": "01/08/2031",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 63080,
+    "vencimiento": "01/08/2031",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "GLUFOSINATO 20% AGROTERRUM X 20 Lt - (5691)",
+    "codigoInterno": "5691",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "26RFA0867 CYO",
+        "cantidad": 560,
+        "vencimiento": "24/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "26RFA2295 CYO",
+        "cantidad": 400,
+        "vencimiento": "24/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AGT4005GL",
+        "cantidad": 40,
+        "vencimiento": "11/11/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1000,
+    "vencimiento": "11/11/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "GLUFOSINATO 20% INVICTUS X 20 Lt - (5637)",
+    "codigoInterno": "5637",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "24RFA2978",
+        "cantidad": 20,
+        "vencimiento": "01/06/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "01/06/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "HALOXIFOP 54% AGROTERRUM X 5 Lt - (5687)",
+    "codigoInterno": "5687",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "AGT4002HA",
+        "cantidad": 30,
+        "vencimiento": "30/09/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AGT4003HA",
+        "cantidad": 125,
+        "vencimiento": "30/09/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 155,
+    "vencimiento": "30/09/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "HALOXIFOP 54% DELTA X 5 Lt - (5668)",
+    "codigoInterno": "5668",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "050140",
+        "cantidad": 80,
+        "vencimiento": "30/11/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 80,
+    "vencimiento": "30/11/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "HALOXIFOP 54% RAPID - (5029)",
+    "codigoInterno": "5029",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "ARARJ4F26A",
+        "cantidad": 65,
+        "vencimiento": "25/06/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 65,
+    "vencimiento": "25/06/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "HEAT (Saclufenacil) x 350 GR - (5031)",
+    "codigoInterno": "5031",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "1292501450",
+        "cantidad": 12.25,
+        "vencimiento": "31/07/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 12.25,
+    "vencimiento": "31/07/2030",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "HUSSAR OD PLUS PACK - (5094)",
+    "codigoInterno": "5094",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40008426",
+        "cantidad": 3,
+        "vencimiento": "06/02/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 3,
+    "vencimiento": "06/02/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "IMAZAPYR 48% x 5 LT - (5099)",
+    "codigoInterno": "5099",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "0000005966",
+        "cantidad": 150,
+        "vencimiento": "31/03/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 150,
+    "vencimiento": "31/03/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "IMAZETAPIR 10.6% INITIOS X 20 Lt - (5104)",
+    "codigoInterno": "5104",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "CHE-50021",
+        "cantidad": 300,
+        "vencimiento": "29/10/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "CHE-50020",
+        "cantidad": 1920,
+        "vencimiento": "18/10/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "CHE-50011",
+        "cantidad": 440,
+        "vencimiento": "13/10/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 2660,
+    "vencimiento": "13/10/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "LAUDIS - (5097)",
+    "codigoInterno": "5097",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "LA47002000",
+        "cantidad": 20,
+        "vencimiento": "24/10/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "24/10/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "LIGATE X Kg. - (5038)",
+    "codigoInterno": "5038",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "25H5587045",
+        "cantidad": 100,
+        "vencimiento": "29/06/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 100,
+    "vencimiento": "29/06/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "MAYORAL X 5 Lt.  - (5667)",
+    "codigoInterno": "5667",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "AA25071048",
+        "cantidad": 20,
+        "vencimiento": "01/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "01/07/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "MCPA SUMITOMO x 20 Lt. - (5679)",
+    "codigoInterno": "5679",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "MC130626-OAF",
+        "cantidad": 80,
+        "vencimiento": "13/06/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "MC120523-OGL",
+        "cantidad": 220,
+        "vencimiento": "12/05/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 300,
+    "vencimiento": "12/05/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "METRIBUZIN - ROMETRI 48 - (5042)",
+    "codigoInterno": "5042",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 1,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "METSULFURON 60 % AGROTERRUM X 100 Gr (supermarket) - (5231)",
+    "codigoInterno": "5231",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "26RFA2289 CYO",
+        "cantidad": 50,
+        "vencimiento": "25/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 50,
+    "vencimiento": "25/04/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "METSULFURON x KG INSUAGRO  - (5043)",
+    "codigoInterno": "5043",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "20210120",
+        "cantidad": 5.95,
+        "vencimiento": "30/01/2023",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5.95,
+    "vencimiento": "30/01/2023",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "ONDUTY 70 DG x  570 GRS - (5652)",
+    "codigoInterno": "5652",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "004-23-01500",
+        "cantidad": 1.14,
+        "vencimiento": "01/04/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1.14,
+    "vencimiento": "01/04/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PACTO por Kg  Sobre x 360 gr - (5048)",
+    "codigoInterno": "5048",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "L209N9U006",
+        "cantidad": 4.32,
+        "vencimiento": "30/09/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 4.32,
+    "vencimiento": "30/09/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PARAQUAT AGROTERRUM X 20 Lt - (5049)",
+    "codigoInterno": "5049",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "25RAA0887",
+        "cantidad": 1160,
+        "vencimiento": "31/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "26RAA0346 CYO",
+        "cantidad": 20700,
+        "vencimiento": "27/04/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "25RAA1236",
+        "cantidad": 8360,
+        "vencimiento": "09/01/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "25RAA1333 CYO",
+        "cantidad": 37900,
+        "vencimiento": "05/02/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 68120,
+    "vencimiento": "05/02/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PARAQUAT DELTA AGRO X 20 Lt - (5666)",
+    "codigoInterno": "5666",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "BLPQ06-25BR",
+        "cantidad": 20,
+        "vencimiento": "01/04/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "01/04/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PERCUTOR x 1.8 Kg - (5674)",
+    "codigoInterno": "5674",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "EFKK006229",
+        "cantidad": 75.6,
+        "vencimiento": "28/02/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "EFKK006251 C",
+        "cantidad": 57.6,
+        "vencimiento": "28/02/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "EFKK006251cpe",
+        "cantidad": 27,
+        "vencimiento": "28/02/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "EFKK006250 C",
+        "cantidad": 100.8,
+        "vencimiento": "04/02/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 261,
+    "vencimiento": "04/02/2030",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PICLORAN 24% AGROTERRUM X 10Lt - (5662)",
+    "codigoInterno": "5662",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "12-23R",
+        "cantidad": 890,
+        "vencimiento": "28/01/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 890,
+    "vencimiento": "28/01/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PROMETRINA  50% POPTRYN  X 20 Lt - (5232)",
+    "codigoInterno": "5232",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "26RFA3047 CYO",
+        "cantidad": 1600,
+        "vencimiento": "24/05/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1600,
+    "vencimiento": "24/05/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PROMETRINA  50% SIPCAPRIN MAX X 20 Lt  - (5056)",
+    "codigoInterno": "5056",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "SMS110526-1 CYO",
+        "cantidad": 320,
+        "vencimiento": "11/05/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "SMS090526-1 CYO",
+        "cantidad": 320,
+        "vencimiento": "09/05/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 640,
+    "vencimiento": "09/05/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PYROXASULFONE 48% YAMATO TOP X 5 Lt - (5227)",
+    "codigoInterno": "5227",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "200323",
+        "cantidad": 20,
+        "vencimiento": "01/03/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "01/03/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PYROXASULFONE 85% AGROTERRUM X  Kg - (5686)",
+    "codigoInterno": "5686",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "25RKS0095",
+        "cantidad": 1,
+        "vencimiento": "26/04/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1,
+    "vencimiento": "26/04/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "PYROXASULFONE 85% SPRUCE X 2.5 Kg - (5688)",
+    "codigoInterno": "5688",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "FW3SPC8502",
+        "cantidad": 15,
+        "vencimiento": "02/06/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 15,
+    "vencimiento": "02/06/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "SMETOLACLORO 96% AGROTERRUM X 20 Lt - (5676)",
+    "codigoInterno": "5676",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "AGT0523SM",
+        "cantidad": 360,
+        "vencimiento": "30/10/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AGT4011SM",
+        "cantidad": 40,
+        "vencimiento": "28/10/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 400,
+    "vencimiento": "28/10/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "SMETOLACLORO 96% SYMPHONY  X 20 Lt - (5107)",
+    "codigoInterno": "5107",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "26051522",
+        "cantidad": 3760,
+        "vencimiento": "22/05/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "GL500008",
+        "cantidad": 2020,
+        "vencimiento": "21/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "S-M24051521",
+        "cantidad": 20,
+        "vencimiento": "01/05/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5800,
+    "vencimiento": "01/05/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "SMETOLACLORO 96% UPL STRIM X 20 Lt - (5690)",
+    "codigoInterno": "5690",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "2052511084",
+        "cantidad": 3780,
+        "vencimiento": "05/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 3780,
+    "vencimiento": "05/11/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "STAGGER x 1Lt. - (5641)",
+    "codigoInterno": "5641",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "030124",
+        "cantidad": 15,
+        "vencimiento": "01/01/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 15,
+    "vencimiento": "01/01/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "SULFENTRAZONE 50% CAPAZ X 10 Lt - (5011)",
+    "codigoInterno": "5011",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "4001-25-5600",
+        "cantidad": 1400,
+        "vencimiento": "15/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1400,
+    "vencimiento": "15/04/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "SULFENTRAZONE 50% CAPAZ X 20 Lt - (5699)",
+    "codigoInterno": "5699",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "4019-265600",
+        "cantidad": 720,
+        "vencimiento": "01/03/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "4020-265600",
+        "cantidad": 280,
+        "vencimiento": "01/03/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1000,
+    "vencimiento": "01/03/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "SULFENTRAZONE 50% DELTA AGRO X 5 Lt - (5665)",
+    "codigoInterno": "5665",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "BLSZ081024-2",
+        "cantidad": 55,
+        "vencimiento": "31/10/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "BLSZ160726-1",
+        "cantidad": 800,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "BLSZ160726-2",
+        "cantidad": 800,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "BLSZ160726-3",
+        "cantidad": 800,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 2455,
+    "vencimiento": "31/07/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "SULFENTRAZONE 50% SHUTDOWN X 5 Lt - (5682)",
+    "codigoInterno": "5682",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "SUL005-25",
+        "cantidad": 135,
+        "vencimiento": "25/07/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 135,
+    "vencimiento": "25/07/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "SULFENTRAZONE 50% SURRENA X 20 Lt - (5663)",
+    "codigoInterno": "5663",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "30-23",
+        "cantidad": 40,
+        "vencimiento": "30/12/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 40,
+    "vencimiento": "30/12/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "TEKOVE X 5Lt - (5651)",
+    "codigoInterno": "5651",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "2023072081",
+        "cantidad": 15,
+        "vencimiento": "30/06/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 15,
+    "vencimiento": "30/06/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "TERBYNE 50%  X 20 Lt - (5647)",
+    "codigoInterno": "5647",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "TBS060526-2 CyO",
+        "cantidad": 960,
+        "vencimiento": "06/05/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "TBS050526-1",
+        "cantidad": 180,
+        "vencimiento": "05/05/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "TBS050526-1 CyO",
+        "cantidad": 500,
+        "vencimiento": "05/05/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1640,
+    "vencimiento": "05/05/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "TERBYNE 75%  X 10 Kg - (5095)",
+    "codigoInterno": "5095",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "DE06PR",
+        "cantidad": 150,
+        "vencimiento": "20/05/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 150,
+    "vencimiento": "20/05/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "TERBYNE X-TREM  - (5670)",
+    "codigoInterno": "5670",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "TXR131224 CyO",
+        "cantidad": 200,
+        "vencimiento": "14/04/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 200,
+    "vencimiento": "14/04/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "TRINEXAPAC 25% MODDUS X 5 Lt - (5681)",
+    "codigoInterno": "5681",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "01. HERBICIDAS",
+    "lotes": [
+      {
+        "numero": "CHE4E20023",
+        "cantidad": 15,
+        "vencimiento": "03/05/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 15,
+    "vencimiento": "03/05/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 01. HERBICIDAS"
+  },
+  {
+    "nombre": "ABAMECTINA 1.8 % DELTA X 5 LT  - (6077)",
+    "codigoInterno": "6077",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "030125",
+        "cantidad": 25,
+        "vencimiento": "01/01/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 25,
+    "vencimiento": "01/01/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "ABAMECTINA 1.8% FEROX X 5 Lt - (6063)",
+    "codigoInterno": "6063",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "070125",
+        "cantidad": 10,
+        "vencimiento": "30/01/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 10,
+    "vencimiento": "30/01/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "ABAMECTINA 3.6% ATANOR X 5 LT - (6081)",
+    "codigoInterno": "6081",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "SIN-50006",
+        "cantidad": 955,
+        "vencimiento": "31/10/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 955,
+    "vencimiento": "31/10/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "ABAMECTINA 3.6% DELTA X 5 LT  - (6074)",
+    "codigoInterno": "6074",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "AQARX5I11A",
+        "cantidad": 670,
+        "vencimiento": "30/09/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 670,
+    "vencimiento": "30/09/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "ALSYSTIN x 1 lt (caja x 12 bid) - (6005)",
+    "codigoInterno": "6005",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40006358",
+        "cantidad": 98,
+        "vencimiento": "30/09/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 98,
+    "vencimiento": "30/09/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "BALUARTE X  1Lt. - (6067)",
+    "codigoInterno": "6067",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "30001",
+        "cantidad": 8,
+        "vencimiento": "28/12/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 8,
+    "vencimiento": "28/12/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "BELT SC 480 x 1 Lt - (6006)",
+    "codigoInterno": "6006",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40007908",
+        "cantidad": 218,
+        "vencimiento": "14/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40008061",
+        "cantidad": 23,
+        "vencimiento": "12/11/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40008061 C",
+        "cantidad": 285,
+        "vencimiento": "12/11/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40007845",
+        "cantidad": 29,
+        "vencimiento": "04/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40007845cp",
+        "cantidad": 79,
+        "vencimiento": "04/08/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40007897",
+        "cantidad": 78,
+        "vencimiento": "02/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 712,
+    "vencimiento": "02/09/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "BIFENTRIN 10% ATANOR X 5 Lt - (6057)",
+    "codigoInterno": "6057",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "BIF038-25",
+        "cantidad": 900,
+        "vencimiento": "03/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "BIF037-25",
+        "cantidad": 250,
+        "vencimiento": "01/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1150,
+    "vencimiento": "01/11/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "BIFENTRIN 40% AGROTERRUM X 1 Lt - (6073)",
+    "codigoInterno": "6073",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "03-2024",
+        "cantidad": 35,
+        "vencimiento": "09/02/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 35,
+    "vencimiento": "09/02/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "CLARTEX XTRA X 20 Kg - (6050)",
+    "codigoInterno": "6050",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "293622 CYO",
+        "cantidad": 5640,
+        "vencimiento": "31/05/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5640,
+    "vencimiento": "31/05/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "EXALT x 1 lt - (6046)",
+    "codigoInterno": "6046",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "C064O28SLR",
+        "cantidad": 36,
+        "vencimiento": "07/02/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 36,
+    "vencimiento": "07/02/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "FENDONA X 1 LT - (6023)",
+    "codigoInterno": "6023",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "23-15600",
+        "cantidad": 2,
+        "vencimiento": "01/11/2024",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 2,
+    "vencimiento": "01/11/2024",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "FENDONA X 250 CC - (6072)",
+    "codigoInterno": "6072",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "001-23-15600",
+        "cantidad": 4.5,
+        "vencimiento": "31/01/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 4.5,
+    "vencimiento": "31/01/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "K-OBIOL X 1 LT - (6049)",
+    "codigoInterno": "6049",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "130126-1",
+        "cantidad": 77,
+        "vencimiento": "31/01/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 77,
+    "vencimiento": "31/01/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "LAMBDACIALOTRINA 25% AGROTERRUM X Lt - (6084)",
+    "codigoInterno": "6084",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "25RNA1678",
+        "cantidad": 356,
+        "vencimiento": "03/08/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 356,
+    "vencimiento": "03/08/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "LAMBDACIALOTRINA 25% PULSAR GOLD X 1Lt - (6071)",
+    "codigoInterno": "6071",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "2503",
+        "cantidad": 30,
+        "vencimiento": "21/06/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 30,
+    "vencimiento": "21/06/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "LAMBDACIALOTRINA 5%   Lt. - (6029)",
+    "codigoInterno": "6029",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "INSU04/21",
+        "cantidad": 40,
+        "vencimiento": "01/12/2024",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 40,
+    "vencimiento": "01/12/2024",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "LARVIN 80 WG - (6030)",
+    "codigoInterno": "6030",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 83,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 83,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "NUVAN - (6033)",
+    "codigoInterno": "6033",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "1397",
+        "cantidad": 239,
+        "vencimiento": "01/01/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 239,
+    "vencimiento": "01/01/2030",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "OBERON x 5 Lt - (6080)",
+    "codigoInterno": "6080",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40007922",
+        "cantidad": 75,
+        "vencimiento": "16/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40007921",
+        "cantidad": 75,
+        "vencimiento": "14/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 150,
+    "vencimiento": "14/09/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "OPONENTE X 1Lt - (6069)",
+    "codigoInterno": "6069",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "RA23RNA1545",
+        "cantidad": 2,
+        "vencimiento": "06/12/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 2,
+    "vencimiento": "06/12/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "PIRATE X 5 LT - (6082)",
+    "codigoInterno": "6082",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "3002521000",
+        "cantidad": 20,
+        "vencimiento": "31/10/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "31/10/2030",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "QUINTAL XTRA X 5 LTS. - (6064)",
+    "codigoInterno": "6064",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "25L6128A32",
+        "cantidad": 10,
+        "vencimiento": "14/12/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "24K6128A14",
+        "cantidad": 90,
+        "vencimiento": "05/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 100,
+    "vencimiento": "05/11/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "QUORUM SC X 0.250 Lt. - (6062)",
+    "codigoInterno": "6062",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "70503",
+        "cantidad": 4,
+        "vencimiento": "30/03/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 4,
+    "vencimiento": "30/03/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "RODILON BLOQUE X 1 Kg. - (6079)",
+    "codigoInterno": "6079",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "0244-24-909",
+        "cantidad": 3,
+        "vencimiento": "01/01/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 3,
+    "vencimiento": "01/01/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "SOLOMON X 5 LTS - (6035)",
+    "codigoInterno": "6035",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40008111",
+        "cantidad": 700,
+        "vencimiento": "10/12/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40008109",
+        "cantidad": 35,
+        "vencimiento": "05/12/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 735,
+    "vencimiento": "05/12/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "TIAMETOXAM 14,1% + LAMBDACIALOTRINA 10,6% EXCELSO X 5 Lt - (6066)",
+    "codigoInterno": "6066",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "02. INSECTICIDAS",
+    "lotes": [
+      {
+        "numero": "BGATL6A15A",
+        "cantidad": 320,
+        "vencimiento": "14/01/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "BGATL6A15A CyO",
+        "cantidad": 145,
+        "vencimiento": "14/01/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 465,
+    "vencimiento": "14/01/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 02. INSECTICIDAS"
+  },
+  {
+    "nombre": "AZOXI 20% + CIPRO 8% AGROTERRUM X 5 Lt - (4034)",
+    "codigoInterno": "4034",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "26RNA0728 CYO",
+        "cantidad": 415,
+        "vencimiento": "28/03/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 415,
+    "vencimiento": "28/03/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "AZOXI 20% + CIPRO 8% DELTA X 5 Lt - (4035)",
+    "codigoInterno": "4035",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "210926",
+        "cantidad": 1140,
+        "vencimiento": "30/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1140,
+    "vencimiento": "30/09/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "AZOXI 20% + CIPRO 8% LANFOR PRO x 5 Lt - (4024)",
+    "codigoInterno": "4024",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "SIN-50006",
+        "cantidad": 5,
+        "vencimiento": "22/12/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5,
+    "vencimiento": "22/12/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "AZOXI 40% + CIPRO 16% AVATAR XTRA x 2 Kg - (4029)",
+    "codigoInterno": "4029",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 2,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 2,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "AZOXY PRO X 5 LTS - (4023)",
+    "codigoInterno": "4023",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 5,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "CRIPTON - (4018)",
+    "codigoInterno": "4018",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40008294",
+        "cantidad": 300,
+        "vencimiento": "26/03/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40008065",
+        "cantidad": 5,
+        "vencimiento": "22/11/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40008411 C",
+        "cantidad": 525,
+        "vencimiento": "01/07/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 830,
+    "vencimiento": "01/07/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "CRIPTON XPRO x 10 Lts - (4021)",
+    "codigoInterno": "4021",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40007841 C",
+        "cantidad": 10,
+        "vencimiento": "31/07/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40008389 C",
+        "cantidad": 200,
+        "vencimiento": "11/06/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 210,
+    "vencimiento": "11/06/2030",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "ENROLL X 5 Lt - (4031)",
+    "codigoInterno": "4031",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "110923",
+        "cantidad": 25,
+        "vencimiento": "17/09/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 25,
+    "vencimiento": "17/09/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "FRUCTO (Azoxistrobin + Cyproconazole) - (4022)",
+    "codigoInterno": "4022",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 10,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 10,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "IBLON PRO SC x 5 Lt - (4033)",
+    "codigoInterno": "4033",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40007766",
+        "cantidad": 30,
+        "vencimiento": "03/07/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 30,
+    "vencimiento": "03/07/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "NATIVO SC 300 x 5 Lt - (4007)",
+    "codigoInterno": "4007",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "LA4004260",
+        "cantidad": 15,
+        "vencimiento": "01/09/2025",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 15,
+    "vencimiento": "01/09/2025",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "ROTHALONIL X 20 Lt - (4027)",
+    "codigoInterno": "4027",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "2024071131",
+        "cantidad": 440,
+        "vencimiento": "31/07/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "2024051417",
+        "cantidad": 40,
+        "vencimiento": "31/05/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 480,
+    "vencimiento": "31/05/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "SPHERE MAX x 5 LTS. - (4012)",
+    "codigoInterno": "4012",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "03. FUNGICIDAS",
+    "lotes": [
+      {
+        "numero": "LA40007228",
+        "cantidad": 20,
+        "vencimiento": "31/10/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40007429",
+        "cantidad": 40,
+        "vencimiento": "31/01/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40008226",
+        "cantidad": 485,
+        "vencimiento": "13/02/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40008340",
+        "cantidad": 80,
+        "vencimiento": "08/05/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40007429cp",
+        "cantidad": 5,
+        "vencimiento": "03/01/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 630,
+    "vencimiento": "03/01/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 03. FUNGICIDAS"
+  },
+  {
+    "nombre": "ACCELERON ESSENTIAL SOJA x caja p/ 2000 kg - (2097)",
+    "codigoInterno": "2097",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "LA55C00002",
+        "cantidad": 12,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA55C00017 C",
+        "cantidad": 100,
+        "vencimiento": "08/01/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 112,
+    "vencimiento": "08/01/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "COMBO TRIGO QUIMECO (2Lt Imida 60%+1Lt Tebuco 6% p/ 2500 kg) - (2101)",
+    "codigoInterno": "2101",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "046-285",
+        "cantidad": 3,
+        "vencimiento": "20/03/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 3,
+    "vencimiento": "20/03/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "COMPINCHE SX x 5 Lt - (2100)",
+    "codigoInterno": "2100",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "POR5194798 CYO",
+        "cantidad": 20,
+        "vencimiento": "02/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "02/09/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "COMPINCHE x 5 Lt - (2002)",
+    "codigoInterno": "2002",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "MHA5A06SC2",
+        "cantidad": 135,
+        "vencimiento": "06/01/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 135,
+    "vencimiento": "06/01/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "MAXIM EVOLUTION - (2011)",
+    "codigoInterno": "2011",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "PLN5I0008 CYO",
+        "cantidad": 84,
+        "vencimiento": "01/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 84,
+    "vencimiento": "01/09/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "MAXIM INTEGRAL - (2080)",
+    "codigoInterno": "2080",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "PLN5I0008",
+        "cantidad": 16,
+        "vencimiento": "08/09/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 16,
+    "vencimiento": "08/09/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "PUCARA x Lt. - (2017)",
+    "codigoInterno": "2017",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "LA40007474",
+        "cantidad": 49,
+        "vencimiento": "28/02/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 49,
+    "vencimiento": "28/02/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "REGENT ET PACK - (2018)",
+    "codigoInterno": "2018",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "LA40008291",
+        "cantidad": 2,
+        "vencimiento": "30/06/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA40007492",
+        "cantidad": 4,
+        "vencimiento": "30/06/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 6,
+    "vencimiento": "30/06/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "RIZOPACK GARBANZO 213 - (2034)",
+    "codigoInterno": "2034",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "4014763B CYO",
+        "cantidad": 9,
+        "vencimiento": "08/09/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "4014763A CYO",
+        "cantidad": 5,
+        "vencimiento": "07/09/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 14,
+    "vencimiento": "07/09/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "SIGNUM PACK GARBANZO 315 - (2057)",
+    "codigoInterno": "2057",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "04. INOCULANTES Y CURASEMILLAS",
+    "lotes": [
+      {
+        "numero": "4014792A CYO",
+        "cantidad": 39,
+        "vencimiento": "12/11/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 39,
+    "vencimiento": "12/11/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 04. INOCULANTES Y CURASEMILLAS"
+  },
+  {
+    "nombre": "ACEITE METILADO ULTRA WINNOW X 5 Lt. - (1051)",
+    "codigoInterno": "1051",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "2160",
+        "cantidad": 170,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 170,
+    "vencimiento": "31/07/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "ACEITE METILADO WINNOW X 20 Lt. - (1001)",
+    "codigoInterno": "1001",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "2158",
+        "cantidad": 1720,
+        "vencimiento": "31/12/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "2160",
+        "cantidad": 4800,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "2159",
+        "cantidad": 3680,
+        "vencimiento": "30/04/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 10200,
+    "vencimiento": "30/04/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "ACTIVATE MAX - (1004)",
+    "codigoInterno": "1004",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "1049",
+        "cantidad": 351,
+        "vencimiento": "01/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 351,
+    "vencimiento": "01/11/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "ACTIVATE TOTAL MIX x 5 Lt - (1050)",
+    "codigoInterno": "1050",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "4029",
+        "cantidad": 155,
+        "vencimiento": "01/07/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 155,
+    "vencimiento": "01/07/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "ANTIESPUMANTE QUIMECO x 1 Lt - (1006)",
+    "codigoInterno": "1006",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "563",
+        "cantidad": 8,
+        "vencimiento": "31/03/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 8,
+    "vencimiento": "31/03/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "FULLDROP LPU X 1 LT - (1030)",
+    "codigoInterno": "1030",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 2,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 2,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "FULLTEC BASE X 1 LT - (1043)",
+    "codigoInterno": "1043",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "AR1492023",
+        "cantidad": 6,
+        "vencimiento": "31/08/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "12023",
+        "cantidad": 2,
+        "vencimiento": "31/05/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 8,
+    "vencimiento": "31/05/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "FULLTEC MAX X 1 LT - (1044)",
+    "codigoInterno": "1044",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 90,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 90,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "LIMPIADOR QUIMECO X LT - (1049)",
+    "codigoInterno": "1049",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "463",
+        "cantidad": 8,
+        "vencimiento": "30/04/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 8,
+    "vencimiento": "30/04/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "METIL OIL (COADYUDANTE x 5 Lts) - (1033)",
+    "codigoInterno": "1033",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 65,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 65,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "OPTIMIZER x Lts.(10) - (1014)",
+    "codigoInterno": "1014",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "LA49004013",
+        "cantidad": 430,
+        "vencimiento": "30/11/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA55E00011cpe",
+        "cantidad": 4960,
+        "vencimiento": "21/01/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA55E00010cpe",
+        "cantidad": 10,
+        "vencimiento": "20/01/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "LA49004095cpe",
+        "cantidad": 4000,
+        "vencimiento": "07/04/2029",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 9400,
+    "vencimiento": "07/04/2029",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "RIZOSPRAY ANTIESPUMA - (1016)",
+    "codigoInterno": "1016",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "3027319B",
+        "cantidad": 50,
+        "vencimiento": "26/03/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 50,
+    "vencimiento": "26/03/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "RIZOSPRAY CLEANER - (1017)",
+    "codigoInterno": "1017",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "3024692A",
+        "cantidad": 6,
+        "vencimiento": "09/04/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 6,
+    "vencimiento": "09/04/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "RIZOSPRAY CORRECTOR SECUESTRANTE - (1018)",
+    "codigoInterno": "1018",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "3026135A",
+        "cantidad": 1,
+        "vencimiento": "22/10/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "3026653A",
+        "cantidad": 97,
+        "vencimiento": "17/11/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "3027161A",
+        "cantidad": 50,
+        "vencimiento": "01/12/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 148,
+    "vencimiento": "01/12/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "SILWET L AG  - (1021)",
+    "codigoInterno": "1021",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "0000001",
+        "cantidad": 5,
+        "vencimiento": "04/10/2024",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5,
+    "vencimiento": "04/10/2024",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "X-TRIM LOW FLOW NEO x 5 Lt - (1045)",
+    "codigoInterno": "1045",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "2189",
+        "cantidad": 15,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "2195",
+        "cantidad": 675,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 690,
+    "vencimiento": "31/07/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "X-TRIM LOW FLOW x 5 Lt - (1026)",
+    "codigoInterno": "1026",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "8137",
+        "cantidad": 490,
+        "vencimiento": "31/05/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 490,
+    "vencimiento": "31/05/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "X-TRIM POWER x Lt - (1024)",
+    "codigoInterno": "1024",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "05. COADYUVANTES",
+    "lotes": [
+      {
+        "numero": "3113",
+        "cantidad": 186,
+        "vencimiento": "31/07/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 186,
+    "vencimiento": "31/07/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 05. COADYUVANTES"
+  },
+  {
+    "nombre": "BIOTRON PLUS UPL X 10  Lt - (3073)",
+    "codigoInterno": "3073",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "1240823",
+        "cantidad": 60,
+        "vencimiento": "01/08/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "1270823",
+        "cantidad": 580,
+        "vencimiento": "01/08/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "1460724",
+        "cantidad": 120,
+        "vencimiento": "01/07/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 760,
+    "vencimiento": "01/07/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "INCENTIA ECO MAXIMIZE X 20 Lt - (3064)",
+    "codigoInterno": "3064",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "212145",
+        "cantidad": 20,
+        "vencimiento": "20/08/2024",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "20/08/2024",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "MARVITA IR SC X 10 lt - (3075)",
+    "codigoInterno": "3075",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "2025-02-21-01 CYO",
+        "cantidad": 320,
+        "vencimiento": "21/08/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 320,
+    "vencimiento": "21/08/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "Microstar CMB BIO x 20 Kg - (3059)",
+    "codigoInterno": "3059",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 800,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 800,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "Microstar PZ BIO x 20  Kg - (3055)",
+    "codigoInterno": "3055",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "270326",
+        "cantidad": 300,
+        "vencimiento": "27/03/2028",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 300,
+    "vencimiento": "27/03/2028",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "Microstar PZ X 20 KG - (3033)",
+    "codigoInterno": "3033",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "220726",
+        "cantidad": 13000,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      },
+      {
+        "numero": "270526",
+        "cantidad": 4000,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 17000,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "NUTRIMAX 6-35-0-6S-1Zn BB X 1000 Kg - (3058)",
+    "codigoInterno": "3058",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "3058",
+        "cantidad": 30,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 30,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "SULFATO DE AMONIO CENTAURO x 20 Kg  - (3071)",
+    "codigoInterno": "3071",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "001-25",
+        "cantidad": 1900,
+        "vencimiento": "14/01/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1900,
+    "vencimiento": "14/01/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "SULFATO DE AMONIO ENTEC x 20 Kg  - (3005)",
+    "codigoInterno": "3005",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "5744016",
+        "cantidad": 5060,
+        "vencimiento": "03/02/2027",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 5060,
+    "vencimiento": "03/02/2027",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "TOP ZINC MAX x 2 Lts - (3054)",
+    "codigoInterno": "3054",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "AR2402023",
+        "cantidad": 6,
+        "vencimiento": "30/10/2026",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 6,
+    "vencimiento": "30/10/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "VITAGROW x 1 KG - (3066)",
+    "codigoInterno": "3066",
+    "categoria": "reagents",
+    "categoriaNombre": "Agroquímico",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "06. FERTILIZANTES",
+    "lotes": [
+      {
+        "numero": "106.4.1",
+        "cantidad": 13,
+        "vencimiento": "31/08/2030",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 13,
+    "vencimiento": "31/08/2030",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 06. FERTILIZANTES"
+  },
+  {
+    "nombre": "DK DK69-62TRE B2 C4 80M - (8462)",
+    "codigoInterno": "8462",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1013524",
+        "cantidad": 738,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013589",
+        "cantidad": 333,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013596",
+        "cantidad": 200,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020171",
+        "cantidad": 12,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020200C",
+        "cantidad": 5,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020267",
+        "cantidad": 264,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020278C",
+        "cantidad": 170,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1722,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK69-62TRE B2 R4 80M - (8454)",
+    "codigoInterno": "8454",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1013556C",
+        "cantidad": 800,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013603C",
+        "cantidad": 1,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 801,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK69-62TRE B2 R5 80M - (8450)",
+    "codigoInterno": "8450",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1023199",
+        "cantidad": 210,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 210,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK69-62TRE B3 SPC 80M - (8444)",
+    "codigoInterno": "8444",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1013604",
+        "cantidad": 60,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013612",
+        "cantidad": 48,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020176",
+        "cantidad": 25,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020228",
+        "cantidad": 105,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013547",
+        "cantidad": 29,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 267,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK69-62TRE B3 SPR 80M - (8453)",
+    "codigoInterno": "8453",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1022058",
+        "cantidad": 119,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1022121",
+        "cantidad": 693,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1023181",
+        "cantidad": 135,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013608",
+        "cantidad": 100,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013613",
+        "cantidad": 200,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020138",
+        "cantidad": 102,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020186",
+        "cantidad": 315,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020274",
+        "cantidad": 1,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1020296",
+        "cantidad": 114,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013597",
+        "cantidad": 8,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1787,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-10PRO4 B2 C4 80M TB AR - (8368)",
+    "codigoInterno": "8368",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1020780C",
+        "cantidad": 110,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1022854",
+        "cantidad": 45,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1014151C",
+        "cantidad": 250,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 1,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013095",
+        "cantidad": 16,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 422,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-10PRO4 B3 C5 80M TB AR - (8369)",
+    "codigoInterno": "8369",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1013040",
+        "cantidad": 28,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 28,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-10PRO4 B3 SPC 80M TB AR - (8375)",
+    "codigoInterno": "8375",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1013061",
+        "cantidad": 207,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1014117",
+        "cantidad": 97,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 5,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1010021",
+        "cantidad": 4,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1010077",
+        "cantidad": 1,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 314,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-10PRO4 B3 SPR 80M TB AR - (8393)",
+    "codigoInterno": "8393",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1010082",
+        "cantidad": 200,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1014136",
+        "cantidad": 290,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013064",
+        "cantidad": 6,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 496,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-10RR2 B2 C4 80M T AR - (8219)",
+    "codigoInterno": "8219",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021458",
+        "cantidad": 19,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 23,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 42,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-10RR2 B2 R4 80M T AR - (8209)",
+    "codigoInterno": "8209",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021452C",
+        "cantidad": 15,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 15,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-10RR2 B3 SPC 80M T AR - (8051)",
+    "codigoInterno": "8051",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 20,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-10RR2 B3 SPR 80M T AR - (8052)",
+    "codigoInterno": "8052",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021455",
+        "cantidad": 6,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 6,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20PRO4 B2 C4 80M JS AR - (8334)",
+    "codigoInterno": "8334",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1020869",
+        "cantidad": 83,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1020915",
+        "cantidad": 424,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1020931",
+        "cantidad": 156,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1020940",
+        "cantidad": 90,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1011545C",
+        "cantidad": 148,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1110361C",
+        "cantidad": 615,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1516,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20PRO4 B2 R4 80M JS AR - (8328)",
+    "codigoInterno": "8328",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1020893C",
+        "cantidad": 459,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1023090C",
+        "cantidad": 1,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1010391C",
+        "cantidad": 89,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1110424C",
+        "cantidad": 652,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1010416C",
+        "cantidad": 84,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1285,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20PRO4 B2 R5 80M JS AR - (8337)",
+    "codigoInterno": "8337",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1011524",
+        "cantidad": 473,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013293",
+        "cantidad": 150,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1010368",
+        "cantidad": 34,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013354",
+        "cantidad": 30,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013710",
+        "cantidad": 21,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 708,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20PRO4 B3 C5 80M JS AR - (8332)",
+    "codigoInterno": "8332",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 1,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20PRO4 B3 SPC 80M  - (8326)",
+    "codigoInterno": "8326",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1023086",
+        "cantidad": 140,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013662",
+        "cantidad": 38,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1011532",
+        "cantidad": 6,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 184,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20PRO4 B3 SPR 80M JS AR - (8324)",
+    "codigoInterno": "8324",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1023070",
+        "cantidad": 31,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1023076",
+        "cantidad": 350,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1011497",
+        "cantidad": 1122,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013261",
+        "cantidad": 367,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013294",
+        "cantidad": 73,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013301",
+        "cantidad": 238,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013673",
+        "cantidad": 64,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013704",
+        "cantidad": 294,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1110371",
+        "cantidad": 2,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 2541,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20RR2 B2 C4 80M TB AR - (8392)",
+    "codigoInterno": "8392",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1012337",
+        "cantidad": 170,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012367C",
+        "cantidad": 31,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012374C",
+        "cantidad": 77,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1120406",
+        "cantidad": 15,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012339",
+        "cantidad": 126,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 419,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20RR2 B2 R4 80M TB AR - (8378)",
+    "codigoInterno": "8378",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021310",
+        "cantidad": 41,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1021336",
+        "cantidad": 330,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1110141",
+        "cantidad": 42,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 413,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20RR2 B2 R4C 80M TB AR - (8354)",
+    "codigoInterno": "8354",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 13,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 13,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20RR2 B2 R5 80M TB AR - (8379)",
+    "codigoInterno": "8379",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "YE1091136",
+        "cantidad": 30,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "YE8890213",
+        "cantidad": 72,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 102,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20RR2 B3 C5 80M TB AR - (8398)",
+    "codigoInterno": "8398",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1012370",
+        "cantidad": 62,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 62,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20RR2 B3 SPC 80M TB AR - (8356)",
+    "codigoInterno": "8356",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021306",
+        "cantidad": 70,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012302",
+        "cantidad": 6,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 76,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-20RR2 B3 SPR 80M TB AR - (8355)",
+    "codigoInterno": "8355",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1012301",
+        "cantidad": 208,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012335",
+        "cantidad": 90,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012364",
+        "cantidad": 191,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012366",
+        "cantidad": 150,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012373",
+        "cantidad": 175,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 50,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012345",
+        "cantidad": 75,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 939,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-70TRE SPR 80M TB AR - (8430)",
+    "codigoInterno": "8430",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1110333",
+        "cantidad": 1,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "YE1092886",
+        "cantidad": 18,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 19,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-70VT3P C4 80M AR - (8316)",
+    "codigoInterno": "8316",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 2,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 2,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-70VT3P R2 80M AR - (8321)",
+    "codigoInterno": "8321",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 3,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 3,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72RR2 B1 C2 80M - (8473)",
+    "codigoInterno": "8473",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021266C",
+        "cantidad": 65,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 65,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72RR2 B2 C4 80M - (8457)",
+    "codigoInterno": "8457",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1012408",
+        "cantidad": 40,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 40,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72RR2 B2 C4C 80M - (8456)",
+    "codigoInterno": "8456",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "YE1091067",
+        "cantidad": 18,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 18,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72RR2 B3 SPC 80M - (8455)",
+    "codigoInterno": "8455",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1012421",
+        "cantidad": 9,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012437",
+        "cantidad": 116,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 125,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72RR2 B3 SPR 80M - (8458)",
+    "codigoInterno": "8458",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021262",
+        "cantidad": 180,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012401",
+        "cantidad": 108,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012416",
+        "cantidad": 28,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012436",
+        "cantidad": 72,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012451",
+        "cantidad": 19,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 1,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 408,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72TRE B1 C2 80M - (8428)",
+    "codigoInterno": "8428",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 49,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012859",
+        "cantidad": 4,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 53,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72TRE B2 C4 80M TB AR - (8416)",
+    "codigoInterno": "8416",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021934",
+        "cantidad": 45,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013764",
+        "cantidad": 441,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 486,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72TRE B2 C4C 80M TB AR - (8387)",
+    "codigoInterno": "8387",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1013846",
+        "cantidad": 125,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 125,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72TRE B2 R4 80M TB AR - (8397)",
+    "codigoInterno": "8397",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1012975",
+        "cantidad": 250,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 250,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72TRE B3 SPC 80M - (8422)",
+    "codigoInterno": "8422",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1020963",
+        "cantidad": 25,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1010585",
+        "cantidad": 58,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1010603",
+        "cantidad": 81,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013778",
+        "cantidad": 154,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013806",
+        "cantidad": 197,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 134,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012986",
+        "cantidad": 37,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 686,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK72-72TRE B3 SPR 80M - (8425)",
+    "codigoInterno": "8425",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021825",
+        "cantidad": 323,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1021885",
+        "cantidad": 70,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1021927",
+        "cantidad": 90,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1021993",
+        "cantidad": 100,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1010586",
+        "cantidad": 200,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1012983",
+        "cantidad": 17,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 800,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK73-73TRE B1 C2 80M TB AR - (8466)",
+    "codigoInterno": "8466",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021124",
+        "cantidad": 20,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1022285",
+        "cantidad": 25,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 45,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK73-73TRE B1 R2 80M TB AR - (8467)",
+    "codigoInterno": "8467",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021064C",
+        "cantidad": 85,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 85,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK73-73TRE B2 C4 80M TB AR - (8459)",
+    "codigoInterno": "8459",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1110204",
+        "cantidad": 3,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 3,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK73-73TRE B3 SPC 80M TB AR - (8464)",
+    "codigoInterno": "8464",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021058",
+        "cantidad": 80,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 80,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK74-47TRE B1 C2 80M TB AR - (8452)",
+    "codigoInterno": "8452",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "YE1092192C",
+        "cantidad": 264,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "YE1092267",
+        "cantidad": 25,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "YE1093286C",
+        "cantidad": 3,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013224C",
+        "cantidad": 35,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013229C",
+        "cantidad": 659,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013161",
+        "cantidad": 112,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1098,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK74-47TRE B1 R2 80M TB AR - (8438)",
+    "codigoInterno": "8438",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021194C",
+        "cantidad": 20,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1022827C",
+        "cantidad": 115,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 75,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 210,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK74-47TRE B2 C4 80M - (8419)",
+    "codigoInterno": "8419",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1022812C",
+        "cantidad": 339,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1022817",
+        "cantidad": 356,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1022841C",
+        "cantidad": 290,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013194",
+        "cantidad": 124,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013202",
+        "cantidad": 140,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 4,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 1253,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK74-47TRE B2 R4 80M - (8420)",
+    "codigoInterno": "8420",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021167",
+        "cantidad": 36,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "AE1022844",
+        "cantidad": 429,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013190",
+        "cantidad": 67,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013204",
+        "cantidad": 140,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013240",
+        "cantidad": 28,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 700,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK74-47TRE B2 R5 80M TB AR - (8449)",
+    "codigoInterno": "8449",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1022815",
+        "cantidad": 358,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013213",
+        "cantidad": 96,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 454,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK74-47TRE B3 SPC 80M TB AR - (8443)",
+    "codigoInterno": "8443",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "ZE1110171",
+        "cantidad": 20,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 20,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK74-47TRE B3 SPR 80M - (8427)",
+    "codigoInterno": "8427",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1021187",
+        "cantidad": 270,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      },
+      {
+        "numero": "ZE1013236",
+        "cantidad": 130,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 400,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK DK77-02TRE B3 SPR 80M - (8475)",
+    "codigoInterno": "8475",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "AE1020501",
+        "cantidad": 470,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 470,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "DK72-70TRE R5 80M TB AR - (8468)",
+    "codigoInterno": "8468",
+    "categoria": "consumables",
+    "categoriaNombre": "Semilla",
+    "galpon": "GALPÓN DE SEMILLAS",
+    "centroOperativo": "07. SEMILLAS\\07.05 SEMILLAS DE MAIZ",
+    "lotes": [
+      {
+        "numero": "YE1092876",
+        "cantidad": 53,
+        "vencimiento": "31/12/2026",
+        "ubicacion": "GALPÓN DE SEMILLAS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 53,
+    "vencimiento": "31/12/2026",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE SEMILLAS",
+    "descripcion": "Importado desde Control Stock.xlsx · 07. SEMILLAS\\07.05 SEMILLAS DE MAIZ"
+  },
+  {
+    "nombre": "BOLSA IPESA 10 x 100 GR - (7009)",
+    "codigoInterno": "7009",
+    "categoria": "equipment",
+    "categoriaNombre": "Otros insumos",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "08. SILO BOLSA",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 12,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 12,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 08. SILO BOLSA"
+  },
+  {
+    "nombre": "BOLSA IPESA 9 x 100 GR - (7007)",
+    "codigoInterno": "7007",
+    "categoria": "equipment",
+    "categoriaNombre": "Otros insumos",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "08. SILO BOLSA",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 22,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 22,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 08. SILO BOLSA"
+  },
+  {
+    "nombre": "BOLSA IPESA 9 x 75 G - (7005)",
+    "codigoInterno": "7005",
+    "categoria": "equipment",
+    "categoriaNombre": "Otros insumos",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "08. SILO BOLSA",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 6,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 6,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 08. SILO BOLSA"
+  },
+  {
+    "nombre": "BOLSA IPESA 9 x 75 GR - (7006)",
+    "codigoInterno": "7006",
+    "categoria": "equipment",
+    "categoriaNombre": "Otros insumos",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "08. SILO BOLSA",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 39,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 39,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 08. SILO BOLSA"
+  },
+  {
+    "nombre": "PentaSilo ACA 9x75 Reforzado - (7012)",
+    "codigoInterno": "7012",
+    "categoria": "equipment",
+    "categoriaNombre": "Otros insumos",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "08. SILO BOLSA",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 4,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 4,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 08. SILO BOLSA"
+  },
+  {
+    "nombre": "CAJA CEBADERA REC MEDIUM - (508)",
+    "codigoInterno": "508",
+    "categoria": "equipment",
+    "categoriaNombre": "Otros insumos",
+    "galpon": "GALPÓN DE AGROQUÍMICOS",
+    "centroOperativo": "11. VARIOS",
+    "lotes": [
+      {
+        "numero": "Sin Serie/Lote",
+        "cantidad": 15,
+        "vencimiento": "",
+        "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+        "proveedor": ""
+      }
+    ],
+    "cantidad": 15,
+    "vencimiento": "",
+    "unidad": "",
+    "stockMinimo": 10,
+    "ubicacion": "GALPÓN DE AGROQUÍMICOS",
+    "descripcion": "Importado desde Control Stock.xlsx · 11. VARIOS"
+  }
+]

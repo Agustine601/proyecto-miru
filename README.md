@@ -53,3 +53,7 @@ Productos de referencia incluidos:
 
 La información es de referencia y debe contrastarse con el marbete/ficha vigente antes de utilizar un producto. El catálogo enlaza a las fuentes de Bayer cuando corresponde.
 
+
+
+## Mapa editable
+El botón **✏️ Editar mapa** ahora aparece directamente dentro del mapa, arriba a la derecha. Permite bloquear/recuperar posiciones y guardar la configuración.

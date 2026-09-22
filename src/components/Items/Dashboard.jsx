@@ -24,6 +24,8 @@ import {
   SafetyOutlined,
   InboxOutlined,
   RightOutlined,
+  MessageOutlined,
+  ExclamationCircleOutlined,
 } from '@ant-design/icons';
 
 import { useDispatch } from 'react-redux';
@@ -34,6 +36,7 @@ import {
 } from '../../services/items';
 
 import { setDisplay } from '../containers/displaySlice';
+import { useGetCommunicationsQuery } from '../../services/communications';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -47,6 +50,8 @@ const Dashboard = () => {
     data: reagents = [],
     isLoading: loadingReagents,
   } = useGetReagentsQuery();
+
+  const { data: communications = [] } = useGetCommunicationsQuery(undefined, { pollingInterval: 10000 });
 
   const cargando =
     loadingConsumables || loadingReagents;
@@ -445,6 +450,81 @@ const Dashboard = () => {
         </Col>
 
       </Row>
+
+      {/* COMUNICACIONES */}
+
+      <Card
+        bordered={false}
+        style={{
+          marginTop: 18,
+          borderRadius: 18,
+          boxShadow: '0 5px 20px rgba(35, 69, 43, 0.08)',
+        }}
+        bodyStyle={{ padding: 18 }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 12,
+            flexWrap: 'wrap',
+            marginBottom: 12,
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <MessageOutlined style={{ fontSize: 24, color: '#397348' }} />
+            <div>
+              <div style={{ color: '#23452b', fontSize: 20, fontWeight: 750 }}>
+                Comunicaciones
+              </div>
+              <div style={{ color: '#718074', fontSize: 12 }}>
+                Lo último entre los sectores de MIRÚ
+              </div>
+            </div>
+          </div>
+          <Button onClick={() => irA('communications')} type="primary" ghost>
+            Ver comunicaciones
+          </Button>
+        </div>
+
+        {communications.length === 0 ? (
+          <Alert
+            type="info"
+            showIcon
+            message="Todavía no hay comunicaciones"
+            description="Cuando un sector envíe un mensaje, aparecerá acá."
+            style={{ borderRadius: 12 }}
+          />
+        ) : (
+          communications.slice(0, 4).map((item) => (
+            <div
+              key={item._id}
+              onClick={() => irA('communications')}
+              style={{
+                cursor: 'pointer',
+                padding: '10px 11px',
+                marginBottom: 7,
+                borderRadius: 10,
+                border: item.priority === 'urgente' ? '1px solid #ffd5cf' : '1px solid #edf1eb',
+                background: item.priority === 'urgente' ? '#fff7f6' : '#fff',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+                <strong>{item.sender || 'Usuario'}</strong>
+                <Tag>{item.senderArea} → {item.recipientArea}</Tag>
+                {item.priority === 'urgente' && (
+                  <Tag color="red" icon={<ExclamationCircleOutlined />}>Urgente</Tag>
+                )}
+                {!item.read && <Tag color="green">Nuevo</Tag>}
+              </div>
+              <div style={{ marginTop: 4, color: '#2d3b30', wordBreak: 'break-word' }}>
+                {String(item.message || '').slice(0, 180)}
+              </div>
+            </div>
+          ))
+        )}
+      </Card>
 
       {/* ALERTAS */}
 
