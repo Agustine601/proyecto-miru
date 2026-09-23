@@ -1,286 +1,191 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { setLogin } from '../../loginSlice';
-import { Button } from 'antd';
 import LoginOAuth from './LoginOAuth.jsx';
-import bayerImage from '../../assets/bayer_monsanto.jpg';
-/* =========================
-   IMAGEN / FONDO
-========================= */
-
-
-const StyledImage = styled.div`
-  width: 60%;
-  height: 100vh;
-
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.08),
-      rgba(0, 0, 0, 0.18)
-    ),
-    url(${bayerImage});
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.25);
-`;
-
-
-
-
-/* =========================
-   CONTENEDOR PRINCIPAL
-========================= */
 
 const Wrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
-
+  position: relative;
+  overflow: hidden;
   display: flex;
-
-  background:
-    linear-gradient(
-      135deg,
-      #173b20 0%,
-      #214f2a 50%,
-      #16371e 100%
-    );
-`;
-
-/* =========================
-   PANEL LOGIN
-========================= */
-
-const LoginWrapper = styled.div`
-  width: 40%;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
   align-items: center;
+  justify-content: flex-end;
+  padding: 40px 5vw;
+  box-sizing: border-box;
+  background: #102b18;
 
-  padding: 40px;
+  @media (max-width: 800px) {
+    justify-content: center;
+    padding: 20px;
+  }
 `;
 
-/* =========================
-   MARCA
-========================= */
+const BayerVideo = styled.iframe`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+  object-fit: cover;
+  transform: scale(1.04);
+`;
+
+const VideoOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 25, 12, 0.18) 0%, rgba(5, 25, 12, 0.05) 45%, rgba(5, 25, 12, 0.48) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 25, 10, 0.38));
+`;
+
+const AgricultureCopy = styled.div`
+  position: absolute;
+  z-index: 2;
+  left: 6vw;
+  bottom: 8vh;
+  max-width: 540px;
+  color: white;
+  text-shadow: 0 2px 20px rgba(0,0,0,.35);
+
+  @media (max-width: 800px) {
+    left: 24px;
+    bottom: 24px;
+    opacity: .45;
+    max-width: 75%;
+  }
+`;
+
+const BayerLabel = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 8px 13px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  background: rgba(5, 30, 15, .28);
+  backdrop-filter: blur(10px);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+`;
+
+const CopyTitle = styled.h2`
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.02;
+  font-weight: 800;
+
+  span { color: #8eea35; }
+`;
+
+const CopyText = styled.p`
+  margin: 16px 0 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.88);
+`;
+
+const LoginCard = styled.div`
+  position: relative;
+  z-index: 3;
+  width: min(430px, 100%);
+  padding: 34px;
+  box-sizing: border-box;
+  border-radius: 30px;
+  background: linear-gradient(145deg, rgba(10, 43, 25, .62), rgba(8, 28, 18, .48));
+  border: 1px solid rgba(255,255,255,.24);
+  box-shadow: 0 30px 80px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter: blur(20px) saturate(130%);
+  color: white;
+
+  @media (max-width: 500px) {
+    padding: 28px 22px;
+    border-radius: 24px;
+  }
+`;
 
 const Brand = styled.div`
-  text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 28px;
 `;
 
 const Title = styled.h1`
   margin: 0;
-
-  color: #ffffff;
-
-  font-family:
-    'Segoe UI',
-    Arial,
-    sans-serif;
-
-  font-size: 4.5rem;
-  font-weight: 800;
-
-  letter-spacing: 0.15rem;
-
-  line-height: 1;
+  color: #fff;
+  font-size: clamp(3.2rem, 6vw, 5rem);
+  line-height: .9;
+  font-weight: 850;
+  letter-spacing: .08em;
 `;
 
 const SubTitle = styled.p`
-  margin: 12px 0 30px;
-
-  color: #cfe5ce;
-
-  font-family:
-    'Segoe UI',
-    Arial,
-    sans-serif;
-
-  font-size: 1rem;
-  font-weight: 500;
-
-  letter-spacing: 0.08rem;
-
+  margin: 12px 0 0;
+  color: rgba(255,255,255,.72);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
   text-transform: uppercase;
 `;
 
-/* =========================
-   LOGIN CARD
-========================= */
-
-const LoginCard = styled.div`
-  width: min(380px, 100%);
-
-  padding: 32px;
-
-  background: rgba(255, 255, 255, 0.08);
-
-  border: 1px solid rgba(255, 255, 255, 0.14);
-
-  border-radius: 18px;
-
-  box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.25);
-
-  backdrop-filter: blur(8px);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Welcome = styled.div`
+  margin-bottom: 22px;
+  h3 { margin: 0 0 5px; font-size: 25px; color: #fff; }
+  p { margin: 0; color: rgba(255,255,255,.68); font-size: 14px; }
 `;
-
-/* =========================
-   SEPARADOR
-========================= */
 
 const StyledP = styled.p`
   width: 100%;
-
-  color: #b8cdb9;
-
+  color: rgba(255,255,255,.62);
   margin: 22px 0;
-
-  font-family:
-    'Segoe UI',
-    Arial,
-    sans-serif;
-
-  font-size: 0.85rem;
-
+  font-size: .85rem;
   text-align: center;
-
   position: relative;
-
-  &::before,
-  &::after {
-    content: '';
-
-    position: absolute;
-
-    top: 50%;
-
-    width: 35%;
-
-    height: 1px;
-
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  &::before {
-    left: 0;
-  }
-
-  &::after {
-    right: 0;
-  }
+  &::before, &::after { content: ''; position: absolute; top: 50%; width: 34%; height: 1px; background: rgba(255,255,255,.18); }
+  &::before { left: 0; }
+  &::after { right: 0; }
 `;
-
-/* =========================
-   BOTÓN INVITADO
-========================= */
-
-const GuestLoginBtn = styled(Button)`
-  width: 100%;
-  height: 46px;
-
-  border-radius: 9px !important;
-
-  color: #ffffff !important;
-
-  background: #397348 !important;
-
-  border-color: #397348 !important;
-
-  font-size: 15px;
-  font-weight: 600;
-
-  transition: all 0.2s ease;
-
-  &:hover,
-  &:focus {
-    background: #4b8755 !important;
-    border-color: #4b8755 !important;
-
-    transform: translateY(-1px);
-
-    box-shadow:
-      0 6px 15px rgba(0, 0, 0, 0.2);
-  }
-`;
-
-/* =========================
-   PIE
-========================= */
 
 const FooterText = styled.p`
-  margin: 25px 0 0;
-
-  color: rgba(255, 255, 255, 0.45);
-
-  font-size: 0.75rem;
-
+  margin: 18px 0 0;
+  color: rgba(255,255,255,.45);
+  font-size: .72rem;
   text-align: center;
 `;
 
-/* =========================
-   COMPONENTE
-========================= */
-
 const LoginContainer = () => {
-  const dispatch = useDispatch();
-
-  const handleLogin = () => {
-    dispatch(setLogin(true));
-  };
-
   return (
     <Wrapper>
+      <BayerVideo
+        title="Agro Bayer Argentina"
+        src="https://www.youtube-nocookie.com/embed/IrY00xCUIFU?autoplay=1&mute=1&loop=1&playlist=IrY00xCUIFU&controls=0&rel=0&modestbranding=1&playsinline=1"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+      />
+      <VideoOverlay />
 
-      <StyledImage />
+      <AgricultureCopy>
+        <BayerLabel>• Agro Bayer · Agricultura</BayerLabel>
+        <CopyTitle>Tecnología para <span>el campo de hoy y mañana.</span></CopyTitle>
+        <CopyText>Todo el control de tu operación agrícola conectado en un solo lugar.</CopyText>
+      </AgricultureCopy>
 
-      <LoginWrapper>
-
+      <LoginCard>
         <Brand>
           <Title>MIRÚ</Title>
-
-          <SubTitle>
-            Gestión Agrícola y Química
-          </SubTitle>
+          <SubTitle>Gestión agrícola inteligente</SubTitle>
         </Brand>
-
-        <LoginCard>
-
-          <LoginOAuth />
-
-          <StyledP>
-            o continuar como invitado
-          </StyledP>
-
-          <GuestLoginBtn
-            type="primary"
-            onClick={handleLogin}
-          >
-            Iniciar sesión como invitado
-          </GuestLoginBtn>
-
-        </LoginCard>
-
-        <FooterText>
-          Sistema de gestión de inventario
-        </FooterText>
-
-      </LoginWrapper>
-
+        <Welcome>
+          <h3>Bienvenido</h3>
+          <p>Ingresá a tu cuenta para continuar</p>
+        </Welcome>
+        <LoginOAuth />
+        <StyledP>acceso protegido</StyledP>
+        <FooterText>Tu aliado para inventario, movimientos y operaciones agrícolas.</FooterText>
+      </LoginCard>
     </Wrapper>
   );
 };
 
 export default LoginContainer;
-
