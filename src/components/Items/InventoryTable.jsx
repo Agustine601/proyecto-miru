@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Space, Table, Tag } from 'antd';
-import { EnvironmentOutlined, EditOutlined, DeleteOutlined, MinusCircleOutlined, SwapOutlined } from '@ant-design/icons';
+import { EnvironmentOutlined, EditOutlined, DeleteOutlined, MinusCircleOutlined, SwapOutlined, InboxOutlined } from '@ant-design/icons';
+import { InboxOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
 import UpdateItem from '../Modals/UpdateItem';
@@ -44,7 +45,34 @@ const TableShell = styled.div`
   .miru-inventory-table .ant-pagination {
     margin: 12px 14px;
   }
+    .product-cell {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+  }
 
+  .product-thumb {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef7f2;
+    border: 1px solid #dcece4;
+    color: #198754;
+    font-size: 19px;
+  }
+
+  .product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+  }
   .product-name {
     color: #173b55;
     font-weight: 700;
@@ -105,7 +133,29 @@ const baseColumns = (categoria, options = {}) => {
       key: 'nombre',
       width: 210,
       fixed: 'left',
-      render: (value) => <span className="product-name">{text(value, 'Sin nombre')}</span>,
+     render: (value, item) => {
+  const image =
+    item.imagen ||
+    item.imagenBolsa ||
+    item.datosQR?.imagen ||
+    '';
+
+  return (
+    <div className="product-cell">
+      <div className="product-thumb">
+        {image ? (
+          <img src={image} alt="" />
+        ) : (
+          <InboxOutlined />
+        )}
+      </div>
+
+      <span className="product-name">
+        {text(value, 'Sin nombre')}
+      </span>
+    </div>
+  );
+},
       sorter: (a, b) => text(a.nombre).localeCompare(text(b.nombre)),
     },
   ];
