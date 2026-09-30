@@ -1,0 +1,23 @@
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/controllers/movementsController.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/models/itemsModels.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/models/movementsModel.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/routes/movements.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/Items/Dashboard.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/Items/InventoryTable.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/Warehouse/WarehouseMap.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/containers/LoginContainer.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/services/movements.js', LF will be replaced by CRLF the next time Git touches it
+ package-lock.json                            |   40 [32m+[m[31m-[m
+ package.json                                 |    3 [32m+[m[31m-[m
+ server/controllers/movementsController.js    |  336 [32m+++++++[m
+ server/models/itemsModels.js                 |    3 [32m+[m
+ server/models/movementsModel.js              |   15 [32m+[m
+ server/routes/movements.js                   |   14 [32m+[m
+ src/components/Items/Dashboard.jsx           |  114 [32m++[m[31m-[m
+ src/components/Items/InventoryTable.jsx      |   54 [32m+[m[31m-[m
+ src/components/Warehouse/WarehouseMap.jsx    | 1322 [32m+++++++++++++++++++++++[m[31m---[m
+ src/components/containers/LoginContainer.jsx |   24 [32m+[m[31m-[m
+ src/services/movements.js                    |   17 [32m+[m
+ 11 files changed, 1706 insertions(+), 236 deletions(-)

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="Paisaje agrícola estilizado">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#bde6ff"/><stop offset="1" stop-color="#f5f2d8"/></linearGradient>
+    <linearGradient id="field" x1="0" x2="1"><stop stop-color="#4d8a4d"/><stop offset="1" stop-color="#9abb62"/></linearGradient>
+  </defs>
+  <rect width="1200" height="420" fill="url(#sky)"/>
+  <circle cx="930" cy="85" r="48" fill="#ffe38a" opacity=".95"/>
+  <path d="M0 230 Q180 155 365 220 T735 200 T1200 215 V420 H0Z" fill="#6f9d5d"/>
+  <path d="M0 275 Q190 205 400 270 T810 250 T1200 270 V420 H0Z" fill="url(#field)"/>
+  <path d="M0 335 Q170 265 350 335 T700 315 T1200 325 V420 H0Z" fill="#3f7548"/>
+  <g fill="none" stroke="#d9c56e" stroke-width="10" opacity=".8">
+    <path d="M60 420 L340 295 L610 420"/>
+    <path d="M300 420 L505 290 L760 420"/>
+    <path d="M600 420 L790 300 L1110 420"/>
+  </g>
+  <g transform="translate(760 285)">
+    <rect x="0" y="28" width="150" height="58" rx="10" fill="#d8a93c"/>
+    <rect x="92" y="0" width="70" height="58" rx="9" fill="#e6bb4d"/>
+    <rect x="105" y="10" width="38" height="25" rx="4" fill="#9fd1df"/>
+    <circle cx="35" cy="91" r="23" fill="#263d2c"/><circle cx="128" cy="91" r="23" fill="#263d2c"/>
+    <circle cx="35" cy="91" r="10" fill="#aeb8a7"/><circle cx="128" cy="91" r="10" fill="#aeb8a7"/>
+  </g>
+</svg>

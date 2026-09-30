@@ -5,6 +5,20 @@ const movementsController = require('../controllers/movementsController');
 const router = express.Router();
 
 // ========================================
+// CIERRE DIARIO
+// ========================================
+
+router.get(
+  '/cierre/hoy',
+  movementsController.getTodayClosure
+);
+
+router.post(
+  '/cierre',
+  movementsController.closeToday
+);
+
+// ========================================
 // REGISTRAR CONSUMO
 // ========================================
 

@@ -5,6 +5,7 @@ import {
   Card,
   Input,
   Modal,
+  Drawer,
   Tag,
   message,
   Tooltip,
@@ -17,6 +18,11 @@ import {
   DeleteOutlined,
   EditOutlined,
   CheckOutlined,
+  FullscreenOutlined,
+  FullscreenExitOutlined,
+  PlusOutlined,
+  MinusOutlined,
+  ReloadOutlined,
 } from '@ant-design/icons';
 
 import {
@@ -30,6 +36,10 @@ import {
   useGetWarehouseMapQuery,
   useSaveWarehouseMapMutation,
 } from '../../services/warehouse';
+
+import PalletOperationModal from './PalletOperationModal';
+import DailyCloseModal from './DailyCloseModal';
+import { calcularEquivalente, extraerConversion } from '../../utils/conversionStock';
 
 
 /* =========================================================
@@ -77,6 +87,33 @@ const racksSide2 = Array.from(
   { length: 4 },
   (_, i) => makeRack(i + 30, 'costado', 'racks-30-33')
 );
+
+
+/* =========================================================
+   GALPONES 3 Y 4 · ESTRUCTURA FUTURA
+   30 racks por galpón · 4 x 4 posiciones por rack
+========================================================= */
+
+const makeGalponRack = (galpon, n, access) =>
+  Array.from({ length: 16 }, (_, i) => ({
+    id: `G${galpon}-R${String(n).padStart(2, '0')}-P${String(i + 1).padStart(2, '0')}`,
+    rack: n,
+    position: i + 1,
+    galpon,
+    access,
+  }));
+
+const galpon4Racks = Array.from(
+  { length: 30 },
+  (_, i) => makeGalponRack(4, i + 1, i < 20 ? 'izquierdo' : 'derecho')
+);
+
+const galpon3Racks = Array.from(
+  { length: 30 },
+  (_, i) => makeGalponRack(3, i + 1, i < 10 ? 'izquierdo' : 'derecho')
+);
+
+const GALPONES_34_HABILITADOS = true;
 
 
 /* =========================================================
@@ -252,6 +289,17 @@ const Wrapper = styled.div`
   }
 `;
 
+const FullscreenShell = styled.div`
+  position: ${p => p.fullscreen ? 'fixed' : 'relative'};
+  inset: ${p => p.fullscreen ? '0' : 'auto'};
+  z-index: ${p => p.fullscreen ? 2000 : 'auto'};
+  width: 100%;
+  height: ${p => p.fullscreen ? '100vh' : 'auto'};
+  overflow: ${p => p.fullscreen ? 'auto' : 'visible'};
+  background: ${p => p.fullscreen ? '#eef2ee' : 'transparent'};
+  box-sizing: border-box;
+`;
+
 const Header = styled(Card)`
   margin-bottom: 16px;
 
@@ -321,6 +369,23 @@ const Legend = styled.div`
 `;
 
 
+const MapViewport = styled.div`
+  width: 100%;
+  overflow: auto;
+  border-radius: 14px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 700px) {
+    border-radius: 10px;
+  }
+`;
+
+const MapScale = styled.div`
+  width: 100%;
+  transform-origin: top left;
+`;
+
 /* =========================================================
    BUILDING
 ========================================================= */
@@ -382,6 +447,248 @@ const BottomWall = styled(Wall)`
   right: 0;
   height: 5px;
   bottom: 0;
+`;
+
+
+/* =========================================================
+   GALPONES 3 Y 4 · PLANO FUTURO
+   Se mantiene separado de los mapas existentes y arranca
+   deshabilitado hasta que se habilite desde el selector.
+========================================================= */
+
+const Galpones34Map = styled.div`
+  position: relative;
+  z-index: 5;
+  min-height: 1050px;
+  padding: 58px 22px 28px;
+  box-sizing: border-box;
+  background: #172019;
+
+  @media (max-width: 700px) {
+    min-height: auto;
+    padding: 54px 7px 20px;
+  }
+`;
+
+const Galpones34Title = styled.div`
+  text-align: center;
+  color: #f1f6f2;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  margin-bottom: 4px;
+
+  @media (max-width: 700px) {
+    font-size: 13px;
+  }
+`;
+
+const Galpones34Subtitle = styled.div`
+  text-align: center;
+  color: #8e9b91;
+  font-size: 9px;
+  font-weight: 700;
+  margin-bottom: 16px;
+
+  @media (max-width: 700px) {
+    font-size: 7px;
+    line-height: 1.3;
+  }
+`;
+
+const Galpones34Floor = styled.div`
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr);
+  grid-template-rows: minmax(350px, 1fr) 10px minmax(350px, 1fr);
+  gap: 0;
+  min-height: 800px;
+  border: 3px solid #343d37;
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    #121a15;
+  background-size: 28px 28px;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 70px auto;
+    min-height: auto;
+  }
+`;
+
+const Galpon34Half = styled.div`
+  position: relative;
+  min-width: 0;
+  grid-column: ${p => p.right ? 3 : 1};
+  grid-row: ${p => p.bottom ? 3 : 1};
+  padding: 32px 10px 24px;
+  box-sizing: border-box;
+  background: ${p => p.top ? 'rgba(39,213,198,0.018)' : 'rgba(242,154,40,0.018)'};
+
+  @media (max-width: 760px) {
+    grid-column: 1;
+    grid-row: ${p => p.bottom ? 3 : 1};
+    padding: 30px 7px 22px;
+  }
+`;
+
+const Galpon34HalfTitle = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  color: ${p => p.top ? '#3ce1d2' : '#ffb44f'};
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .6px;
+
+  @media (max-width: 700px) {
+    font-size: 9px;
+    left: 8px;
+  }
+`;
+
+const Galpon34RackZone = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(50px, 1fr);
+  gap: 7px;
+  height: 100%;
+
+  @media (max-width: 700px) {
+    gap: 5px;
+    grid-auto-rows: 54px;
+  }
+`;
+
+const Galpon34RackZoneSingle = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(50px, 1fr);
+  gap: 7px;
+  height: 100%;
+
+  @media (max-width: 700px) {
+    grid-auto-rows: 54px;
+    gap: 5px;
+  }
+`;
+
+const Galpon34Rack = styled.div`
+  min-width: 0;
+  min-height: 0;
+  border: 2px solid ${p => p.orange ? '#b87522' : '#27d5c6'};
+  border-radius: 5px;
+  padding: 4px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(39,213,198,.06), rgba(0,0,0,.22));
+  position: relative;
+`;
+
+const Galpon34RackLabel = styled.div`
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #dfece6;
+  font-size: 7px;
+  font-weight: 900;
+  white-space: nowrap;
+
+  @media (max-width: 700px) {
+    top: -12px;
+    font-size: 5px;
+  }
+`;
+
+const Galpon34Slots = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+`;
+
+const Galpon34Slot = styled.div`
+  border: 1px solid rgba(178,255,246,.22);
+  border-radius: 1px;
+  background: rgba(255,255,255,.025);
+`;
+
+const Galpon34Wall = styled.div`
+  grid-column: 1 / -1;
+  grid-row: 2;
+  background: #d8ddd9;
+  z-index: 4;
+
+  @media (max-width: 760px) {
+    display: none;
+  }
+`;
+
+const Galpon34Passage = styled.div`
+  grid-column: 2;
+  grid-row: 1 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+  border-left: 3px dashed #d8b45b;
+  border-right: 3px dashed #d8b45b;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(216,180,91,.035),
+    rgba(216,180,91,.035) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  color: #e7c96d;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .7px;
+
+  @media (max-width: 760px) {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 70px;
+    border-left: 0;
+    border-right: 0;
+    border-top: 3px dashed #d8b45b;
+    border-bottom: 3px dashed #d8b45b;
+    font-size: 10px;
+  }
+`;
+
+const Galpon34Door = styled.div`
+  position: absolute;
+  z-index: 12;
+  border: 2px solid #ff3f3f;
+  border-radius: 4px;
+  padding: 4px 6px;
+  color: #ff9696;
+  background: rgba(255,63,63,.13);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  white-space: nowrap;
+
+  @media (max-width: 700px) {
+    font-size: 6px;
+    padding: 3px 4px;
+  }
+`;
+
+const Galpon34DisabledNotice = styled.div`
+  margin-top: 12px;
+  text-align: center;
+  color: #8d978f;
+  font-size: 9px;
+  font-weight: 800;
 `;
 
 const MapEditButton = styled(Button)`
@@ -913,10 +1220,7 @@ const RackMini = styled.div`
 
   border:
     2px solid
-    ${p =>
-      p.side
-        ? '#00c9bd'
-        : '#27d5c6'};
+    ${p => p.selected ? '#ffd54a' : p.occupancy >= 100 ? '#e66b5d' : p.occupancy >= 75 ? '#f0ad4e' : (p.side ? '#00c9bd' : '#27d5c6')};
 
   background:
     linear-gradient(
@@ -939,6 +1243,8 @@ const RackMini = styled.div`
     transform 0.15s ease,
     box-shadow 0.15s ease,
     background 0.15s ease;
+
+  box-shadow: ${p => p.selected ? '0 0 0 3px rgba(255,213,74,.28), 0 8px 20px rgba(0,0,0,.24)' : 'none'};
 
   &:hover {
     transform: translateY(-2px);
@@ -1002,13 +1308,21 @@ const MiniSlot = styled.div`
   transition:
     background 0.15s ease,
     transform 0.15s ease;
+  touch-action: none;
 
   &:hover {
     transform: scale(1.04);
   }
 
   ${p =>
-    p.highlight
+    p.dropTarget
+      ? `
+        outline: 3px solid #ffd54a;
+        box-shadow: 0 0 0 4px rgba(255,213,74,.18), inset 0 0 18px rgba(255,213,74,.16);
+        transform: scale(1.05);
+        z-index: 6;
+      `
+      : p.highlight
       ? `
         outline: 2px solid #ffd54a;
         z-index: 3;
@@ -1045,6 +1359,34 @@ const RackName = styled.div`
     top: -15px;
     font-size: 7px;
   }
+`;
+
+const RackStatus = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 4;
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: ${p => p.status === 'free' ? 'rgba(90,190,102,.16)' : p.status === 'partial' ? 'rgba(240,173,78,.18)' : p.status === 'full' ? 'rgba(230,107,93,.18)' : 'rgba(120,120,120,.2)'};
+  color: ${p => p.status === 'free' ? '#77d783' : p.status === 'partial' ? '#ffd17a' : p.status === 'full' ? '#ff9587' : '#bfc7c1'};
+  border: 1px solid ${p => p.status === 'free' ? 'rgba(119,215,131,.35)' : p.status === 'partial' ? 'rgba(255,209,122,.35)' : p.status === 'full' ? 'rgba(255,149,135,.35)' : 'rgba(191,199,193,.3)'};
+  font-size: 6px;
+  font-weight: 900;
+  letter-spacing: .3px;
+`;
+
+const RackOccupancy = styled.div`
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  color: #a8b8ae;
+  font-size: 7px;
+  font-weight: 900;
+  background: rgba(0,0,0,.35);
+  border-radius: 4px;
+  padding: 2px 4px;
+  z-index: 4;
 `;
 
 const RackAccess = styled.div`
@@ -1836,11 +2178,26 @@ export default function WarehouseMap() {
     setDetail,
   ] = useState(null);
 
+  const [
+    operationPallet,
+    setOperationPallet,
+  ] = useState(null);
+
+  const [
+    dailyCloseVisible,
+    setDailyCloseVisible,
+  ] = useState(false);
+
   // Modo edición: permite adaptar el mapa físico sin tocar el código.
   const [
     editMode,
     setEditMode,
   ] = useState(false);
+
+  const [selectedRack, setSelectedRack] = useState(null);
+  const [dragOverSlot, setDragOverSlot] = useState(null);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [mapZoom, setMapZoom] = useState(1);
 
 
   /* =========================================================
@@ -1915,6 +2272,16 @@ export default function WarehouseMap() {
   }, []);
 
 
+  useEffect(() => {
+    if (!fullscreen) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setFullscreen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [fullscreen]);
+
+
   /* =========================================================
      PRODUCTOS
   ========================================================= */
@@ -1955,6 +2322,92 @@ export default function WarehouseMap() {
     ]
   );
 
+
+  /*
+   * Vincula los pallets guardados en el mapa con el pallet real
+   * de MongoDB. Esto permite que el botón "Cambiar stock" funcione
+   * incluso con posiciones creadas antes de esta versión.
+   */
+  const resolverPalletOperacion = (pallet) => {
+    if (!pallet) return null;
+
+    if (pallet.palletId && pallet.id && pallet.categoria) {
+      return pallet;
+    }
+
+    const numeroPallet =
+      pallet.numeroPallet ||
+      pallet?.pallet?.numeroPallet ||
+      '';
+
+    const lote =
+      pallet.lote ||
+      '';
+
+    const candidato = products.find((product) => {
+      const lotes = Array.isArray(product.lotes)
+        ? product.lotes
+        : [];
+
+      return lotes.some((l) =>
+        (l.pallets || []).some((p) =>
+          numeroPallet
+            ? String(p.numeroPallet || '').trim() === String(numeroPallet).trim()
+            : false
+        )
+      );
+    });
+
+    if (!candidato) return pallet;
+
+    let palletReal = null;
+
+    for (const loteReal of candidato.lotes || []) {
+      palletReal = (loteReal.pallets || []).find((p) => {
+        const coincideNumero =
+          numeroPallet &&
+          String(p.numeroPallet || '').trim() === String(numeroPallet).trim();
+
+        const coincideLote =
+          lote &&
+          String(loteReal.numero || '').trim() === String(lote).trim();
+
+        return coincideNumero && (!lote || coincideLote);
+      });
+
+      if (palletReal) {
+        return {
+          ...pallet,
+          id: String(candidato._id || candidato.id || ''),
+          categoria: candidato.categoria,
+          palletId: String(palletReal._id || ''),
+          cantidad: Number(palletReal.cantidad || pallet.cantidad || 0),
+          unidad: candidato.unidad || pallet.unidad || '',
+          lote: loteReal.numero || lote,
+          ubicacion: palletReal.ubicacion || pallet.ubicacion || pallet.slot || '',
+          numeroPallet: palletReal.numeroPallet || numeroPallet,
+          nombre: candidato.nombre,
+          descripcion: candidato.descripcion || '',
+          presentacion: candidato.presentacion || '',
+        };
+      }
+    }
+
+    return pallet;
+  };
+
+  const abrirOperacionPallet = (pallet) => {
+    const preparado = resolverPalletOperacion(pallet);
+
+    if (!preparado?.palletId) {
+      message.warning(
+        'No encontré el pallet real en el producto. Podés seguir viendo el detalle, pero primero hay que vincular ese pallet.'
+      );
+      return;
+    }
+
+    setOperationPallet(preparado);
+  };
 
   /* =========================================================
      ESTADO MAPA
@@ -2035,6 +2488,10 @@ export default function WarehouseMap() {
         occupiedPositions
     );
 
+  const occupancyPercent = allSlots > 0
+    ? Math.round((occupiedPositions / allSlots) * 100)
+    : 0;
+
   const controlPallets =
     controlMax.reduce(
       (total, slot) =>
@@ -2104,6 +2561,9 @@ export default function WarehouseMap() {
           product?.cantidad || 0
         ),
 
+      unidad:
+        product?.unidad || '',
+
       numeroPallet:
         product?.numeroPallet ||
         '',
@@ -2159,6 +2619,8 @@ export default function WarehouseMap() {
           info.cantidad
             ? `${info.cantidad} ${info.unidad}`.trim()
             : '',
+
+        equivalente: calcularEquivalente(info.cantidad, info),
       };
     };
 
@@ -2568,11 +3030,15 @@ export default function WarehouseMap() {
         return false;
 
       const q =
-        search.toLowerCase();
+        search.trim().toLowerCase();
 
       return [
         product?.nombre,
         product?.lote,
+        product?.ubicacion,
+        product?.numeroPallet,
+        product?.codigoBarras,
+        product?.codigo,
       ].some(value =>
         String(value || '')
           .toLowerCase()
@@ -2608,6 +3074,17 @@ export default function WarehouseMap() {
         editMode
           ? rack
           : rack.filter(slot => !isBlocked(slot.id));
+      const occupiedCount = visibleSlots.filter(slot => stackOf(occupied[slot.id]).length > 0).length;
+      const occupancy = visibleSlots.length ? Math.round((occupiedCount / visibleSlots.length) * 100) : 0;
+      const rackId = `R${String(rack[0].rack).padStart(2, '0')}`;
+      const isSelected = selectedRack === rackId;
+      const status = visibleSlots.length === 0
+        ? 'blocked'
+        : occupancy >= 100
+          ? 'full'
+          : occupancy > 0
+            ? 'partial'
+            : 'free';
 
       return (
         <Tooltip
@@ -2622,9 +3099,12 @@ export default function WarehouseMap() {
         >
           <RackMini
             side={side}
+            occupancy={occupancy}
+            status={status}
+            selected={isSelected}
             onClick={() =>
               !editMode &&
-              setDetail({
+              (setSelectedRack(rackId), setDetail({
                 id: `R${String(rack[0].rack).padStart(2, '0')}`,
                 rack: rack[0].rack,
                 product: rack.flatMap(slot =>
@@ -2633,12 +3113,18 @@ export default function WarehouseMap() {
                     slot: slot.id,
                   }))
                 ),
-              })
+              }) )
             }
           >
             <RackName>
               R{String(rack[0].rack).padStart(2, '0')}
             </RackName>
+            <RackStatus status={status}>
+              {status === 'free' ? 'LIBRE' : status === 'partial' ? 'PARCIAL' : status === 'full' ? 'COMPLETO' : 'BLOQUEADO'}
+            </RackStatus>
+            <RackOccupancy>
+              {occupancy}% · {occupiedCount}/{visibleSlots.length}
+            </RackOccupancy>
 
             <MiniSlots>
               {visibleSlots.map(slot => {
@@ -2681,18 +3167,48 @@ export default function WarehouseMap() {
                     <MiniSlot
                       occupied={!!stack.length}
                       highlight={isMatch(stack[0])}
-                      draggable={editMode ? false : !!stack.length}
+                      dropTarget={dragOverSlot === slot.id}
+                      draggable={!!stack.length}
+                      onPointerDown={e => {
+                        if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+                          if (stack.length) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setDragged(slot.id);
+                            setSelectedProduct(null);
+                            setDragOverSlot(slot.id);
+                          }
+                        }
+                      }}
+                      onPointerEnter={e => {
+                        if ((e.pointerType === 'touch' || e.pointerType === 'pen') && dragged && dragged !== slot.id) {
+                          setDragOverSlot(slot.id);
+                        }
+                      }}
+                      onPointerUp={e => {
+                        if ((e.pointerType === 'touch' || e.pointerType === 'pen') && dragged && dragged !== slot.id) {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          addOrMove(slot.id, 1);
+                          setDragOverSlot(null);
+                        }
+                      }}
                       onDragStart={e => {
-                        if (editMode) return;
                         e.stopPropagation();
+                        e.dataTransfer.effectAllowed = 'move';
                         setDragged(slot.id);
                         setSelectedProduct(null);
                       }}
-                      onDragOver={e => e.preventDefault()}
+                      onDragOver={e => {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'move';
+                        setDragOverSlot(slot.id);
+                      }}
+                      onDragLeave={() => setDragOverSlot(null)}
                       onDrop={e => {
                         e.stopPropagation();
-                        if (editMode) return;
                         addOrMove(slot.id, 1);
+                        setDragOverSlot(null);
                       }}
                       onClick={e => {
                         e.stopPropagation();
@@ -2804,8 +3320,9 @@ export default function WarehouseMap() {
                               !!product
                             }
 
-                            onDragStart={() => {
-                              if (editMode || blockedSlot) return;
+                            onDragStart={e => {
+                              if (blockedSlot) return;
+                              e.dataTransfer.effectAllowed = 'move';
                               setDragged(
                                 slot.id
                               );
@@ -2821,7 +3338,6 @@ export default function WarehouseMap() {
                             }
 
                             onDrop={() => {
-                              if (editMode) return;
                               addOrMove(slot.id, 2);
                             }}
 
@@ -2893,6 +3409,138 @@ export default function WarehouseMap() {
     );
 
 
+
+  /* =========================================================
+     GALPONES 3 Y 4 · PREVISUALIZACIÓN
+  ========================================================= */
+
+  const renderGalpon34Rack = (rack, orange = false) => (
+    <Galpon34Rack
+      key={rack[0].id}
+      orange={orange}
+      title={`G${rack[0].galpon}-R${String(rack[0].rack).padStart(2, '0')} · 4 alto × 4 posiciones`}
+    >
+      <Galpon34RackLabel>
+        G{rack[0].galpon}-R{String(rack[0].rack).padStart(2, '0')}
+      </Galpon34RackLabel>
+
+      <Galpon34Slots>
+        {rack.map(slot => (
+          <Galpon34Slot key={slot.id} title={slot.id} />
+        ))}
+      </Galpon34Slots>
+    </Galpon34Rack>
+  );
+
+  const renderGalpones34 = () => {
+    const galpon4Left = galpon4Racks.slice(0, 20);
+    const galpon4Right = galpon4Racks.slice(20, 30);
+    const galpon3Left = galpon3Racks.slice(0, 10);
+    const galpon3Right = galpon3Racks.slice(10, 30);
+
+    return (
+      <Building>
+        <TopWall />
+        <BottomWall />
+
+        <Galpones34Map>
+          <Galpon34Door style={{ top: 8, left: '4%' }}>
+            PORTÓN CORREDIZO · G4
+          </Galpon34Door>
+
+          <Galpon34Door style={{ top: 8, right: '4%' }}>
+            🚪 EMERGENCIA
+          </Galpon34Door>
+
+          <Galpon34Door style={{ bottom: 8, left: '4%' }}>
+            🚪 EMERGENCIA
+          </Galpon34Door>
+
+          <Galpon34Door style={{ bottom: 8, right: '4%' }}>
+            PORTÓN CORREDIZO · G3
+          </Galpon34Door>
+
+          <Galpon34Door style={{ top: '49%', left: 8 }}>
+            🚪 EMERGENCIA
+          </Galpon34Door>
+
+          <Galpon34Door style={{ top: '49%', right: 8 }}>
+            🚪 EMERGENCIA
+          </Galpon34Door>
+
+          <Galpones34Title>
+            🏭 GALPONES 3 Y 4 · MAPA FÍSICO
+          </Galpones34Title>
+
+          <Galpones34Subtitle>
+            UNA MISMA ESTRUCTURA · PARED DIVISORIA · PASILLO CENTRAL · RACKS PENETRANTES
+          </Galpones34Subtitle>
+
+          <Galpones34Floor>
+            <Galpon34Half top>
+              <Galpon34HalfTitle>
+                GALPÓN 4 · 20 RACKS LADO IZQUIERDO
+              </Galpon34HalfTitle>
+
+              <Galpon34RackZone>
+                {galpon4Left.map(rack =>
+                  renderGalpon34Rack(rack)
+                )}
+              </Galpon34RackZone>
+            </Galpon34Half>
+
+            <Galpon34Half top right>
+              <Galpon34HalfTitle>
+                GALPÓN 4 · 10 RACKS LADO DERECHO
+              </Galpon34HalfTitle>
+
+              <Galpon34RackZoneSingle>
+                {galpon4Right.map(rack =>
+                  renderGalpon34Rack(rack, true)
+                )}
+              </Galpon34RackZoneSingle>
+            </Galpon34Half>
+
+            <Galpon34Wall />
+
+            <Galpon34Passage>
+              ↕ PASILLO DE CONEXIÓN
+            </Galpon34Passage>
+
+            <Galpon34Half bottom>
+              <Galpon34HalfTitle>
+                GALPÓN 3 · 10 RACKS LADO IZQUIERDO
+              </Galpon34HalfTitle>
+
+              <Galpon34RackZoneSingle>
+                {galpon3Left.map(rack =>
+                  renderGalpon34Rack(rack)
+                )}
+              </Galpon34RackZoneSingle>
+            </Galpon34Half>
+
+            <Galpon34Half bottom right>
+              <Galpon34HalfTitle>
+                GALPÓN 3 · 20 RACKS LADO DERECHO
+              </Galpon34HalfTitle>
+
+              <Galpon34RackZone>
+                {galpon3Right.map(rack =>
+                  renderGalpon34Rack(rack, true)
+                )}
+              </Galpon34RackZone>
+            </Galpon34Half>
+          </Galpones34Floor>
+
+          <Galpon34DisabledNotice>
+            ℹ️ Plano físico habilitado para visualizar. La administración de stock de Galpones 3 y 4 queda preparada para una etapa posterior.
+          </Galpon34DisabledNotice>
+        </Galpones34Map>
+      </Building>
+    );
+  };
+
+
   /* =========================================================
      SEMILLAS SLOT
   ========================================================= */
@@ -2945,8 +3593,9 @@ export default function WarehouseMap() {
             }
 
             onDragStart={e => {
-              if (editMode || blockedSlot) return;
+              if (blockedSlot) return;
               e.stopPropagation();
+              e.dataTransfer.effectAllowed = 'move';
 
               setDragged(
                 slot.id
@@ -2963,7 +3612,6 @@ export default function WarehouseMap() {
 
             onDrop={e => {
               e.stopPropagation();
-              if (editMode) return;
               addOrMove(slot.id, 3);
             }}
 
@@ -3268,6 +3916,7 @@ export default function WarehouseMap() {
   ========================================================= */
 
   return (
+    <FullscreenShell fullscreen={fullscreen}>
     <Wrapper>
 
       {/* =====================================================
@@ -3334,6 +3983,23 @@ export default function WarehouseMap() {
               🌱 Semillas
             </Button>
 
+            <Button
+              disabled={!GALPONES_34_HABILITADOS}
+              type={
+                warehouse ===
+                'galpones34'
+                  ? 'primary'
+                  : 'default'
+              }
+              onClick={() =>
+                cambiarGalpon(
+                  'galpones34'
+                )
+              }
+            >
+              🏭 Galpones 3 y 4
+            </Button>
+
           </WarehouseSelector>
 
           <Input
@@ -3386,6 +4052,21 @@ export default function WarehouseMap() {
             Guardar mapa
           </Button>
 
+          <Button
+            type="default"
+            onClick={() => setDailyCloseVisible(true)}
+          >
+            🌙 Cierre del día
+          </Button>
+
+          <Button
+            type="default"
+            icon={fullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
+            onClick={() => setFullscreen(value => !value)}
+          >
+            {fullscreen ? 'Salir de pantalla completa' : 'Pantalla completa'}
+          </Button>
+
           {selectedProduct && (
             <Tag
               closable
@@ -3404,6 +4085,56 @@ export default function WarehouseMap() {
           )}
 
         </Toolbar>
+
+        {(selectedProduct || selectedRack || detail || dragged) && (
+          <QuickActionBar role="toolbar" aria-label="Acciones rápidas del mapa">
+            <QuickActionLabel>
+              {dragged ? 'Movimiento activo' : selectedRack ? `${selectedRack} seleccionado` : 'Producto seleccionado'}
+            </QuickActionLabel>
+
+            {detail?.product?.length ? (
+              <Button
+                type="primary"
+                size="large"
+                onClick={() => abrirOperacionPallet(detail.product[0])}
+              >
+                ⚡ Cambiar stock
+              </Button>
+            ) : null}
+
+            {dragged ? (
+              <Button
+                size="large"
+                onClick={() => {
+                  setDragged(null);
+                  setDragOverSlot(null);
+                }}
+              >
+                ↩ Cancelar movimiento
+              </Button>
+            ) : null}
+
+            <Button
+              size="large"
+              onClick={() => {
+                setSelectedProduct(null);
+                setSelectedRack(null);
+                setDetail(null);
+                setDragged(null);
+                setDragOverSlot(null);
+              }}
+            >
+              ✕ Limpiar
+            </Button>
+
+            <Button
+              size="large"
+              onClick={() => setFullscreen(value => !value)}
+            >
+              {fullscreen ? '⛶ Salir' : '⛶ Pantalla completa'}
+            </Button>
+          </QuickActionBar>
+        )}
 
         {editMode && (
           <div style={{
@@ -3572,8 +4303,53 @@ export default function WarehouseMap() {
 
         </Legend>
 
+        <MapTools>
+          <MapToolsLabel>MAPA</MapToolsLabel>
+          <MapZoomButton
+            aria-label="Alejar mapa"
+            onClick={() => setMapZoom(value => Math.max(0.7, Number((value - 0.1).toFixed(1))))}
+            disabled={mapZoom <= 0.7}
+          >
+            <MinusOutlined />
+          </MapZoomButton>
+          <MapZoomValue>{Math.round(mapZoom * 100)}%</MapZoomValue>
+          <MapZoomButton
+            aria-label="Acercar mapa"
+            onClick={() => setMapZoom(value => Math.min(1.5, Number((value + 0.1).toFixed(1))))}
+            disabled={mapZoom >= 1.5}
+          >
+            <PlusOutlined />
+          </MapZoomButton>
+          <Button
+            size="small"
+            icon={<ReloadOutlined />}
+            onClick={() => setMapZoom(1)}
+            disabled={mapZoom === 1}
+          >
+            Restablecer
+          </Button>
+        </MapTools>
+
+        <OccupancyBar>
+          <OccupancyHeader>
+            <span>OCUPACIÓN DEL GALPÓN</span>
+            <strong>{occupancyPercent}%</strong>
+          </OccupancyHeader>
+          <OccupancyTrack>
+            <OccupancyFill style={{ width: `${occupancyPercent}%` }} />
+          </OccupancyTrack>
+          <OccupancyMeta>
+            <span>🟢 {occupiedPositions} ocupadas</span>
+            <span>⚪ {freePositions} libres</span>
+            <span>📦 {occupiedPallets} pallets</span>
+          </OccupancyMeta>
+        </OccupancyBar>
+
       </Header>
 
+
+      <MapViewport>
+        <MapScale style={{ zoom: mapZoom }}>
 
       {/* =====================================================
           MAPA AGROQUÍMICOS
@@ -3813,6 +4589,15 @@ export default function WarehouseMap() {
 
 
       {/* =====================================================
+          GALPONES 3 Y 4 · MAPA FÍSICO
+      ===================================================== */}
+      {warehouse === 'galpones34' && renderGalpones34()}
+
+        </MapScale>
+      </MapViewport>
+
+
+      {/* =====================================================
           PRODUCTOS
       ===================================================== */}
 
@@ -3844,13 +4629,8 @@ export default function WarehouseMap() {
             color: '#66736a',
           }}
         >
-          Arrastrá un producto sobre una
-          posición libre. También podés hacer
-          clic en un producto y después en la
-          posición. Para mover un pallet,
-          arrastrá la celda verde a otra posición.
-          En Semillas se permiten hasta 3 pallets
-          por posición.
+          <b>Arrastrá y soltá:</b> llevá un producto a una posición libre o mové un pallet existente a otra posición.
+          Las posiciones compatibles se iluminan mientras arrastrás. En tablet también podés mantener presionado y deslizar el dedo. También podés hacer clic para seleccionar.
         </p>
 
         <Unassigned>
@@ -3867,77 +4647,72 @@ export default function WarehouseMap() {
               return (
                 <ProductCard
                   key={`${product.categoria}-${product._id || product.id}`}
-
-                  draggable={
-                    !tieneUbicacion
+                  draggable
+                  onPointerDown={e => {
+                    if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (tieneUbicacion && occupied[ubicacion]) {
+                        setDragged(ubicacion);
+                        setSelectedProduct(null);
+                      } else {
+                        setDragged(`PRODUCT:${product._id || product.id}`);
+                        setSelectedProduct(product);
+                        setSelectedRack(null);
+                      }
+                    }
+                  }}
+                  title={
+                    tieneUbicacion
+                      ? `Arrastrá para mover desde ${ubicacion}`
+                      : 'Arrastrá este producto a una posición libre'
                   }
+                  onDragStart={e => {
+                    e.dataTransfer.effectAllowed = 'move';
 
-                  onDragStart={() => {
-                    if (
-                      tieneUbicacion
-                    ) {
-                      message.info(
-                        `Este producto ya figura en ${ubicacion}. Mové el pallet desde el mapa.`
-                      );
+                    if (tieneUbicacion) {
+                      if (!occupied[ubicacion]) {
+                        message.warning(
+                          `No encontré ${ubicacion} dentro del mapa actual. Podés abrir el detalle del producto para revisar su ubicación.`
+                        );
+                        e.preventDefault();
+                        return;
+                      }
 
+                      setDragged(ubicacion);
+                      setSelectedProduct(null);
                       return;
                     }
 
-                    setDragged(
-                      `PRODUCT:${product._id || product.id}`
-                    );
-
-                    setSelectedProduct(
-                      product
-                    );
+                    setDragged(`PRODUCT:${product._id || product.id}`);
+                    setSelectedProduct(product);
+                    setSelectedRack(null);
                   }}
-
-                  onClick={() =>
-                    setSelectedProduct(
-                      product
-                    )
-                  }
+                  onDragEnd={() => { setDragged(null); setDragOverSlot(null); }}
+                  onClick={() => { setSelectedProduct(product); setSelectedRack(null); }}
                 >
+                  <ProductDragHandle aria-hidden="true">⋮⋮</ProductDragHandle>
 
-                  <b>
-                    {itemName(
-                      product
-                    )}
-                  </b>
+                  <ProductName>
+                    <b>{itemName(product)}</b>
+                    <small>
+                      {product.codigoBarras || product.codigo || ''}
+                    </small>
+                  </ProductName>
 
-                  <div>
-                    Lote:{' '}
-                    {itemLot(
-                      product
-                    ) || '—'}
-                  </div>
+                  <ProductCell>
+                    {itemLot(product) || '—'}
+                  </ProductCell>
 
-                  <div>
-                    Stock:{' '}
-                    {product.cantidad ??
-                      '—'}{' '}
-                    {product.unidad ||
-                      ''}
-                  </div>
+                  <ProductCell>
+                    {product.cantidad ?? '—'} {product.unidad || ''}
+                  </ProductCell>
 
-                  <div
-                    style={{
-                      marginTop: 5,
-                    }}
-                  >
-                    <Tag
-                      color={
-                        tieneUbicacion
-                          ? 'green'
-                          : 'gold'
-                      }
-                    >
-                      {tieneUbicacion
-                        ? `Ubicado · ${ubicacion}`
-                        : 'Sin ubicación'}
+                  <ProductLocation>
+                    <Tag color={tieneUbicacion ? 'green' : 'gold'}>
+                      {tieneUbicacion ? ubicacion : 'Sin ubicación'}
                     </Tag>
-                  </div>
-
+                  </ProductLocation>
                 </ProductCard>
               );
             }
@@ -3952,18 +4727,21 @@ export default function WarehouseMap() {
           MODAL
       ===================================================== */}
 
-      <Modal
+      <Drawer
         open={!!detail}
+        placement="right"
+        width={390}
+        destroyOnClose={false}
+        styles={{
+          body: { padding: 18 },
+          header: { padding: '14px 18px' },
+        }}
+        className="miru-map-detail-drawer"
 
         title={
           detail?.rack
-            ? `RACK ${String(
-                detail.rack
-              ).padStart(
-                2,
-                '0'
-              )} · 12 posiciones`
-            : detail?.id
+            ? `RACK ${String(detail.rack).padStart(2, '0')} · Detalle operativo`
+            : `POSICIÓN ${detail?.id || ''}`
         }
 
         onCancel={() =>
@@ -4170,6 +4948,17 @@ export default function WarehouseMap() {
                         }
                       </div>
 
+                      <Button
+                        type="primary"
+                        size="small"
+                        style={{ marginTop: 8 }}
+                        onClick={() =>
+                          abrirOperacionPallet(pallet)
+                        }
+                      >
+                        ⚡ Cambiar stock
+                      </Button>
+
                     </div>
                   );
                 }
@@ -4294,6 +5083,17 @@ export default function WarehouseMap() {
                       }
                     </div>
 
+                    <Button
+                      type="primary"
+                      size="small"
+                      style={{ marginTop: 8 }}
+                      onClick={() =>
+                        abrirOperacionPallet(pallet)
+                      }
+                    >
+                      ⚡ Cambiar stock
+                    </Button>
+
                   </div>
                 );
               }
@@ -4315,58 +5115,344 @@ export default function WarehouseMap() {
 
         )}
 
-      </Modal>
+
+      <PalletOperationModal
+        visible={!!operationPallet}
+        pallet={operationPallet}
+        onClose={() => setOperationPallet(null)}
+        onSuccess={(actualizado) => {
+          setMap((prev) => {
+            const base = prev || state;
+            const next = { ...base.occupied };
+
+            Object.entries(next).forEach(([slotId, value]) => {
+              const stack = stackOf(value);
+              const updatedStack = stack.map((p) =>
+                String(p.palletId || '') ===
+                String(actualizado.palletId)
+                  ? {
+                      ...p,
+                      cantidad: actualizado.cantidad,
+                      estado: actualizado.estado,
+                    }
+                  : p
+              );
+
+              next[slotId] = updatedStack;
+            });
+
+            return {
+              ...base,
+              occupied: next,
+            };
+          });
+        }}
+      />
+
+      <DailyCloseModal
+        visible={dailyCloseVisible}
+        onClose={() => setDailyCloseVisible(false)}
+      />
+
+      </Drawer>
 
     </Wrapper>
+    </FullscreenShell>
   );
 }
 
 
 /* =========================================================
+   MAPA · CONTROLES VISUALES
+========================================================= */
+
+const MapTools = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 7px 9px;
+  width: fit-content;
+  border: 1px solid #dbe5dc;
+  border-radius: 10px;
+  background: #f7faf7;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    justify-content: center;
+  }
+`;
+
+const MapToolsLabel = styled.span`
+  color: #5d6d61;
+  font-size: 10px;
+  font-weight: 900;
+  margin-right: 3px;
+  letter-spacing: .4px;
+`;
+
+const MapZoomButton = styled(Button)`
+  width: 34px;
+  height: 32px;
+  padding: 0;
+  border-radius: 8px;
+`;
+
+const MapZoomValue = styled.span`
+  min-width: 48px;
+  text-align: center;
+  color: #23452b;
+  font-size: 12px;
+  font-weight: 900;
+`;
+
+const OccupancyBar = styled.div`
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid #dbe5dc;
+  border-radius: 10px;
+  background: #fbfdfb;
+`;
+
+const OccupancyHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #4f6255;
+  font-size: 10px;
+  font-weight: 900;
+
+  strong {
+    color: #23452b;
+    font-size: 12px;
+  }
+`;
+
+const OccupancyTrack = styled.div`
+  height: 8px;
+  margin-top: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7eee8;
+`;
+
+const OccupancyFill = styled.div`
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #75c67c, #3d9d52);
+  transition: width .25s ease;
+`;
+
+const OccupancyMeta = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 7px;
+  color: #718078;
+  font-size: 9px;
+  font-weight: 800;
+`;
+
+/* =========================================================
    STYLES FINALES
 ========================================================= */
 
-const Unassigned = styled.div`
-  display: grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(210px, 1fr)
-    );
-
+const QuickActionBar = styled.div`
+  position: sticky;
+  bottom: 10px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0 12px;
+  padding: 9px 10px;
+  border: 1px solid #cfded0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 8px 24px rgba(35, 69, 43, .14);
+  backdrop-filter: blur(8px);
 
-  margin-top: 12px;
+  .ant-btn {
+    min-height: 40px;
+    border-radius: 9px;
+    font-weight: 700;
+  }
 
   @media (max-width: 700px) {
-    grid-template-columns: 1fr;
-    gap: 7px;
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    margin: 0;
+    padding: 8px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+
+    .ant-btn {
+      flex: 0 0 auto;
+      min-height: 46px;
+      font-size: 13px;
+    }
+  }
+`;
+
+const QuickActionLabel = styled.div`
+  color: #315239;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .25px;
+  margin-right: 2px;
+  white-space: nowrap;
+
+  @media (max-width: 700px) {
+    position: sticky;
+    left: 0;
+    padding: 0 4px;
+    background: rgba(255, 255, 255, .96);
+  }
+`;
+
+const Unassigned = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 12px;
+
+  &::before {
+    content: 'ARRASTRÁ ↕ · PRODUCTO · LOTE · STOCK · UBICACIÓN';
+    display: grid;
+    grid-template-columns: 28px minmax(180px, 2fr) minmax(90px, .8fr) minmax(100px, .9fr) minmax(150px, 1.1fr);
+    gap: 10px;
+    padding: 0 10px 2px;
+    color: #77847a;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .35px;
+  }
+
+  @media (max-width: 900px) {
+    &::before {
+      grid-template-columns: 24px minmax(160px, 1.7fr) minmax(80px, .8fr) minmax(110px, 1fr);
+    }
+  }
+
+  @media (max-width: 700px) {
+    &::before {
+      content: 'ARRASTRÁ · PRODUCTO · STOCK';
+      grid-template-columns: 24px minmax(0, 1fr) auto;
+      padding: 0 8px 2px;
+    }
+  }
+`;
+
+const ProductDragHandle = styled.div`
+  color: #718078;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -3px;
+  user-select: none;
+  cursor: grab;
+`;
+
+const ProductName = styled.div`
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+
+  b {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #26352b;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  small {
+    color: #8a968d;
+    font-size: 9px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
+
+const ProductCell = styled.div`
+  min-width: 0;
+  color: #59675e;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const ProductLocation = styled.div`
+  min-width: 0;
+
+  .ant-tag {
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+    line-height: 20px;
+    height: 22px;
   }
 `;
 
 const ProductCard = styled.div`
-  border:
-    1px solid #d8e3d5;
+  display: grid;
+  grid-template-columns: 28px minmax(180px, 2fr) minmax(90px, .8fr) minmax(100px, .9fr) minmax(150px, 1.1fr);
+  align-items: center;
+  gap: 10px;
 
+  border: 1px solid #d8e3d5;
+  border-radius: 7px;
   background: #fff;
-
-  border-radius: 9px;
-
-  padding: 9px;
-
+  padding: 7px 10px;
+  min-height: 48px;
+  box-sizing: border-box;
   cursor: grab;
-
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
   font-size: 12px;
+  transition: border-color .15s ease, background .15s ease, transform .12s ease, box-shadow .12s ease;
 
   &:hover {
     border-color: #7ca07e;
+    background: #fbfdfb;
+    box-shadow: 0 2px 8px rgba(34, 66, 39, .08);
+  }
+
+  &:active {
+    cursor: grabbing;
+    transform: scale(.995);
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 24px minmax(160px, 1.7fr) minmax(80px, .8fr) minmax(110px, 1fr);
+
+    > div:nth-child(4) {
+      display: none;
+    }
   }
 
   @media (max-width: 700px) {
+    grid-template-columns: 24px minmax(0, 1fr) auto;
     width: 100%;
-    padding: 10px;
-    font-size: 12px;
+    padding: 7px 8px;
+    min-height: 46px;
+    font-size: 11px;
+
+    > div:nth-child(3),
+    > div:nth-child(4) {
+      display: none;
+    }
   }
 `;
 

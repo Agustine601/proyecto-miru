@@ -22,6 +22,16 @@ const movementSchema = new mongoose.Schema({
     default: '',
   },
 
+  palletId: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: null,
+  },
+
+  ubicacion: {
+    type: String,
+    default: '',
+  },
+
   tipo: {
     type: String,
     required: true,
@@ -38,6 +48,11 @@ const movementSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
+
+  // Equivalencia calculada a partir de la presentación del producto.
+  cantidadEquivalente: { type: Number, default: null },
+  unidadEquivalente: { type: String, default: '' },
+  factorConversion: { type: Number, default: null },
 
   motivo: {
     type: String,

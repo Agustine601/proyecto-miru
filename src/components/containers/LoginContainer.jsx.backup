@@ -1,8 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { setLogin } from '../../loginSlice';
-import { Button } from 'antd';
 import LoginOAuth from './LoginOAuth.jsx';
 
 const Wrapper = styled.div`
@@ -150,19 +147,6 @@ const StyledP = styled.p`
   &::after { right: 0; }
 `;
 
-const GuestLoginBtn = styled(Button)`
-  width: 100%;
-  height: 50px;
-  border: 0 !important;
-  border-radius: 14px !important;
-  color: #092010 !important;
-  background: linear-gradient(135deg, #8eea35, #3bd36a) !important;
-  font-size: 15px;
-  font-weight: 800;
-  transition: transform .2s ease, box-shadow .2s ease;
-  &:hover, &:focus { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(73, 222, 83, .25); }
-`;
-
 const FooterText = styled.p`
   margin: 18px 0 0;
   color: rgba(255,255,255,.45);
@@ -171,9 +155,6 @@ const FooterText = styled.p`
 `;
 
 const LoginContainer = () => {
-  const dispatch = useDispatch();
-  const handleLogin = () => dispatch(setLogin(true));
-
   return (
     <Wrapper>
       <BayerVideo
@@ -200,8 +181,7 @@ const LoginContainer = () => {
           <p>Ingresá a tu cuenta para continuar</p>
         </Welcome>
         <LoginOAuth />
-        <StyledP>o continuar como invitado</StyledP>
-        <GuestLoginBtn type="primary" onClick={handleLogin}>Iniciar sesión como invitado →</GuestLoginBtn>
+        <StyledP>acceso protegido</StyledP>
         <FooterText>Tu aliado para inventario, movimientos y operaciones agrícolas.</FooterText>
       </LoginCard>
     </Wrapper>

@@ -1,5 +1,7 @@
 const Movement = require('../models/movementsModel');
 const models = require('../models/itemsModels');
+const DailyClosure = require('../models/dailyClosureModel');
+const { calcularEquivalente } = require('../utils/conversionStock');
 
 const movementsController = {};
 
@@ -119,8 +121,64 @@ const buscarLote = (
 };
 
 /*
+ * Busca un pallet dentro de todos los lotes del producto.
+ */
+const buscarPallet = (producto, palletId) => {
+  if (!palletId || !Array.isArray(producto.lotes)) return null;
+
+  for (const lote of producto.lotes) {
+    const pallet = (lote.pallets || []).id(palletId);
+    if (pallet) return { pallet, lote };
+  }
+
+  return null;
+};
+
+const actualizarPalletMovimiento = ({
+  producto,
+  palletId,
+  tipo,
+  cantidad,
+}) => {
+  if (!palletId) return { ok: true, pallet: null };
+
+  const encontrado = buscarPallet(producto, palletId);
+
+  if (!encontrado) {
+    return {
+      ok: false,
+      error: 'El pallet indicado no existe dentro del producto.',
+    };
+  }
+
+  const pallet = encontrado.pallet;
+  const stockPallet = Number(pallet.cantidad || 0);
+
+  if (['salida', 'consumo'].includes(tipo)) {
+    if (stockPallet < cantidad) {
+      return {
+        ok: false,
+        error: `Stock insuficiente en el pallet. Disponible: ${stockPallet} ${producto.unidad || ''}`,
+      };
+    }
+
+    pallet.cantidad = stockPallet - cantidad;
+
+    if (pallet.cantidad === 0) {
+      pallet.estado = 'retirado';
+    }
+  } else if (tipo === 'entrada') {
+    pallet.cantidad = stockPallet + cantidad;
+    pallet.estado = 'activo';
+  }
+
+  return { ok: true, pallet };
+};
+
+/*
  * REGISTRAR ENTRADA / SALIDA
  */
+
 movementsController.registerMovement =
   async (req, res) => {
     const {
@@ -131,6 +189,8 @@ movementsController.registerMovement =
       motivo,
       responsable,
       lote,
+      palletId,
+      ubicacion,
     } = req.body;
 
     try {
@@ -256,6 +316,30 @@ movementsController.registerMovement =
               0
           );
 
+        if (
+          tipo === 'salida' &&
+          stockLote < cantidadMovimiento
+        ) {
+          return res.status(400).json({
+            error:
+              `Stock insuficiente en el lote ${loteSeleccionado}. Disponible: ${stockLote} ${producto.unidad || ''}`,
+          });
+        }
+
+        const actualizacionPallet =
+          actualizarPalletMovimiento({
+            producto,
+            palletId,
+            tipo,
+            cantidad: cantidadMovimiento,
+          });
+
+        if (!actualizacionPallet.ok) {
+          return res.status(400).json({
+            error: actualizacionPallet.error,
+          });
+        }
+
         /*
          * SALIDA
          */
@@ -326,6 +410,12 @@ movementsController.registerMovement =
             lote:
               loteSeleccionado,
 
+            palletId:
+              palletId || null,
+
+            ubicacion:
+              ubicacion || actualizacionPallet.pallet?.ubicacion || '',
+
             tipo,
 
             cantidad:
@@ -334,6 +424,15 @@ movementsController.registerMovement =
             unidad:
               producto.unidad ||
               '',
+
+            ...(() => {
+              const equivalente = calcularEquivalente(cantidadMovimiento, producto);
+              return {
+                cantidadEquivalente: equivalente?.cantidad ?? null,
+                unidadEquivalente: equivalente?.unidad || '',
+                factorConversion: equivalente?.factor ?? null,
+              };
+            })(),
 
             motivo:
               motivo || '',
@@ -359,6 +458,14 @@ movementsController.registerMovement =
 
             stockLote:
               loteProducto.cantidad,
+
+            stockPallet:
+              actualizacionPallet.pallet
+                ? actualizacionPallet.pallet.cantidad
+                : null,
+
+            pallet:
+              actualizacionPallet.pallet || null,
           });
       }
 
@@ -468,6 +575,8 @@ movementsController.registerConsumption =
       motivo,
       responsable,
       lote,
+      palletId,
+      ubicacion,
     } = req.body;
 
     try {
@@ -574,6 +683,27 @@ movementsController.registerConsumption =
               0
           );
 
+        if (stockLote < cantidadConsumo) {
+          return res.status(400).json({
+            error:
+              `Stock insuficiente en el lote ${loteSeleccionado}. Disponible: ${stockLote} ${producto.unidad || ''}`,
+          });
+        }
+
+        const actualizacionPallet =
+          actualizarPalletMovimiento({
+            producto,
+            palletId,
+            tipo: 'consumo',
+            cantidad: cantidadConsumo,
+          });
+
+        if (!actualizacionPallet.ok) {
+          return res.status(400).json({
+            error: actualizacionPallet.error,
+          });
+        }
+
         if (
           stockLote <
           cantidadConsumo
@@ -615,6 +745,12 @@ movementsController.registerConsumption =
             lote:
               loteSeleccionado,
 
+            palletId:
+              palletId || null,
+
+            ubicacion:
+              ubicacion || actualizacionPallet.pallet?.ubicacion || '',
+
             tipo: 'consumo',
 
             cantidad:
@@ -623,6 +759,15 @@ movementsController.registerConsumption =
             unidad:
               producto.unidad ||
               '',
+
+            ...(() => {
+              const equivalente = calcularEquivalente(cantidadConsumo, producto);
+              return {
+                cantidadEquivalente: equivalente?.cantidad ?? null,
+                unidadEquivalente: equivalente?.unidad || '',
+                factorConversion: equivalente?.factor ?? null,
+              };
+            })(),
 
             motivo:
               motivo || '',
@@ -645,6 +790,14 @@ movementsController.registerConsumption =
 
             stockLote:
               loteProducto.cantidad,
+
+            stockPallet:
+              actualizacionPallet.pallet
+                ? actualizacionPallet.pallet.cantidad
+                : null,
+
+            pallet:
+              actualizacionPallet.pallet || null,
           });
       }
 
@@ -765,6 +918,189 @@ movementsController.getMovements =
         });
     }
   };
+
+
+/*
+ * CIERRE DIARIO
+ *
+ * El stock ya se actualiza en cada retiro/entrada.
+ * El cierre consolida lo ocurrido durante la jornada y
+ * guarda el saldo final como fotografía de control.
+ */
+const fechaKeyArgentina = (fecha = new Date()) =>
+  new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Argentina/Cordoba',
+  }).format(fecha);
+
+const rangoDiaArgentina = (dateKey) => ({
+  desde: new Date(`${dateKey}T00:00:00-03:00`),
+  hasta: new Date(`${dateKey}T23:59:59.999-03:00`),
+});
+
+movementsController.getTodayClosure = async (req, res) => {
+  try {
+    const dateKey = fechaKeyArgentina();
+    const existente = await DailyClosure.findOne({ dateKey }).lean();
+
+    if (existente) {
+      return res.status(200).json({
+        cerrado: true,
+        ...existente,
+      });
+    }
+
+    const { desde, hasta } = rangoDiaArgentina(dateKey);
+    const movimientos = await Movement.find({
+      fecha: { $gte: desde, $lte: hasta },
+    }).sort({ fecha: 1 }).lean();
+
+    const resumen = movimientos.reduce((acc, m) => {
+      const cantidad = Number(m.cantidad || 0);
+      const tipoKey =
+        m.tipo === 'entrada'
+          ? 'entradas'
+          : m.tipo === 'salida'
+            ? 'salidas'
+            : 'consumos';
+
+      acc[tipoKey] += 1;
+
+      const unidad = String(m.unidad || 'unidad').trim() || 'unidad';
+      if (!acc.totalesPorUnidad[unidad]) {
+        acc.totalesPorUnidad[unidad] = {
+          entradas: 0,
+          salidas: 0,
+          consumos: 0,
+        };
+      }
+
+      acc.totalesPorUnidad[unidad][tipoKey] += cantidad;
+      return acc;
+    }, {
+      entradas: 0,
+      salidas: 0,
+      consumos: 0,
+      totalesPorUnidad: {},
+    });
+
+    return res.status(200).json({
+      cerrado: false,
+      dateKey,
+      movimientos: movimientos.length,
+      resumen,
+    });
+  } catch (error) {
+    console.error('Error obteniendo cierre diario:', error);
+    return res.status(500).json({
+      error: 'No se pudo obtener el resumen del día.',
+    });
+  }
+};
+
+movementsController.closeToday = async (req, res) => {
+  try {
+    const dateKey = fechaKeyArgentina();
+    const existente = await DailyClosure.findOne({ dateKey }).lean();
+
+    if (existente) {
+      return res.status(409).json({
+        error: 'La jornada de hoy ya fue cerrada.',
+        cierre: existente,
+      });
+    }
+
+    const { desde, hasta } = rangoDiaArgentina(dateKey);
+    const movimientos = await Movement.find({
+      fecha: { $gte: desde, $lte: hasta },
+    }).sort({ fecha: 1 }).lean();
+
+    const resumen = movimientos.reduce((acc, m) => {
+      const cantidad = Number(m.cantidad || 0);
+      const tipoKey =
+        m.tipo === 'entrada'
+          ? 'entradas'
+          : m.tipo === 'salida'
+            ? 'salidas'
+            : 'consumos';
+
+      acc[tipoKey] += 1;
+
+      const unidad = String(m.unidad || 'unidad').trim() || 'unidad';
+      if (!acc.totalesPorUnidad[unidad]) {
+        acc.totalesPorUnidad[unidad] = {
+          entradas: 0,
+          salidas: 0,
+          consumos: 0,
+        };
+      }
+
+      acc.totalesPorUnidad[unidad][tipoKey] += cantidad;
+      return acc;
+    }, {
+      entradas: 0,
+      salidas: 0,
+      consumos: 0,
+      totalesPorUnidad: {},
+    });
+
+    const porProducto = new Map();
+    movimientos.forEach((m) => {
+      const key = String(m.productoId);
+      if (!porProducto.has(key)) {
+        porProducto.set(key, {
+          productoId: m.productoId,
+          producto: m.producto,
+          categoria: m.categoria,
+          entradas: 0,
+          salidas: 0,
+          consumos: 0,
+          unidad: m.unidad || '',
+        });
+      }
+
+      const fila = porProducto.get(key);
+      fila[m.tipo === 'entrada' ? 'entradas' : m.tipo === 'salida' ? 'salidas' : 'consumos'] += Number(m.cantidad || 0);
+    });
+
+    const productos = [];
+    for (const fila of porProducto.values()) {
+      const Model = obtenerModelo(fila.categoria);
+      const producto = Model ? await Model.findById(fila.productoId).lean() : null;
+
+      const saldoFinal = Number(producto?.cantidad || 0);
+      const saldoInicial =
+        saldoFinal -
+        Number(fila.entradas || 0) +
+        Number(fila.salidas || 0) +
+        Number(fila.consumos || 0);
+
+      productos.push({
+        ...fila,
+        saldoInicial,
+        saldoFinal,
+      });
+    }
+
+    const cierre = await DailyClosure.create({
+      dateKey,
+      fechaCierre: new Date(),
+      responsable: String(req.body?.responsable || 'Usuario'),
+      resumen,
+      movimientos: movimientos.length,
+      productos,
+    });
+
+    return res.status(201).json({
+      cerrado: true,
+      cierre,
+    });
+  } catch (error) {
+    console.error('Error cerrando jornada:', error);
+    return res.status(500).json({
+      error: 'No se pudo cerrar la jornada.',
+    });
+  }
+};
 
 module.exports =
   movementsController;

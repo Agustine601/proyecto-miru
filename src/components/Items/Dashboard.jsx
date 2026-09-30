@@ -37,6 +37,7 @@ import {
 
 import { setDisplay } from '../containers/displaySlice';
 import { useGetCommunicationsQuery } from '../../services/communications';
+import WeatherCard from './WeatherCard';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -160,10 +161,10 @@ const Dashboard = () => {
           padding: '26px 28px',
           borderRadius: 20,
           background:
-            'linear-gradient(135deg, #082f49 0%, #0b5a69 52%, #16a26b 100%)',
+            'linear-gradient(135deg, #285832 0%, #397348 55%, #5d8b62 100%)',
           color: '#fff',
           boxShadow:
-            '0 14px 34px rgba(8, 47, 73, 0.20)',
+            '0 10px 30px rgba(40, 88, 50, 0.18)',
         }}
       >
         <div
@@ -202,6 +203,47 @@ const Dashboard = () => {
         </p>
       </div>
 
+      {/* PANORAMA AGRÍCOLA */}
+      <Row gutter={[18, 18]} style={{ marginBottom: 20 }}>
+        <Col xs={24} lg={16}>
+          <div
+            style={{
+              minHeight: 260,
+              borderRadius: 22,
+              overflow: 'hidden',
+              position: 'relative',
+              background: 'linear-gradient(135deg, #123f2b 0%, #2d7045 52%, #d1a84d 100%)',
+              boxShadow: '0 12px 30px rgba(25, 75, 43, 0.16)',
+            }}
+          >
+            <div style={{ position: 'absolute', inset: 0, opacity: .18 }}>
+              <svg width="100%" height="100%" viewBox="0 0 900 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <circle cx="735" cy="72" r="48" fill="#fff4b0" />
+                <path d="M0 225 Q180 160 350 218 T700 190 T900 215 V320 H0Z" fill="#8bb66f" />
+                <path d="M0 250 Q190 190 370 245 T710 225 T900 245 V320 H0Z" fill="#5d914f" />
+                <path d="M0 278 Q200 225 380 275 T720 255 T900 275 V320 H0Z" fill="#396d43" />
+                <path d="M80 310 L310 215 L530 310 M260 310 L410 205 L610 310 M520 310 L650 230 L840 310" fill="none" stroke="#e7d98e" strokeWidth="8" opacity=".7" />
+              </svg>
+            </div>
+            <div style={{ position: 'relative', zIndex: 1, padding: '30px 30px 28px', maxWidth: 650, color: '#fff' }}>
+              <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1.1, opacity: .78 }}>CENTRO DE OPERACIONES AGRÍCOLAS</div>
+              <div style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 850, lineHeight: 1.05, marginTop: 10 }}>MIRÚ en movimiento.</div>
+              <div style={{ fontSize: 16, lineHeight: 1.55, marginTop: 12, maxWidth: 560, color: 'rgba(255,255,255,.88)' }}>
+                Inventario, clima, movimientos y comunicaciones reunidos en una sola vista para trabajar más rápido.
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 20 }}>
+                <Tag style={{ borderRadius: 999, padding: '4px 10px', margin: 0, background: 'rgba(255,255,255,.14)', borderColor: 'rgba(255,255,255,.25)', color: '#fff' }}>🌱 Campaña 2026</Tag>
+                <Tag style={{ borderRadius: 999, padding: '4px 10px', margin: 0, background: 'rgba(255,255,255,.14)', borderColor: 'rgba(255,255,255,.25)', color: '#fff' }}>📦 Depósito</Tag>
+                <Tag style={{ borderRadius: 999, padding: '4px 10px', margin: 0, background: 'rgba(255,255,255,.14)', borderColor: 'rgba(255,255,255,.25)', color: '#fff' }}>🚜 Operación</Tag>
+              </div>
+            </div>
+          </div>
+        </Col>
+        <Col xs={24} lg={8}>
+          <WeatherCard />
+        </Col>
+      </Row>
+
       {/* ACCIONES RÁPIDAS */}
 
       <Card
@@ -210,7 +252,7 @@ const Dashboard = () => {
           marginBottom: 20,
           borderRadius: 18,
           boxShadow:
-            '0 7px 24px rgba(31, 55, 83, 0.08)',
+            '0 5px 20px rgba(35, 69, 43, 0.08)',
         }}
       >
         <div
@@ -220,7 +262,7 @@ const Dashboard = () => {
         >
           <div
             style={{
-              color: '#66758a',
+              color: '#718074',
               fontSize: 12,
               fontWeight: 700,
               letterSpacing: 0.5,
@@ -234,7 +276,7 @@ const Dashboard = () => {
               marginTop: 4,
               fontSize: 21,
               fontWeight: 700,
-              color: '#173b62',
+              color: '#23452b',
             }}
           >
             ¿Qué querés hacer?
@@ -321,7 +363,7 @@ const Dashboard = () => {
               height: '100%',
               cursor: 'pointer',
               boxShadow:
-                '0 7px 24px rgba(31, 55, 83, 0.08)',
+                '0 5px 20px rgba(35, 69, 43, 0.08)',
             }}
           >
             <Statistic
@@ -329,7 +371,7 @@ const Dashboard = () => {
               value={estadisticas.total}
               prefix={<DatabaseOutlined />}
               valueStyle={{
-                color: '#176b4d',
+                color: '#285832',
                 fontSize: 34,
                 fontWeight: 750,
               }}
@@ -338,7 +380,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#66758a',
+                color: '#718074',
                 fontSize: 13,
               }}
             >
@@ -348,7 +390,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#168a5b',
+                color: '#397348',
                 fontWeight: 600,
               }}
             >
@@ -367,7 +409,7 @@ const Dashboard = () => {
               height: '100%',
               cursor: 'pointer',
               boxShadow:
-                '0 7px 24px rgba(31, 55, 83, 0.08)',
+                '0 5px 20px rgba(35, 69, 43, 0.08)',
             }}
           >
             <Statistic
@@ -375,7 +417,7 @@ const Dashboard = () => {
               value={estadisticas.reagentes}
               prefix={<ExperimentOutlined />}
               valueStyle={{
-                color: '#168a5b',
+                color: '#397348',
                 fontSize: 34,
                 fontWeight: 750,
               }}
@@ -384,7 +426,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#66758a',
+                color: '#718074',
                 fontSize: 13,
               }}
             >
@@ -394,7 +436,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#168a5b',
+                color: '#397348',
                 fontWeight: 600,
               }}
             >
@@ -413,7 +455,7 @@ const Dashboard = () => {
               height: '100%',
               cursor: 'pointer',
               boxShadow:
-                '0 7px 24px rgba(31, 55, 83, 0.08)',
+                '0 5px 20px rgba(35, 69, 43, 0.08)',
             }}
           >
             <Statistic
@@ -421,7 +463,7 @@ const Dashboard = () => {
               value={estadisticas.consumibles}
               prefix={<PaperClipOutlined />}
               valueStyle={{
-                color: '#3478c5',
+                color: '#5d8b62',
                 fontSize: 34,
                 fontWeight: 750,
               }}
@@ -430,7 +472,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#66758a',
+                color: '#718074',
                 fontSize: 13,
               }}
             >
@@ -440,7 +482,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 12,
-                color: '#168a5b',
+                color: '#397348',
                 fontWeight: 600,
               }}
             >
@@ -458,7 +500,7 @@ const Dashboard = () => {
         style={{
           marginTop: 18,
           borderRadius: 18,
-          boxShadow: '0 7px 24px rgba(31, 55, 83, 0.08)',
+          boxShadow: '0 5px 20px rgba(35, 69, 43, 0.08)',
         }}
         bodyStyle={{ padding: 18 }}
       >
@@ -473,12 +515,12 @@ const Dashboard = () => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <MessageOutlined style={{ fontSize: 24, color: '#168a5b' }} />
+            <MessageOutlined style={{ fontSize: 24, color: '#397348' }} />
             <div>
-              <div style={{ color: '#173b62', fontSize: 20, fontWeight: 750 }}>
+              <div style={{ color: '#23452b', fontSize: 20, fontWeight: 750 }}>
                 Comunicaciones
               </div>
-              <div style={{ color: '#66758a', fontSize: 12 }}>
+              <div style={{ color: '#718074', fontSize: 12 }}>
                 Lo último entre los sectores de MIRÚ
               </div>
             </div>
@@ -687,7 +729,7 @@ const Dashboard = () => {
           marginTop: 20,
           borderRadius: 18,
           boxShadow:
-            '0 7px 24px rgba(31, 55, 83, 0.08)',
+            '0 5px 20px rgba(35, 69, 43, 0.08)',
         }}
       >
         <div
@@ -713,7 +755,7 @@ const Dashboard = () => {
               style={{
                 margin: 0,
                 fontSize: 22,
-                color: '#173b62',
+                color: '#23452b',
               }}
             >
               Estado del inventario
@@ -722,7 +764,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 3,
-                color: '#66758a',
+                color: '#718074',
                 fontSize: 13,
               }}
             >
@@ -778,20 +820,20 @@ const Dashboard = () => {
               borderRadius: 18,
               height: '100%',
               boxShadow:
-                '0 7px 24px rgba(31, 55, 83, 0.08)',
+                '0 5px 20px rgba(35, 69, 43, 0.08)',
             }}
           >
             <InboxOutlined
               style={{
                 fontSize: 25,
-                color: '#168a5b',
+                color: '#397348',
               }}
             />
 
             <div
               style={{
                 marginTop: 10,
-                color: '#66758a',
+                color: '#718074',
                 fontSize: 12,
                 fontWeight: 700,
               }}
@@ -804,7 +846,7 @@ const Dashboard = () => {
                 marginTop: 5,
                 fontSize: 23,
                 fontWeight: 750,
-                color: '#173b62',
+                color: '#23452b',
               }}
             >
               {estadisticas.total}
@@ -813,7 +855,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 4,
-                color: '#66758a',
+                color: '#718074',
               }}
             >
               productos registrados
@@ -828,20 +870,20 @@ const Dashboard = () => {
               borderRadius: 18,
               height: '100%',
               boxShadow:
-                '0 7px 24px rgba(31, 55, 83, 0.08)',
+                '0 5px 20px rgba(35, 69, 43, 0.08)',
             }}
           >
             <SwapOutlined
               style={{
                 fontSize: 25,
-                color: '#168a5b',
+                color: '#397348',
               }}
             />
 
             <div
               style={{
                 marginTop: 10,
-                color: '#66758a',
+                color: '#718074',
                 fontSize: 12,
                 fontWeight: 700,
               }}
@@ -854,7 +896,7 @@ const Dashboard = () => {
                 marginTop: 5,
                 fontSize: 23,
                 fontWeight: 750,
-                color: '#173b62',
+                color: '#23452b',
               }}
             >
               Movimientos
@@ -880,7 +922,7 @@ const Dashboard = () => {
               borderRadius: 18,
               height: '100%',
               boxShadow:
-                '0 7px 24px rgba(31, 55, 83, 0.08)',
+                '0 5px 20px rgba(35, 69, 43, 0.08)',
             }}
           >
             <WarningOutlined
@@ -896,7 +938,7 @@ const Dashboard = () => {
             <div
               style={{
                 marginTop: 10,
-                color: '#66758a',
+                color: '#718074',
                 fontSize: 12,
                 fontWeight: 700,
               }}
@@ -909,7 +951,7 @@ const Dashboard = () => {
                 marginTop: 5,
                 fontSize: 23,
                 fontWeight: 750,
-                color: '#173b62',
+                color: '#23452b',
               }}
             >
               {totalAlertas}

@@ -11,6 +11,21 @@ export const movementsApi = createApi({
 
   endpoints: (builder) => ({
 
+    // Cierre de jornada
+    obtenerCierreHoy: builder.query({
+      query: () => 'movements/cierre/hoy',
+      providesTags: ['Movement'],
+    }),
+
+    cerrarJornada: builder.mutation({
+      query: (datos = {}) => ({
+        url: 'movements/cierre',
+        method: 'POST',
+        body: datos,
+      }),
+      invalidatesTags: ['Movement'],
+    }),
+
     // Registrar consumo
     registrarConsumo: builder.mutation({
       query: (datos) => ({
@@ -43,4 +58,6 @@ export const {
   useRegistrarConsumoMutation,
   useRegistrarMovimientoMutation,
   useObtenerMovimientosQuery,
+  useObtenerCierreHoyQuery,
+  useCerrarJornadaMutation,
 } = movementsApi;

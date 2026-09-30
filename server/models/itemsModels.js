@@ -92,6 +92,7 @@ const consumableSchema = new Schema({
   unidad: String,
   ubicacion: String,
   descripcion: String,
+  presentacion: { type: String, default: '' },
   datosQR: { type: mongoose.Schema.Types.Mixed, default: null },
 });
 
@@ -122,6 +123,7 @@ const reagentSchema = new Schema({
   },
   ubicacion: String,
   descripcion: String,
+  presentacion: { type: String, default: '' },
   datosQR: { type: mongoose.Schema.Types.Mixed, default: null },
 });
 
@@ -185,6 +187,7 @@ const seedSchema = new Schema({
   ubicacion: String,
 
   descripcion: String,
+  presentacion: { type: String, default: '' },
   datosQR: { type: mongoose.Schema.Types.Mixed, default: null },
 });
 
