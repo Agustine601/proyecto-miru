@@ -97,6 +97,8 @@ const PalletOperationModal = ({
 
       onSuccess({
         palletId: pallet.palletId,
+        numeroPallet: pallet.numeroPallet,
+        lote: pallet.lote,
         cantidad: Number(nuevaCantidad),
         estado:
           Number(nuevaCantidad) <= 0 ? 'retirado' : 'activo',
@@ -119,7 +121,7 @@ const PalletOperationModal = ({
   return (
     <Modal
       visible={visible}
-      title={`📦 ${nombre}`}
+      title={`📦 Actualizar saldo · ${nombre}`}
       onCancel={cerrar}
       width={520}
       footer={[
@@ -173,7 +175,7 @@ const PalletOperationModal = ({
 
       <Divider />
 
-      <label><b>Cantidad</b></label>
+      <label><b>{tipo === 'entrada' ? 'Cantidad a ingresar' : tipo === 'consumo' ? 'Cantidad a consumir' : 'Cantidad a retirar'}</b></label>
       <InputNumber
         min={0}
         max={tipo === 'entrada' ? undefined : cantidadActual}
@@ -195,33 +197,30 @@ const PalletOperationModal = ({
 
       {cantidad > 0 && (
         <div
+          aria-live="polite"
           style={{
-            marginTop: 16,
-            padding: 12,
-            borderRadius: 8,
-            background: '#f0f5ff',
+            marginTop: 18,
+            padding: 16,
+            borderRadius: 12,
+            border: `1px solid ${tipo === 'entrada' ? '#b8d9f5' : '#b8dfc5'}`,
+            background: tipo === 'entrada' ? 'linear-gradient(135deg,#f1f8ff,#e5f2ff)' : 'linear-gradient(135deg,#f0faf3,#e2f4e8)',
           }}
         >
-          Después del movimiento: <b>{tipo === 'entrada' ? cantidadActual + Number(cantidad) : Math.max(0, cantidadActual - Number(cantidad))} {unidad}</b>
-          {conversion && (
-            <> · <b>{(tipo === 'entrada' ? cantidadActual + Number(cantidad) : Math.max(0, cantidadActual - Number(cantidad))) * conversion.factor} {conversion.unidad}</b></>
-          )}
-        </div>
-      )}
-
-      {tipo !== 'entrada' && cantidad > 0 && (
-        <div
-          style={{
-            marginTop: 16,
-            padding: 12,
-            borderRadius: 8,
-            background: '#fffbe6',
-          }}
-        >
-          Saldo después del movimiento:{' '}
-          <b>
-            {Math.max(0, cantidadActual - Number(cantidad))} {unidad}
-          </b>
+          <div style={{ color: '#64746a', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.04em' }}>
+            Resultado calculado
+          </div>
+          <div style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: 8, marginTop: 5 }}>
+            <span style={{ color: '#64746a', fontSize: 13 }}>Nuevo saldo</span>
+            <strong style={{ color: '#17643a', fontSize: 27, lineHeight: 1.2 }}>
+              {tipo === 'entrada' ? cantidadActual + Number(cantidad) : Math.max(0, cantidadActual - Number(cantidad))}
+            </strong>
+            <b style={{ color: '#315b42' }}>{unidad}</b>
+          </div>
+          <div style={{ color: '#617067', fontSize: 12, marginTop: 7 }}>
+            {tipo === 'entrada' ? `${cantidadActual} + ${Number(cantidad)} = ${cantidadActual + Number(cantidad)}` : `${cantidadActual} − ${Number(cantidad)} = ${Math.max(0, cantidadActual - Number(cantidad))}`}
+            {conversion && <> · Equivalente: <b>{((tipo === 'entrada' ? cantidadActual + Number(cantidad) : Math.max(0, cantidadActual - Number(cantidad))) * conversion.factor).toLocaleString('es-AR')} {conversion.unidad}</b></>}
+          </div>
+          <div style={{ color: '#64746a', fontSize: 11, marginTop: 8 }}>Este saldo se actualizará al confirmar y guardar el movimiento.</div>
         </div>
       )}
     </Modal>

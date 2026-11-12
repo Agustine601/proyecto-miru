@@ -563,6 +563,144 @@ movementsController.registerMovement =
     }
   };
 
+
+/*
+ * MOVIMIENTO RAPIDO EN LOTE.
+ * Para salidas/consumos distribuye la cantidad entre pallets activos del
+ * mismo producto, conservando lote, pallet y ubicación en cada movimiento.
+ * Primero valida todas las líneas; recién después persiste los cambios.
+ */
+movementsController.registerBatch = async (req, res) => {
+  const { operaciones = [], motivo = '', responsable = 'Usuario' } = req.body || {};
+  if (!Array.isArray(operaciones) || !operaciones.length) {
+    return res.status(400).json({ error: 'Agregá al menos una operación.' });
+  }
+  if (operaciones.length > 100) {
+    return res.status(400).json({ error: 'El máximo es 100 operaciones por lote.' });
+  }
+
+  try {
+    const planes = [];
+    const documentos = new Map();
+
+    for (let index = 0; index < operaciones.length; index += 1) {
+      const op = operaciones[index];
+      const { productoId, categoria, tipo } = op;
+      const cantidad = Number(op.cantidad);
+      if (!productoId || !['consumables', 'reagents', 'equipment'].includes(categoria) || !['entrada', 'salida', 'consumo'].includes(tipo) || !Number.isFinite(cantidad) || cantidad <= 0) {
+        return res.status(400).json({ error: `La operación ${index + 1} tiene datos incompletos o inválidos.` });
+      }
+      if (tipo === 'consumo' && categoria === 'equipment') {
+        return res.status(400).json({ error: 'El equipamiento no admite consumo interno.' });
+      }
+      const Modelo = obtenerModelo(categoria);
+      const key = `${categoria}:${productoId}`;
+      let producto = documentos.get(key);
+      if (!producto) {
+        producto = await Modelo.findById(productoId);
+        if (!producto) return res.status(404).json({ error: `No se encontró el producto de la operación ${index + 1}.` });
+        documentos.set(key, producto);
+      }
+      // Migración suave de productos antiguos que tenían cantidad/lote sin arreglo de lotes.
+      if ((!Array.isArray(producto.lotes) || producto.lotes.length === 0) && Number(producto.cantidad || 0) > 0) {
+        producto.lotes = [{ numero: producto.lote || 'SIN-LOTE', cantidad: Number(producto.cantidad || 0), pallets: [] }];
+      }
+
+      const unidades = [];
+      if (['salida', 'consumo'].includes(tipo)) {
+        let restante = cantidad;
+        const lotes = Array.isArray(producto.lotes) ? producto.lotes : [];
+        // Si el usuario indicó lote, se respeta; si no, se distribuye entre lotes/pallets disponibles.
+        const lotesOrdenados = op.lote
+          ? lotes.filter(l => String(l.numero) === String(op.lote))
+          : lotes.slice();
+        if (op.lote && !lotesOrdenados.length) return res.status(404).json({ error: `No existe el lote ${op.lote} de ${producto.nombre}.` });
+        for (const lote of lotesOrdenados) {
+          const pallets = (lote.pallets || []).filter(p => p.estado !== 'retirado' && Number(p.cantidad || 0) > 0);
+          for (const pallet of pallets) {
+            if (op.palletId && String(pallet._id) !== String(op.palletId)) continue;
+            const yaAsignadoEnLote = unidades.filter(u => u.lote === lote).reduce((sum, u) => sum + u.cantidad, 0);
+            const saldoLoteDisponible = Math.max(0, Number(lote.cantidad || 0) - yaAsignadoEnLote);
+            const tomar = Math.min(restante, Number(pallet.cantidad || 0), saldoLoteDisponible);
+            if (tomar > 0) {
+              unidades.push({ lote, pallet, cantidad: tomar });
+              restante -= tomar;
+            }
+            if (restante <= 0) break;
+          }
+          if (restante <= 0) break;
+        }
+        // Compatibilidad con productos/lotes sin pallet físico.
+        if (restante > 0 && !op.palletId) {
+          for (const lote of lotesOrdenados) {
+            const yaAsignado = unidades.filter(u => u.lote === lote).reduce((sum, u) => sum + u.cantidad, 0);
+            const libre = Math.max(0, Number(lote.cantidad || 0) - yaAsignado);
+            const tomar = Math.min(restante, libre);
+            if (tomar > 0) {
+              unidades.push({ lote, pallet: null, cantidad: tomar });
+              restante -= tomar;
+            }
+            if (restante <= 0) break;
+          }
+        }
+        if (restante > 0) return res.status(400).json({ error: `Stock insuficiente de ${producto.nombre}. Faltan ${restante} ${producto.unidad || ''}.` });
+      } else {
+        // Ingreso: asignar al lote solicitado; si no existe, crear uno nuevo.
+        const numeroLoteIngreso = op.lote || `ING-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}`;
+        let lote = (producto.lotes || []).find(l => String(l.numero) === String(numeroLoteIngreso));
+        if (!lote) {
+          lote = { numero: numeroLoteIngreso, cantidad: 0, pallets: [] };
+          producto.lotes = producto.lotes || [];
+          producto.lotes.push(lote);
+          lote = producto.lotes[producto.lotes.length - 1];
+        }
+        let pallet = op.palletId ? (lote.pallets || []).id(op.palletId) : null;
+        if (op.palletId && !pallet) return res.status(404).json({ error: `No se encontró el pallet indicado para ${producto.nombre}.` });
+        unidades.push({ lote, pallet, cantidad });
+      }
+
+      // Planificar las cantidades de lote y producto sin guardar aún.
+      for (const unidad of unidades) {
+        if (unidad.lote) {
+          unidad.lote.cantidad = Number(unidad.lote.cantidad || 0) + (tipo === 'entrada' ? unidad.cantidad : -unidad.cantidad);
+        }
+        if (unidad.pallet) {
+          unidad.pallet.cantidad = Number(unidad.pallet.cantidad || 0) + (tipo === 'entrada' ? unidad.cantidad : -unidad.cantidad);
+          unidad.pallet.estado = unidad.pallet.cantidad <= 0 ? 'retirado' : 'activo';
+        }
+        planes.push({ producto, categoria, tipo, lote: unidad.lote, pallet: unidad.pallet, cantidad: unidad.cantidad, motivo: op.motivo || motivo, responsable });
+      }
+      producto.cantidad = Math.max(0, Number(producto.cantidad || 0) + (tipo === 'entrada' ? cantidad : -cantidad));
+    }
+
+    // Persistir una vez por producto y generar una línea histórica por pallet/lote afectado.
+    for (const producto of documentos.values()) await producto.save();
+    const movimientos = await Movement.insertMany(planes.map(plan => {
+      const equivalente = calcularEquivalente(plan.cantidad, plan.producto);
+      return {
+        productoId: plan.producto._id,
+        producto: plan.producto.nombre,
+        categoria: plan.categoria,
+        lote: plan.lote?.numero || 'SIN-LOTE',
+        palletId: plan.pallet?._id || null,
+        ubicacion: plan.pallet?.ubicacion || plan.lote?.ubicacion || '',
+        tipo: plan.tipo,
+        cantidad: plan.cantidad,
+        unidad: plan.producto.unidad || '',
+        cantidadEquivalente: equivalente?.cantidad ?? null,
+        unidadEquivalente: equivalente?.unidad || '',
+        factorConversion: equivalente?.factor ?? null,
+        motivo: plan.motivo || '',
+        responsable: plan.responsable || 'Usuario',
+      };
+    }));
+    return res.status(201).json({ mensaje: 'Operaciones registradas.', operaciones: movimientos.length, movimientos, productosActualizados: documentos.size });
+  } catch (error) {
+    console.error('Error en movimiento rápido:', error);
+    return res.status(500).json({ error: 'No se pudo completar el movimiento rápido.' });
+  }
+};
+
 /*
  * REGISTRAR CONSUMO
  */

@@ -26,6 +26,12 @@ export const movementsApi = createApi({
       invalidatesTags: ['Movement'],
     }),
 
+    // Registrar varias operaciones en una sola confirmación
+    registrarLoteMovimientos: builder.mutation({
+      query: (datos) => ({ url: 'movements/lote', method: 'POST', body: datos }),
+      invalidatesTags: ['Movement'],
+    }),
+
     // Registrar consumo
     registrarConsumo: builder.mutation({
       query: (datos) => ({
@@ -56,6 +62,7 @@ export const movementsApi = createApi({
 
 export const {
   useRegistrarConsumoMutation,
+  useRegistrarLoteMovimientosMutation,
   useRegistrarMovimientoMutation,
   useObtenerMovimientosQuery,
   useObtenerCierreHoyQuery,

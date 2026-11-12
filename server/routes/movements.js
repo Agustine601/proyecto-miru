@@ -18,6 +18,9 @@ router.post(
   movementsController.closeToday
 );
 
+// Operaciones agrupadas (pedido / cierre de turno)
+router.post('/lote', movementsController.registerBatch);
+
 // ========================================
 // REGISTRAR CONSUMO
 // ========================================

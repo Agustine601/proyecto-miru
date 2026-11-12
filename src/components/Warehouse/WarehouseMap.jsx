@@ -9,6 +9,7 @@ import {
   Tag,
   message,
   Tooltip,
+  Select,
 } from 'antd';
 import {
   ApartmentOutlined,
@@ -39,6 +40,7 @@ import {
 
 import PalletOperationModal from './PalletOperationModal';
 import DailyCloseModal from './DailyCloseModal';
+import QuickMovementModal from './QuickMovementModal';
 import { calcularEquivalente, extraerConversion } from '../../utils/conversionStock';
 
 
@@ -47,7 +49,7 @@ import { calcularEquivalente, extraerConversion } from '../../utils/conversionSt
 ========================================================= */
 
 const makeRack = (n, access, group) =>
-  Array.from({ length: 12 }, (_, i) => ({
+  Array.from({ length: n === 24 || n === 25 ? 16 : 12 }, (_, i) => ({
     id: `R${String(n).padStart(2, '0')}-P${String(i + 1).padStart(2, '0')}`,
     rack: n,
     position: i + 1,
@@ -74,8 +76,6 @@ const DEFAULT_BLOCKED_AGRO = [
   'R21-P04',
   'R22-P04',
   'R23-P04',
-  'R24-P04',
-  'R25-P04',
 ];
 
 const racksFront2 = Array.from(
@@ -193,81 +193,6 @@ function stackOf(value) {
       ? [value]
       : [];
 }
-
-/* =========================================================
-   CAPACIDADES FÍSICAS
-   - Pallet de líquidos: máximo 720 litros.
-   - Racks penetrantes (R18-R25): máximo 960 kg por posición.
-   No modifica la distribución ni las posiciones del mapa.
-========================================================= */
-const MAX_LITERS_PER_PALLET = 720;
-const MAX_KG_PENETRANTE = 960;
-
-const normalizeUnit = value =>
-  String(value || '')
-    .trim()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
-
-const getQuantity = value => {
-  const raw =
-    value?.cantidad ??
-    value?.pallet?.cantidad ??
-    value?.quantity ??
-    value?.pallet?.quantity ??
-    0;
-
-  // Acepta tanto 720 como textos del tipo "720 L", "960 kg"
-  // y formatos argentinos como "720,5".
-  if (typeof raw === 'number') {
-    return Number.isFinite(raw) ? raw : 0;
-  }
-
-  const normalized = String(raw)
-    .trim()
-    .replace(/\\s+/g, '')
-    .replace(',', '.')
-    .replace(/[^0-9.-]/g, '');
-
-  const quantity = Number(normalized);
-  return Number.isFinite(quantity) ? quantity : 0;
-};
-
-const getUnit = value =>
-  normalizeUnit(
-    value?.unidad ??
-    value?.pallet?.unidad ??
-    value?.unidadMedida ??
-    value?.unidadStock ??
-    value?.unit ??
-    value?.pallet?.unit ??
-    value?.measureType ??
-    value?.pallet?.measureType ??
-    ''
-  );
-
-const isLiquidUnit = unit =>
-  /(^|\b)(l|lt|lts|litro|litros)(\b|$)/i.test(unit);
-
-const isKgUnit = unit =>
-  /(^|\b)(kg|kgs|kilo|kilos|kilogramo|kilogramos)(\b|$)/i.test(unit);
-
-const inferUnitFromName = value => {
-  const name = itemName(value);
-  if (/\b(l|lt|lts|litro|litros)\b/i.test(name)) return 'litros';
-  if (/\b(kg|kgs|kilo|kilos|kilogramo|kilogramos)\b/i.test(name)) return 'kg';
-  return '';
-};
-
-const palletUnit = value => {
-  const explicit = getUnit(value);
-  return explicit || inferUnitFromName(value);
-};
-
-const isPenetranteSlot = slotId =>
-  /^R(?:18|19|20|21|22|23|24|25)-P\d+$/i.test(String(slotId || ''));
-
 
 /* =========================================================
    STYLES · GENERAL
@@ -577,6 +502,17 @@ const Galpon34RackZoneSingle = styled.div`
 `;
 
 const Galpon34Rack = styled.div`
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 2px rgba(255,255,255,.16), 0 8px 18px rgba(0,0,0,.22);
+    border-color: #f5cf72;
+  }
+  &:focus-visible {
+    outline: 2px solid #f5cf72;
+    outline-offset: 3px;
+  }
   min-width: 0;
   min-height: 0;
   border: 2px solid ${p => p.orange ? '#b87522' : '#27d5c6'};
@@ -2183,6 +2119,9 @@ export default function WarehouseMap() {
     setOperationPallet,
   ] = useState(null);
 
+  // Controla la apertura del registro de movimientos rápidos.
+  const [quickMovementVisible, setQuickMovementVisible] = useState(false);
+
   const [
     dailyCloseVisible,
     setDailyCloseVisible,
@@ -2194,7 +2133,12 @@ export default function WarehouseMap() {
     setEditMode,
   ] = useState(false);
 
+  // Estado del diálogo para mover pallets y su destino seleccionado.
+  const [moveDialog, setMoveDialog] = useState(null);
+  const [moveDestination, setMoveDestination] = useState(undefined);
+
   const [selectedRack, setSelectedRack] = useState(null);
+  const [selectedRackPosition, setSelectedRackPosition] = useState(null);
   const [dragOverSlot, setDragOverSlot] = useState(null);
   const [fullscreen, setFullscreen] = useState(false);
   const [mapZoom, setMapZoom] = useState(1);
@@ -2288,14 +2232,17 @@ export default function WarehouseMap() {
 
   const {
     data: consumables = [],
+    refetch: refetchConsumables,
   } = useGetConsumablesQuery();
 
   const {
     data: reagents = [],
+    refetch: refetchReagents,
   } = useGetReagentsQuery();
 
   const {
     data: equipment = [],
+    refetch: refetchEquipment,
   } = useGetEquipmentQuery();
 
   const products = useMemo(
@@ -2407,6 +2354,31 @@ export default function WarehouseMap() {
     }
 
     setOperationPallet(preparado);
+  };
+
+  const abrirDialogoMoverPallet = (pallet) => {
+    const sourceSlot = detail?.id;
+    if (!sourceSlot || !pallet) {
+      message.warning('No se pudo identificar la posición actual del pallet.');
+      return;
+    }
+    setMoveDestination(undefined);
+    setMoveDialog({ from: sourceSlot, pallet });
+  };
+
+  const confirmarMoverPallet = async () => {
+    if (!moveDialog?.from || !moveDestination) {
+      message.warning('Elegí una posición de destino.');
+      return;
+    }
+    if (moveDestination === moveDialog.from) {
+      message.warning('El pallet ya está en esa posición.');
+      return;
+    }
+    await move(moveDialog.from, moveDestination, warehouse === 'semillas' ? 3 : moveDestination.startsWith('CM-') ? 2 : 1, moveDialog.pallet);
+    setMoveDialog(null);
+    setMoveDestination(undefined);
+    setDetail(null);
   };
 
   /* =========================================================
@@ -2674,47 +2646,6 @@ export default function WarehouseMap() {
 
 
   /* =========================================================
-     VALIDAR CAPACIDAD FÍSICA
-  ========================================================= */
-
-  const validarCapacidadPallet = (slotId, product) => {
-    const quantity = getQuantity(product);
-    const unit = palletUnit(product);
-
-    // El límite de 720 aplica únicamente cuando la mercadería está
-    // expresada en litros. No se mezclan litros con kilos.
-    if (isLiquidUnit(unit) && quantity > MAX_LITERS_PER_PALLET) {
-      message.error(
-        `LÍMITE SUPERADO: este pallet tiene ${quantity} L y el máximo es ${MAX_LITERS_PER_PALLET} L.`
-      );
-      return false;
-    }
-
-    // Los racks penetrantes R18-R25 se controlan en kilos.
-    if (isPenetranteSlot(slotId)) {
-      if (!isKgUnit(unit)) {
-        if (quantity > 0 && isLiquidUnit(unit)) {
-          return true;
-        }
-        message.warning(
-          `No se puede aplicar el límite de ${MAX_KG_PENETRANTE} kg porque la unidad del pallet no está indicada como kg. Unidad detectada: "${unit || 'sin unidad'}".`
-        );
-        return false;
-      }
-
-      if (quantity > MAX_KG_PENETRANTE) {
-        message.error(
-          `LÍMITE SUPERADO: este pallet tiene ${quantity} kg y el máximo del rack penetrante es ${MAX_KG_PENETRANTE} kg.`
-        );
-        return false;
-      }
-    }
-
-    return true;
-  };
-
-
-  /* =========================================================
      COLOCAR PALLET
   ========================================================= */
 
@@ -2725,8 +2656,6 @@ export default function WarehouseMap() {
       maxStack = 1
     ) => {
       if (!product) return;
-
-      if (!validarCapacidadPallet(slotId, product)) return;
 
       const current =
         stackOf(
@@ -2799,7 +2728,8 @@ export default function WarehouseMap() {
     async (
       from,
       to,
-      maxStack = 1
+      maxStack = 1,
+      palletToMove = null
     ) => {
       const source =
         stackOf(
@@ -2822,23 +2752,15 @@ export default function WarehouseMap() {
         return;
       }
 
-      if (
-        source.length >
-        maxStack
-      ) {
-        message.warning(
-          'La posición destino no tiene capacidad suficiente.'
-        );
+      const selectedIndex = palletToMove
+        ? source.findIndex((candidate) =>
+            (palletToMove.palletId && candidate.palletId === palletToMove.palletId) ||
+            (palletToMove.numeroPallet && candidate.numeroPallet === palletToMove.numeroPallet)
+          )
+        : source.length - 1;
 
-        return;
-      }
-
-      const pallet =
-        source[
-          source.length - 1
-        ];
-
-      if (!validarCapacidadPallet(to, pallet)) return;
+      const sourceIndex = selectedIndex >= 0 ? selectedIndex : source.length - 1;
+      const pallet = source[sourceIndex];
 
       const ok =
         await sincronizarUbicacionPallet(
@@ -2852,27 +2774,35 @@ export default function WarehouseMap() {
         ...occupied,
       };
 
-      if (
-        source.length === 1
-      ) {
+      const remaining = source.filter((_, index) => index !== sourceIndex);
+      if (!remaining.length) {
         delete next[from];
       } else {
-        next[from] =
-          source.slice(0, -1);
+        next[from] = remaining;
       }
 
       next[to] = [pallet];
 
-      setMap({
+      const nextState = {
         ...state,
         occupied: next,
-      });
+      };
 
+      setMap(nextState);
       setDragged(null);
 
-      message.success(
-        `Pallet movido a ${to}.`
-      );
+      // Guardar también la distribución evita que el pallet vuelva
+      // a su ubicación anterior al recargar MIRÚ.
+      try {
+        await saveMap({
+          ...savedMaps,
+          [warehouse]: nextState,
+        }).unwrap();
+        message.success(`Pallet movido y guardado en ${to}.`);
+      } catch (error) {
+        console.error('No se pudo guardar el mapa después del movimiento:', error);
+        message.warning(`El pallet se movió a ${to}, pero el mapa no se guardó. Tocá “Guardar mapa”.`);
+      }
     };
 
 
@@ -3107,6 +3037,7 @@ export default function WarehouseMap() {
               (setSelectedRack(rackId), setDetail({
                 id: `R${String(rack[0].rack).padStart(2, '0')}`,
                 rack: rack[0].rack,
+                slots: rack,
                 product: rack.flatMap(slot =>
                   stackOf(occupied[slot.id]).map(pallet => ({
                     ...pallet,
@@ -3418,7 +3349,18 @@ export default function WarehouseMap() {
     <Galpon34Rack
       key={rack[0].id}
       orange={orange}
-      title={`G${rack[0].galpon}-R${String(rack[0].rack).padStart(2, '0')} · 4 alto × 4 posiciones`}
+      role="button"
+      tabIndex={0}
+      onClick={() => setDetail({
+        id: `G${rack[0].galpon}-R${String(rack[0].rack).padStart(2, '0')}`,
+        rack: rack[0].rack,
+        galpon: rack[0].galpon,
+        slots: rack,
+        product: rack.flatMap(slot => stackOf(occupied[slot.id]).map(pallet => ({ ...pallet, slot: slot.id }))),
+        previewOnly: true,
+      })}
+      onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') setDetail({ id: `G${rack[0].galpon}-R${String(rack[0].rack).padStart(2, '0')}`, rack: rack[0].rack, galpon: rack[0].galpon, slots: rack, product: [], previewOnly: true }); }}
+      title={`G${rack[0].galpon}-R${String(rack[0].rack).padStart(2, '0')} · 4 alto × 4 posiciones · hacer clic para ver de frente`}
     >
       <Galpon34RackLabel>
         G{rack[0].galpon}-R{String(rack[0].rack).padStart(2, '0')}
@@ -4001,6 +3943,8 @@ export default function WarehouseMap() {
             </Button>
 
           </WarehouseSelector>
+
+          <Button type="primary" onClick={() => setQuickMovementVisible(true)}>⚡ Movimiento rápido</Button>
 
           <Input
             prefix={
@@ -4730,26 +4674,29 @@ export default function WarehouseMap() {
       <Drawer
         open={!!detail}
         placement="right"
-        width={390}
+        width="min(960px, calc(100vw - 24px))"
         destroyOnClose={false}
         styles={{
-          body: { padding: 18 },
-          header: { padding: '14px 18px' },
+          body: { padding: 22, background: '#f5f7f6' },
+          header: { padding: '16px 22px' },
         }}
         className="miru-map-detail-drawer"
 
         title={
           detail?.rack
-            ? `RACK ${String(detail.rack).padStart(2, '0')} · Detalle operativo`
+            ? `${detail.galpon ? `GALPÓN ${detail.galpon} · ` : ''}RACK ${String(detail.rack).padStart(2, '0')} · Detalle operativo`
             : `POSICIÓN ${detail?.id || ''}`
         }
 
-        onCancel={() =>
-          setDetail(null)
-        }
+        // Drawer de Ant Design se cierra mediante onClose (incluye la X).
+        // onCancel corresponde a Modal y no dispara el cierre del Drawer.
+        onClose={() => {
+          setDetail(null);
+          setSelectedRackPosition(null);
+        }}
 
         footer={
-          detail?.product?.length
+          detail?.product?.length && !detail?.previewOnly
             ? [
 
                 <Button
@@ -4861,6 +4808,125 @@ export default function WarehouseMap() {
         {detail?.rack ? (
 
           <>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 18 }}>
+              <div style={{ background: '#fff', border: '1px solid #e4eae6', borderRadius: 12, padding: '12px 18px', minWidth: 145 }}>
+                <div style={{ color: '#718078', fontSize: 12 }}>GALPÓN / RACK</div>
+                <strong style={{ fontSize: 20 }}>{detail.galpon ? `G${detail.galpon} · ` : ''}{detail.id}</strong>
+              </div>
+              <div style={{ background: '#fff', border: '1px solid #e4eae6', borderRadius: 12, padding: '12px 18px', minWidth: 115 }}>
+                <div style={{ color: '#718078', fontSize: 12 }}>POSICIONES</div>
+                <strong style={{ fontSize: 20 }}>{(detail.slots || []).length}</strong>
+              </div>
+              <div style={{ background: '#fff', border: '1px solid #e4eae6', borderRadius: 12, padding: '12px 18px', minWidth: 115 }}>
+                <div style={{ color: '#718078', fontSize: 12 }}>OCUPADAS</div>
+                <strong style={{ fontSize: 20 }}>{(detail.slots || []).filter(slot => stackOf(occupied[slot.id]).length > 0).length}</strong>
+              </div>
+              <div style={{ background: '#fff', border: '1px solid #e4eae6', borderRadius: 12, padding: '12px 18px', minWidth: 115 }}>
+                <div style={{ color: '#718078', fontSize: 12 }}>PALLETS</div>
+                <strong style={{ fontSize: 20 }}>{detail.product?.length || 0}</strong>
+              </div>
+            </div>
+
+            <div style={{ background: 'linear-gradient(180deg,#f9fcfa,#edf3ef)', border: '1px solid #dce7df', borderRadius: 16, padding: 18, marginBottom: 20 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+                <strong style={{ fontSize: 16, color: '#263b30' }}>VISTA FRONTAL DEL RACK</strong>
+                <span style={{ fontSize: 12, color: '#718078' }}>Nivel superior arriba · acceso desde el frente</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 10 }}>
+                {[...(detail.slots || [])].slice().reverse().map((slot) => {
+                  const pallets = stackOf(occupied[slot.id]);
+                  const hasPallet = pallets.length > 0;
+                  const selected = selectedRackPosition === slot.id;
+                  return (
+                    <div
+                      key={slot.id}
+                      style={{
+                        minHeight: 124,
+                        border: `2px solid ${selected ? '#2878c7' : hasPallet ? '#4f9b70' : '#cbd7cf'}`,
+                        background: selected ? '#eaf3ff' : hasPallet ? 'linear-gradient(145deg,#e4f4e9,#d4eadb)' : '#fff',
+                        borderRadius: 12,
+                        padding: 10,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        boxShadow: selected ? '0 0 0 3px rgba(40,120,199,.12)' : '0 3px 9px rgba(30,60,40,.07)',
+                        transition: 'border-color .15s ease, background .15s ease, box-shadow .15s ease',
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 5 }}>
+                        <b style={{ fontSize: 12, color: '#263b30' }}>{slot.id}</b>
+                        <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '.04em', color: selected ? '#2466a5' : hasPallet ? '#26734a' : '#849188' }}>
+                          {selected ? 'SELECCIONADO' : hasPallet ? 'OCUPADO' : 'LIBRE'}
+                        </span>
+                      </div>
+                      {hasPallet ? pallets.map((pallet, pIndex) => (
+                        <button
+                          key={`${slot.id}-${pIndex}`}
+                          type="button"
+                          onClick={() => {
+                            setSelectedRackPosition(slot.id);
+                            abrirOperacionPallet({ ...pallet, slot: slot.id, ubicacion: pallet.ubicacion || slot.id });
+                          }}
+                          title="Hacé clic para consultar y modificar el stock de este pallet"
+                          style={{
+                            width: '100%',
+                            marginTop: 8,
+                            padding: '9px 10px',
+                            border: '1px solid #b8d8c2',
+                            borderRadius: 9,
+                            background: '#fff',
+                            color: '#294b37',
+                            textAlign: 'left',
+                            cursor: 'pointer',
+                            font: 'inherit',
+                            boxShadow: '0 1px 3px rgba(30,60,40,.06)',
+                          }}
+                        >
+                          <b style={{ display: 'block', fontSize: 12 }}>{pallet.nombre || pallet.name || 'Producto'}</b>
+                          <span style={{ display: 'block', marginTop: 3, fontSize: 11, color: '#64746a' }}>Lote: {pallet.lote || pallet.lot || '—'}</span>
+                          <span style={{ display: 'block', marginTop: 3, fontSize: 12, fontWeight: 800, color: '#24633d' }}>
+                            {pallet.cantidad ?? pallet.quantity ?? '—'} {pallet.unidad || ''}
+                          </span>
+                          <span style={{ display: 'block', marginTop: 5, fontSize: 10, color: '#2878c7', fontWeight: 700 }}>✎ CONSULTAR / EDITAR STOCK</span>
+                        </button>
+                      )) : (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedRackPosition(slot.id)}
+                          aria-pressed={selected}
+                          title="Seleccionar esta posición libre"
+                          style={{
+                            width: '100%',
+                            minHeight: 68,
+                            marginTop: 8,
+                            border: `1px dashed ${selected ? '#2878c7' : '#cbd7cf'}`,
+                            borderRadius: 9,
+                            background: selected ? '#f5f9ff' : '#f8faf8',
+                            color: selected ? '#2466a5' : '#87938b',
+                            fontSize: 12,
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                          }}
+                        >
+                          + POSICIÓN LIBRE
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 14, color: '#617067', fontSize: 12 }}>
+                <span>🟩 Ocupado</span><span>⬜ Libre</span><span>🔵 Seleccionado</span>
+                <span>Hacé clic sobre un pallet para abrir su calculadora de stock.</span>
+              </div>
+              {selectedRackPosition && (detail.slots || []).some(slot => slot.id === selectedRackPosition) && (
+                <div style={{ marginTop: 12, padding: '10px 12px', borderRadius: 9, background: '#eaf3ff', border: '1px solid #c9def5', color: '#285b8c', fontSize: 12 }}>
+                  Posición seleccionada: <b>{selectedRackPosition}</b>. Si está ocupada, tocá el pallet para modificar su saldo.
+                </div>
+              )}
+            </div>
+
+            {detail.previewOnly && <div style={{ padding: 12, background: '#fff7e6', border: '1px solid #ffe0a3', borderRadius: 9, marginBottom: 16, color: '#8a5a12' }}>Este rack pertenece al plano físico de Galpón {detail.galpon}. La vista frontal está preparada, pero estas posiciones todavía no están conectadas al registro de stock; no se pueden modificar desde aquí.</div>}
 
             <p>
               <b>
@@ -5094,6 +5160,15 @@ export default function WarehouseMap() {
                       ⚡ Cambiar stock
                     </Button>
 
+                    <Button
+                      size="small"
+                      icon={<DragOutlined />}
+                      style={{ marginTop: 8, marginLeft: 6 }}
+                      onClick={() => abrirDialogoMoverPallet(pallet)}
+                    >
+                      Mover pallet
+                    </Button>
+
                   </div>
                 );
               }
@@ -5115,6 +5190,46 @@ export default function WarehouseMap() {
 
         )}
 
+
+      <Modal
+        title="📦 Mover pallet a otra ubicación"
+        visible={!!moveDialog}
+        onCancel={() => {
+          setMoveDialog(null);
+          setMoveDestination(undefined);
+        }}
+        onOk={confirmarMoverPallet}
+        okText="Confirmar movimiento"
+        cancelText="Cancelar"
+        okButtonProps={{ disabled: !moveDestination }}
+        destroyOnClose
+      >
+        <div style={{ marginBottom: 12, padding: 12, background: '#f5f8f5', borderRadius: 8 }}>
+          <div><b>Producto:</b> {moveDialog?.pallet?.nombre || 'Pallet'}</div>
+          <div><b>Pallet:</b> {moveDialog?.pallet?.numeroPallet || 'Sin número'}</div>
+          <div><b>Lote:</b> {moveDialog?.pallet?.lote || 'Sin lote'}</div>
+          <div><b>Origen:</b> {moveDialog?.from || '—'}</div>
+        </div>
+        <label style={{ display: 'block', fontWeight: 600, marginBottom: 8 }}>Nueva ubicación</label>
+        <Select
+          showSearch
+          optionFilterProp="children"
+          placeholder="Buscar rack o posición destino"
+          value={moveDestination}
+          onChange={setMoveDestination}
+          style={{ width: '100%' }}
+        >
+          {(warehouse === 'semillas'
+            ? semillasSlots.map(slot => slot.id)
+            : [...allRacks.flat().map(slot => slot.id), ...controlMax.map(slot => slot.id)]
+          ).filter(id => id !== moveDialog?.from && !isBlocked(id) && !stackOf(occupied[id]).length).map(id => (
+            <Select.Option key={id} value={id}>{id}</Select.Option>
+          ))}
+        </Select>
+        <p style={{ color: '#64746a', marginTop: 10, marginBottom: 0 }}>
+          MIRÚ actualizará la ubicación del pallet y lo trasladará en el mapa. Solo se muestran posiciones libres.
+        </p>
+      </Modal>
 
       <PalletOperationModal
         visible={!!operationPallet}
@@ -5146,6 +5261,33 @@ export default function WarehouseMap() {
               occupied: next,
             };
           });
+        }}
+      />
+
+      <QuickMovementModal
+        visible={quickMovementVisible}
+        products={products}
+        onClose={() => setQuickMovementVisible(false)}
+        onSuccess={async (resultado) => {
+          if (Array.isArray(resultado?.movimientos)) {
+            setMap((prev) => {
+              const base = prev || state;
+              const next = { ...(base?.occupied || {}) };
+              resultado.movimientos.forEach((movimiento) => {
+                if (!movimiento.palletId) return;
+                Object.keys(next).forEach((slotId) => {
+                  next[slotId] = stackOf(next[slotId]).map((pallet) => {
+                    if (String(pallet.palletId || '') !== String(movimiento.palletId)) return pallet;
+                    const delta = Number(movimiento.cantidad || 0) * (movimiento.tipo === 'entrada' ? 1 : -1);
+                    const cantidad = Math.max(0, Number(pallet.cantidad || 0) + delta);
+                    return { ...pallet, cantidad, estado: cantidad <= 0 ? 'retirado' : 'activo' };
+                  });
+                });
+              });
+              return { ...base, occupied: next };
+            });
+          }
+          await Promise.all([refetchConsumables(), refetchReagents(), refetchEquipment()]);
         }}
       />
 

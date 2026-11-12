@@ -46,3 +46,14 @@ Si se retiran 20 unidades:
 - Equivalente: 75.825 L
 
 La conversión no reemplaza ni altera la cantidad física almacenada: se utiliza como dato calculado para mostrar, registrar movimientos y preparar reportes.
+
+## Movimiento rápido y distribución automática
+
+- En el mapa se agregó **Movimiento rápido · Pedido / turno**.
+- Permite cargar varias líneas de ingreso, retiro o consumo y confirmarlas juntas.
+- En retiros/consumos sin lote seleccionado, el servidor distribuye la cantidad entre los pallets activos de los lotes disponibles del producto. Si se selecciona un lote, respeta ese lote. Cada tramo queda en el historial con producto, lote, pallet y ubicación.
+- En ingresos se puede sumar a un pallet existente. Si no se selecciona pallet, se registra el ingreso en un lote (saldo pendiente de ubicar en el mapa).
+- El resumen de operaciones se confirma en una sola acción. El servidor valida las cantidades antes de guardar; si no alcanza el stock, devuelve un error sin guardar las operaciones planificadas.
+- El cambio de ubicación de pallets continúa usando la acción **Mover pallet** de la vista del rack; el traslado conserva saldo y lote.
+
+Ruta nueva: `POST /movements/lote`.
